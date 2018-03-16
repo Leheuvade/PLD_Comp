@@ -2,61 +2,60 @@ grammar grammaire;
 
 programme : (varGlobale)* (definition)+;
 
-instruction : declaration
-			| initialisation
-			| expr';'
-			| bloc
-			| structureControle
-			| 'break;'
-			|'return' expr ';'
+instruction : declaration #InstDecl
+			| initialisation #InstInit
+			| expr';' #InstExpr
+			| bloc #Instbloc
+			| structureControle #InstStrucControl
+			| 'break;' #InstBreak
+			|'return' expr ';' #InstReturn
 			;
 
-varGlobale: declaration
-			| initialisation
+varGlobale: declaration #VarDecl
+			| initialisation #VarInit
 			;
 
-declaration : 'const' type NAME
-			| type NAME';'
-			| type NAME'['VAL'];'
+declaration : 'const' type NAME #DeclConst
+			| type NAME';' #DeclVar
+			| type NAME'['VAL'];' #DeclTab
 			;
 
 
-initialisation : type NAME '['VAL']' '=' '{'parametreAppel'}'';'
-				| type NAME '=' VAL';'
-				| 'const' type NAME '=' VAL';'
+initialisation : type NAME '['VAL']' '=' '{'parametreAppel'}'';' #InitTab
+				| type NAME '=' VAL ';' #InitVar
+				| 'const' type NAME '=' VAL';' #InitConst
 				;
 
-expr : affectation
-	| NAME
-	| VAL
-	| CHAR
-	| NAME'['expr']'
-	| NAME'('parametreAppel')'
-	| expr '+' expr
-	| expr '-' expr
-	| expr '*' expr
-	| expr '/' expr
-	| expr '%' expr
-	| expr '!=' expr
-	| expr '==' expr
-	| expr '>' expr
-	| expr '<' expr
-	| expr '>=' expr
-	| expr '<=' expr
-	| expr '&' expr
-	| expr '&&' expr
-	| expr '||' expr
-	| expr '|' expr
-	| expr '^' expr
-	| '~'expr
-	| '!'expr
+expr : affectation #ExprAffect
+	| NAME #ExprName
+	| VAL #ExprVal
+	| CHAR ##ExprChar
+	| NAME'['expr']' #ExprTab
+	| NAME'('parametreAppel')' #ExprFnct
+	| expr '+' expr #ExprAdd
+	| expr '-' expr #ExprSub
+	| expr '*' expr #ExprMult
+	| expr '/' expr #ExprDiv
+	| expr '%' expr #ExprMod
+	| expr '!=' expr #ExprDiff
+	| expr '==' expr #ExprEqual
+	| expr '>' expr #ExprSup
+	| expr '<' expr #ExprInf
+	| expr '>=' expr #ExprSupOrEqual
+	| expr '<=' expr #ExprInfOrEqual
+	| expr '&' expr #ExprAndBit
+	| expr '&&' expr #ExprAnd
+	| expr '||' expr #ExprOr
+	| expr '|' expr #ExprOrBit
+	| expr '^' expr #ExprXorBit
+	| '~'expr #ExprNoBit
+	| '!'expr #ExprNo
 	;
 
-parametreAppel : (expr',')* expr
-			| 'void'
-			;
+parametreAppel : (expr',')* expr; 
 
-affectation : leftValue '=' expr
+
+affectation : leftValue '=' expr 
 			| leftValue '+=' expr
 			| leftValue '-=' expr
 			| leftValue '*=' expr
@@ -71,27 +70,28 @@ affectation : leftValue '=' expr
 			| leftValue '--'
 			;
 
-leftValue : NAME
-		| NAME'['expr']'
+leftValue : NAME #LeftValueVar
+		| NAME'['expr']' #LeftValueTab
 		;
 
 definition : type NAME'('parametreDefinition')' bloc;
 
 bloc : '{' (instruction)* '}';
 
-parametreDefinition : type NAME('['']')? (',' type NAME('['']')?)*
-					| type_void 
+parametreDefinition : type NAME('['']')? (',' type NAME('['']')?)* #ParamDefinitionNonVide
+					| type_void #ParamDefinitionVide
 					;
 
-structureControle : 'if' '('expr')' bloc elseBloc?
-				| 'while' '('expr')' bloc
+structureControle : 'if' '('expr')' bloc elseBloc? #If
+				| 'while' '('expr')' bloc #While
 				;
 
-elseBloc : 'else' bloc;
+elseBloc : 'else' bloc; 
 
-type : 'int32_t'
-	|'int64_t'
-	|'char';
+type : 'int32_t' #Int32
+	|'int64_t' #Int64
+	|'char' #Char
+	;
 
 type_void : 'void';
 
