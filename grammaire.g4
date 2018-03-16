@@ -29,7 +29,7 @@ initialisation : type NAME '['VAL']' '=' '{'parametreAppel'}'';' #InitTab
 expr : affectation #ExprAffect
 	| NAME #ExprName
 	| VAL #ExprVal
-	| CHAR ##ExprChar
+	| CHAR #ExprChar
 	| NAME'['expr']' #ExprTab
 	| NAME'('parametreAppel')' #ExprFnct
 	| expr '+' expr #ExprAdd
