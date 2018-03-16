@@ -56,19 +56,19 @@ parametreAppel : (expr',')* expr
 			| 'void'
 			;
 
-affectation : leftValue '=' expr
-			| leftValue '+=' expr
-			| leftValue '-=' expr
-			| leftValue '*=' expr
-			| leftValue '/=' expr
-			| leftValue '&=' expr
-			| leftValue '|=' expr
-			| leftValue '^=' expr
-			| leftValue '>>=' expr
-			| '++' leftValue
-			| '--' leftValue
-			| leftValue '++'
-			| leftValue '--'
+affectation : leftValue '=' expr #AffectEqual
+			| leftValue '+=' expr #AffectPlusEqual
+			| leftValue '-=' expr #AffectMinusEqual
+			| leftValue '*=' expr #AffectMultEqual
+			| leftValue '/=' expr #AffectDivision
+			| leftValue '&=' expr #AffectBitwiseAnd
+			| leftValue '|=' expr #AffectBitwiseOr
+			| leftValue '^=' expr #AffectBitwiseXor
+			| leftValue '>>=' expr #AffectBitwiseRightShift
+			| '++' leftValue expr #AffectIncrementationBefore
+			| '--' leftValue #AffectDecrementationBefore
+			| leftValue '++' #AffectDecrementationAfter
+			| leftValue '--' #AffectDecrementationAfter
 			;
 
 leftValue : NAME
@@ -80,7 +80,7 @@ definition : type NAME'('parametreDefinition')' bloc;
 bloc : '{' (instruction)* '}';
 
 parametreDefinition : type NAME('['']')? (',' type NAME('['']')?)*
-					| type_void 
+					| type_void
 					;
 
 structureControle : 'if' '('expr')' bloc elseBloc?
@@ -99,10 +99,3 @@ NAME : ([A-Za-z][0-9_a-zA-Z]*);
 VAL : ([0-9]+);
 COMMENTAIRE : '/*' .*? '*/';
 CHAR : '\''('\\'['"?abfnrtv\\]|.|)'\'';
-
-
-
-
-
-
-
