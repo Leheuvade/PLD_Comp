@@ -22,8 +22,8 @@ declaration : 'const' type NAME
 
 
 initialisation : type NAME '['VAL']' '=' '{'parametreAppel'}'';'
-				| type NAME = VAL';'
-				| 'const' type NAME = VAL';'
+				| type NAME '=' VAL';'
+				| 'const' type NAME '=' VAL';'
 				;
 
 expr : affectation
