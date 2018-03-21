@@ -11,7 +11,11 @@
 
 
 class VarGlobaleInitialisation: public VarGlobale {
-public: 
+public:
+VarGlobaleInitialisation();
+VarGlobaleInitialisation(Initialisation *initialisation);
+~VarGlobaleInitialisation();
+protected: 
 	Initialisation *initialisation;
 };
 

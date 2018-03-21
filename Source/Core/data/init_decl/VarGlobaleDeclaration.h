@@ -12,6 +12,10 @@
 
 class VarGlobaleDeclaration: public VarGlobale {
 public: 
+VarGlobaleDeclaration();
+VarGlobaleDeclaration(Declaration *declaration);
+~VarGlobaleDeclaration();
+protected:
 	Declaration *declaration;
 };
 
