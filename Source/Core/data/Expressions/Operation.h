@@ -10,6 +10,8 @@
 
 
 class Operation: public Expr {
+	Operation();
+	virtual ~Operation();
 };
 
 #endif //_OPERATION_H

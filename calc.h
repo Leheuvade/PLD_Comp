@@ -1,21 +1,12 @@
-
-// Generated from grammaire.g4 by ANTLR 4.7.1
-
 #pragma once
-
-
 #include "antlr4-runtime.h"
-#include "grammaireVisitor.h"
+#include "ExprBaseVisitor.h"
 
+using namespace std;
 
-/**
- * This class provides an empty implementation of grammaireVisitor, which can be
- * extended to create a visitor which only needs to handle a subset of the available methods.
- */
-class  grammaireBaseVisitor : public grammaireVisitor {
+class Calc : public ExprBaseVisitor {
 public:
-
-  virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
+	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -278,7 +269,4 @@ public:
   virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
     return visitChildren(ctx);
   }
-
-
 };
-

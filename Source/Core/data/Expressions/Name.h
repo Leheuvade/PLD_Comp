@@ -7,10 +7,15 @@
 #define _NAME_H
 
 #include "Expr.h"
+#include <string>
 
 
 class Name: public Expr {
-public: 
+public:
+	Name();
+	Name(string name);
+	virtual ~Name();
+protected: 
 	string name;
 };
 

@@ -7,10 +7,15 @@
 #define _INSTRUCTIONRETURN_H
 
 #include "Instruction.h"
+#include "Expression.h"
 
 
 class InstructionReturn: public Instruction {
-public: 
+public:
+InstructionReturn::InstructionReturn(Expr expr);
+    ~InstructionReturn();
+
+protected:
 	Expr expr;
 };
 

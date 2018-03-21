@@ -4,7 +4,13 @@
 
 
 #include "InstructionExpr.h"
+#include "Expression.h"
 
-/**
- * InstructionExpr implementation
- */
+InstructionExpr::InstructionExpr(Expr e)
+{
+    expr = e;
+}
+
+InstructionExpr::~InstructionExpr()
+{
+}

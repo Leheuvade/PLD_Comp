@@ -10,6 +10,10 @@
 
 
 class Affectation: public Expr {
+
+	public: 
+		Affectation();
+		virtual ~Affectation();
 };
 
 #endif //_AFFECTATION_H

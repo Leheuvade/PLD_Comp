@@ -11,8 +11,12 @@
 
 class ExprAppel: public Expr {
 public: 
-	Name name;
-	ParametreAppel parameters;
+	ExprAppel();
+	ExprAppel(Name* name, ParametreAppel* parameters);
+	virtual ExprAppel();
+protected: 
+	Name* name;
+	ParametreAppel* parameters;
 };
 
 #endif //_EXPRAPPEL_H

@@ -50,6 +50,7 @@ NAME=49
 VAL=50
 COMMENTAIRE=51
 CHAR=52
+WS=53
 ';'=1
 'break;'=2
 'return'=3

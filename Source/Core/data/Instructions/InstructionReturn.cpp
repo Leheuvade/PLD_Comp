@@ -4,7 +4,14 @@
 
 
 #include "InstructionReturn.h"
+#include "Expression.h"
 
-/**
- * InstructionReturn implementation
- */
+InstructionReturn::InstructionReturn(Expr e)
+{
+    expr = e;
+}
+
+InstructionReturn::~InstructionReturn()
+{
+}
+

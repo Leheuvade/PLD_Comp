@@ -8,3 +8,9 @@
 /**
  * Expr implementation
  */
+Expr::Expr(){
+
+}
+
+virtual Expr::~Expr(){
+}

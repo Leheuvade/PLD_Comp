@@ -10,9 +10,15 @@
 
 
 class AffectationUnaire: public Affectation {
+
 public: 
-	LeftValue leftValue;
-	OperateurAffectationUnaire operator;
+	AffectationUnaire();
+	AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire* op);
+	virtual ~AffectationUnaire();
+
+protected: 
+	LeftValue* leftValue;
+	OperateurAffectationUnaire* op;
 };
 
 #endif //_AFFECTATIONUNAIRE_H

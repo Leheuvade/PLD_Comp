@@ -5,8 +5,8 @@
 
 
 #include "antlr4-runtime.h"
-#include <string>
-#include <vector>
+
+
 
 
 class  grammaireLexer : public antlr4::Lexer {
@@ -20,7 +20,7 @@ public:
     T__32 = 33, T__33 = 34, T__34 = 35, T__35 = 36, T__36 = 37, T__37 = 38, 
     T__38 = 39, T__39 = 40, T__40 = 41, T__41 = 42, T__42 = 43, T__43 = 44, 
     T__44 = 45, T__45 = 46, T__46 = 47, T__47 = 48, NAME = 49, VAL = 50, 
-    COMMENTAIRE = 51, CHAR = 52
+    COMMENTAIRE = 51, CHAR = 52, WS = 53
   };
 
   grammaireLexer(antlr4::CharStream *input);
