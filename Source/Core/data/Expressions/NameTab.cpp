@@ -15,6 +15,6 @@ NameTab::NameTab()
 NameTab::NameTab(string name,Expr* indice) :  Name(name) {
 	this->indice = indice;
 }
-virtual NameTab::~NameTab(){
-
+NameTab::~NameTab(){
+	delete indice;
 }

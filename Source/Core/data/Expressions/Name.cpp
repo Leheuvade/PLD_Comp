@@ -18,5 +18,5 @@ Name::Name(string name){
 }
 
 Name::~Name(){
-
+	 
 }

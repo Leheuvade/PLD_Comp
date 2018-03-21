@@ -16,5 +16,6 @@ OperationUnaire::OperationUnaire(Expr* expr, OperateurBinaire* op){
 	this->op = op;
 }
 OperationUnaire::~OperationUnaire(){
-
+	delete expr;
+	delete op;
 }
