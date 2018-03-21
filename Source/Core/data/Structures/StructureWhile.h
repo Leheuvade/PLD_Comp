@@ -3,11 +3,9 @@
  */
 
 
-#ifndef _STRUCTUREWHILE_H
-#define _STRUCTUREWHILE_H
+#pragma once
 
 #include "StructureControle.h"
-
 
 class StructureWhile: public StructureControle {
   public:
@@ -15,5 +13,3 @@ class StructureWhile: public StructureControle {
     StructureWhile(Expr* condition, Bloc* bloc);
     ~StructureWhile();
 };
-
-#endif //_STRUCTUREWHILE_H

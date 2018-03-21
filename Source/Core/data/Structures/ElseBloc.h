@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _ELSEBLOC_H
-#define _ELSEBLOC_H
+#pragma once
 
 class ElseBloc {
   public:
@@ -15,5 +14,3 @@ class ElseBloc {
   protected:
     Bloc* bloc;
 };
-
-#endif //_ELSEBLOC_H
