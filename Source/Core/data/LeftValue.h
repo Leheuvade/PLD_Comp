@@ -5,10 +5,11 @@
 
 #ifndef _LEFTVALUE_H
 #define _LEFTVALUE_H
+#include "Expressions/Name.h"
 
 class LeftValue {
 public: 
-	Name name;
+	Name *name;
 };
 
 #endif //_LEFTVALUE_H

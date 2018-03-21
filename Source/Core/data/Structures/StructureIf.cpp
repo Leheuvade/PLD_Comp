@@ -19,5 +19,5 @@ StructureIf::StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc)
 
 StructureIf::~StructureIf()
 {
-
+  delete this->elseBloc;
 }

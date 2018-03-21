@@ -7,11 +7,12 @@
 #define _DECLARATIONTAB_H
 
 #include "Declaration.h"
+#include "../Expressions/Val.h"
 
 
 class DeclarationTab: public Declaration {
 public: 
-	Val size;
+	Val *size;
 };
 
 #endif //_DECLARATIONTAB_H

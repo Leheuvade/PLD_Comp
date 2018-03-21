@@ -19,5 +19,6 @@ StructureControle::StructureControle(Expr* condition, Bloc* bloc)
 
 StructureControle::~StructureControle()
 {
-
+  delete this->condition;
+  delete this->bloc;
 }
