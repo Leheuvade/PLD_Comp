@@ -19,6 +19,7 @@ DeclarationTab::DeclarationTab(Type *type, Name *name, bool isConst,Val *size)
 }
 
 DeclarationTab::~DeclarationTab(){
-
+	delete type;
+	delete name;
 
 }

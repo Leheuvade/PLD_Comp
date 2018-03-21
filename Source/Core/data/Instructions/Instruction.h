@@ -9,8 +9,8 @@
 class Instruction {
 
 public:
-Instruction::Instruction();
-~Instruction();
+Instruction();
+virtual ~Instruction();
 
 };
 

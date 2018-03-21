@@ -4,7 +4,7 @@
 
 
 #include "InstructionDeclaration.h"
-#include "Declaration.h"
+#include "../init_decl/Declaration.h"
 
 InstructionDeclaration::InstructionDeclaration(Declaration* d)
 {
@@ -13,5 +13,6 @@ InstructionDeclaration::InstructionDeclaration(Declaration* d)
 
 InstructionDeclaration::~InstructionDeclaration()
 {
+	delete declaration;
 }
 

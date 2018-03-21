@@ -3,15 +3,18 @@
  */
 
 
-#ifndef _PROGRAMME_H
-#define _PROGRAMME_H
+#pragma once
+
 #include "init_decl/VarGlobale.h"
 #include "Definitions/Definition.h"
 using namespace std;
 class Programme {
 public: 
+	Programme();
+	Programme(vector<VarGlobale*> &varGlobales, vector<Definition*> &definitions);
+	virtual ~Programme();
+protected:
 	vector<VarGlobale*> varGlobales;
 	vector<Definition*> definitions;
 };
 
-#endif //_PROGRAMME_H

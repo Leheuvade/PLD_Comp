@@ -4,6 +4,7 @@
 
 
 #include "StructureIf.h"
+#include "ElseBloc.h"
 
 StructureIf::StructureIf()
 : StructureControle()
@@ -12,12 +13,12 @@ StructureIf::StructureIf()
 }
 
 StructureIf::StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc)
-: StructureControle(Expr* condition, Bloc* bloc)
+: StructureControle(condition, bloc)
 {
   this->elseBloc = elseBloc;
 }
 
 StructureIf::~StructureIf()
 {
-  delete this->elseBloc;
+  delete elseBloc;
 }
