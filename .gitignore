@@ -62,3 +62,7 @@ Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+*.user
+*.filters
+*.vcxproj
+*.aps
