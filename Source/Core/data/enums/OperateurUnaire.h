@@ -2,10 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _OPERATEURUNAIRE_H
-#define _OPERATEURUNAIRE_H
+#pragma once
 
 enum OperateurUnaire { NON };
 
-#endif //_OPERATEURUNAIRE_H

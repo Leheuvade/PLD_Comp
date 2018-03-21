@@ -12,5 +12,5 @@
 Affectation::Affectation() {
 }
 
-virtual Affectation::Affectation() {
+Affectation::~Affectation() {
 }

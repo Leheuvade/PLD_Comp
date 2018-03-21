@@ -16,7 +16,7 @@ Char::Char(char val){
 	this->val = val;
 }
 
-virtual Char::~Char(){
+Char::~Char(){
 
 }
 

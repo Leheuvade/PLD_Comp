@@ -12,7 +12,7 @@ using namespace std;
 class ParametreAppel {
 public:
 	ParametreAppel();
-	ParametreAppel(vector<Expr*> parameters);
+	ParametreAppel(vector<Expr*> &parameters);
 	virtual ~ParametreAppel();
 
 protected:

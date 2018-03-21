@@ -18,6 +18,6 @@ AffectationBinaire::AffectationBinaire(LeftValue* leftValue, OperateurAffectatio
 	this->op = op;
 }
 
-virtual AffectationBinaire::~AffectationBinaire(){
+AffectationBinaire::~AffectationBinaire(){
 
 }
