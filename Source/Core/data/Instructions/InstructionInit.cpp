@@ -6,7 +6,7 @@
 #include "InstructionInit.h"
 #include "Initialisation.h"
 
-InstructionInit::InstructionInit(Initialisation i)
+InstructionInit::InstructionInit(Initialisation* i)
 {
  init = i;
 }

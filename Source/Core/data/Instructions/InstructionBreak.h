@@ -3,9 +3,7 @@
  */
 
 
-#ifndef _INSTRUCTIONBREAK_H
-#define _INSTRUCTIONBREAK_H
-
+#pragma once
 #include "Instruction.h"
 
 
@@ -17,4 +15,3 @@ InstructionBreak::InstructionBreak();
 
 };
 
-#endif //_INSTRUCTIONBREAK_H

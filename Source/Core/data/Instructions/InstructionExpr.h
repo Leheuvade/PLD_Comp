@@ -2,20 +2,21 @@
  * Project Untitled
  */
 
-
-#ifndef _INSTRUCTIONEXPR_H
-#define _INSTRUCTIONEXPR_H
+#pragma once
 
 #include "Instruction.h"
 #include "Expression.h"
 
+class Expr;
+
 class InstructionExpr: public Instruction {
 public:
-InstructionExpr::InstructionExpr(Expr expr);
+
+InstructionExpr(Expr* expr);
     ~InstructionExpr();
 
 protected:
-	Expr expr;
+	Expr* expr;
+
 };
 
-#endif //_INSTRUCTIONEXPR_H

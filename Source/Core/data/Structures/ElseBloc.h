@@ -5,6 +5,8 @@
 
 #pragma once
 
+class Bloc;
+
 class ElseBloc {
   public:
     ElseBloc();

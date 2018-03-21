@@ -2,12 +2,13 @@
  * Project Untitled
  */
 
-
-#ifndef _AFFECTATIONUNAIRE_H
-#define _AFFECTATIONUNAIRE_H
+#pragma once
 
 #include "Affectation.h"
+#include "../enums/OperateurAffectationUnaire.h"
 
+
+class LeftValue;
 
 class AffectationUnaire: public Affectation {
 
@@ -20,5 +21,3 @@ protected:
 	LeftValue* leftValue;
 	OperateurAffectationUnaire* op;
 };
-
-#endif //_AFFECTATIONUNAIRE_H

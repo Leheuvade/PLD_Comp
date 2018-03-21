@@ -1,18 +1,18 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _OPERATIONUNAIRE_H
-#define _OPERATIONUNAIRE_H
+#pragma once
 
 #include "Operation.h"
+#include "../enums/OperateurBinaire.h"
 
 
 class OperationUnaire: public Operation {
-public: 
+public:
+	OperationUnaire();
+	OperationUnaire(Expr* expr, OperateurBinaire* op);
+	virtual ~OperationUnaire();
+protected: 
 	Expr* expr;
 	OperateurBinaire* op;
 };
-
-#endif //_OPERATIONUNAIRE_H

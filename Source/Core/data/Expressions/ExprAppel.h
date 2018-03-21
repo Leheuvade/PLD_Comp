@@ -1,13 +1,13 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _EXPRAPPEL_H
-#define _EXPRAPPEL_H
+#pragma once
 
 #include "Expr.h"
 
+
+class ParametreAppel;
+class Name;
 
 class ExprAppel: public Expr {
 public: 
@@ -18,5 +18,3 @@ protected:
 	Name* name;
 	ParametreAppel* parameters;
 };
-
-#endif //_EXPRAPPEL_H

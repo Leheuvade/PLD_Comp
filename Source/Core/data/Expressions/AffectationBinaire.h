@@ -1,13 +1,13 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _AFFECTATIONBINAIRE_H
-#define _AFFECTATIONBINAIRE_H
+#pragma once
 
 #include "Affectation.h"
+#include "../enums/OperateurAffectationBinaire.h"
 
+
+class LeftValue;
 
 class AffectationBinaire: public Affectation {
 
@@ -19,5 +19,3 @@ protected:
 	LeftValue* leftValue;
 	OperateurAffectationBinaire* op;
 };
-
-#endif //_AFFECTATIONBINAIRE_H

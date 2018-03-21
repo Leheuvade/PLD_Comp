@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _INSTRUCTION_H
-#define _INSTRUCTION_H
+#pragma once
 
 
 class Instruction {
@@ -15,4 +14,3 @@ Instruction::Instruction();
 
 };
 
-#endif //_INSTRUCTION_H
