@@ -4,6 +4,7 @@
 
 
 #include "ElseBloc.h"
+#include "../Bloc.h"
 
 ElseBloc::ElseBloc()
 {
@@ -17,5 +18,5 @@ ElseBloc::ElseBloc(Bloc* bloc)
 
 ElseBloc::~ElseBloc()
 {
-  delete this->block;
+  delete this->bloc;
 }

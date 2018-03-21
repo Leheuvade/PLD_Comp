@@ -4,7 +4,7 @@
 
 
 #include "InstructionReturn.h"
-#include "Expression.h"
+#include "../Expressions/Expr.h"
 
 InstructionReturn::InstructionReturn(Expr* e)
 {
@@ -13,5 +13,6 @@ InstructionReturn::InstructionReturn(Expr* e)
 
 InstructionReturn::~InstructionReturn()
 {
+	delete expr;
 }
 

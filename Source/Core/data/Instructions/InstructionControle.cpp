@@ -4,7 +4,7 @@
 
 
 #include "InstructionControle.h"
-#include "StructureControle.h"
+#include "../Structures/StructureControle.h"
 
 InstructionControle::InstructionControle(StructureControle* s)
 {
@@ -13,4 +13,5 @@ InstructionControle::InstructionControle(StructureControle* s)
 
 InstructionControle::~InstructionControle()
 {
+	delete structControle;
 }

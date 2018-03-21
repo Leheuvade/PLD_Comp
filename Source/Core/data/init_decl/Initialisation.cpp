@@ -24,4 +24,7 @@ Initialisation::Initialisation(Type * type,Name * name,bool isConst){
 
 Initialisation::~Initialisation(){
 
-}
+	delete type;
+	delete name;
+
+ }

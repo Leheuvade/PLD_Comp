@@ -3,13 +3,16 @@
  */
 
 
-#ifndef _LEFTVALUE_H
-#define _LEFTVALUE_H
+#pragma once
+
 #include "Expressions/Name.h"
 
 class LeftValue {
 public: 
+	LeftValue();
+	LeftValue(Name * name);
+	virtual ~LeftValue();
+protected:
 	Name *name;
 };
 
-#endif //_LEFTVALUE_H

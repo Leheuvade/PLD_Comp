@@ -2,9 +2,8 @@
  * Project Untitled
  */
 
+#pragma once
 
-#ifndef _BLOC_H
-#define _BLOC_H
 
 #include "Instructions/Instruction.h"
 #include <vector>
@@ -12,7 +11,10 @@
 using namespace std;
 class Bloc: public Instruction {
 public:
-	vector<Instruction> instructions;
+	Bloc();
+	Bloc(vector<Instruction*> &instructions);
+	virtual ~Bloc();
+protected:
+	vector<Instruction*> instructions;
 };
 
-#endif //_BLOC_H

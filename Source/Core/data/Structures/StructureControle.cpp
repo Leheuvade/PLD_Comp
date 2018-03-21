@@ -4,6 +4,8 @@
 
 
 #include "StructureControle.h"
+#include "../Expressions/Expr.h"
+#include "../Bloc.h"
 
 StructureControle::StructureControle()
 {

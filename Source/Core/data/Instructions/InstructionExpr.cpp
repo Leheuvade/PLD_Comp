@@ -4,7 +4,7 @@
 
 
 #include "InstructionExpr.h"
-#include "Expression.h"
+#include "../Expressions/Expr.h"
 
 InstructionExpr::InstructionExpr(Expr* e)
 {
@@ -13,4 +13,5 @@ InstructionExpr::InstructionExpr(Expr* e)
 
 InstructionExpr::~InstructionExpr()
 {
+	delete expr;
 }

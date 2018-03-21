@@ -6,7 +6,6 @@
 #pragma once
 
 #include "Instruction.h"
-#include "StructureControle.h"
 
 
 class StructureControle;
@@ -16,7 +15,7 @@ public:
 
 
 	InstructionControle(StructureControle* structControle);
-    ~InstructionControle();
+    virtual ~InstructionControle();
 
 protected:
     StructureControle* structControle;

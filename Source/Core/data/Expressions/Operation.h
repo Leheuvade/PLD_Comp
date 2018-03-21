@@ -7,6 +7,7 @@
 
 
 class Operation: public Expr {
+public:
 	Operation();
 	virtual ~Operation();
 };

@@ -11,5 +11,5 @@ class StructureWhile: public StructureControle {
   public:
     StructureWhile();
     StructureWhile(Expr* condition, Bloc* bloc);
-    ~StructureWhile();
+    virtual ~StructureWhile();
 };

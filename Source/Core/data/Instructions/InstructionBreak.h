@@ -10,8 +10,8 @@
 class InstructionBreak: public Instruction {
 
 public:
-InstructionBreak::InstructionBreak();
-~InstructionBreak();
+InstructionBreak();
+virtual ~InstructionBreak();
 
 };
 

@@ -4,13 +4,14 @@
 
 
 #include "InstructionInit.h"
-#include "Initialisation.h"
+#include "../init_decl/Initialisation.h"
 
 InstructionInit::InstructionInit(Initialisation* i)
 {
- init = i;
+	initialisation = i;
 }
 
 InstructionInit::~InstructionInit()
 {
+	delete initialisation;
 }
