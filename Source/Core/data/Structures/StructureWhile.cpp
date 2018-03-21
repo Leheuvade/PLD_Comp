@@ -5,6 +5,19 @@
 
 #include "StructureWhile.h"
 
-/**
- * StructureWhile implementation
- */
+StructureWhile::StructureWhile()
+: StructureControle()
+{
+
+}
+
+StructureWhile::StructureWhile(Expr* condition, Bloc* bloc)
+: StructureControle(Expr* condition, Bloc* bloc)
+{
+
+}
+
+StructureWhile::~StructureWhile()
+{
+
+}

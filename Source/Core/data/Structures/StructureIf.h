@@ -10,8 +10,12 @@
 
 
 class StructureIf: public StructureControle {
-public: 
-	ElseBloc elseBloc;
+	public:
+		StructureIf();
+		StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc);
+		~StructureIf();
+	private:
+		ElseBloc* elseBloc;
 };
 
 #endif //_STRUCTUREIF_H
