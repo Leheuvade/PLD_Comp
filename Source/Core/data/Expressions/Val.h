@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _VAL_H
-#define _VAL_H
+#pragma once
 
 #include "Expr.h"
 
@@ -17,5 +15,3 @@ public:
 protected: 
 	int val;
 };
-
-#endif //_VAL_H

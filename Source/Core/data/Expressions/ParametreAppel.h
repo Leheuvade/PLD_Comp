@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _PARAMETREAPPEL_H
-#define _PARAMETREAPPEL_H
+#pragma once
 
 class ParametreAppel {
 public:
@@ -14,5 +13,3 @@ public:
 protected: 
 	Vector<Expr*> parameters;
 };
-
-#endif //_PARAMETREAPPEL_H

@@ -1,10 +1,7 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _AFFECTATION_H
-#define _AFFECTATION_H
+#pragma once
 
 #include "Expr.h"
 
@@ -15,5 +12,3 @@ class Affectation: public Expr {
 		Affectation();
 		virtual ~Affectation();
 };
-
-#endif //_AFFECTATION_H
