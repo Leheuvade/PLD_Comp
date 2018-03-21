@@ -9,8 +9,11 @@
  * VarGlobaleDeclaration implementation
  */
 
- VarGlobaleDeclaration::VarGlobaleDeclaration() {}
-VarGlobaleDeclaration(Declaration *declaration) {
+VarGlobaleDeclaration::VarGlobaleDeclaration() {}
+
+VarGlobaleDeclaration(Declaration *declaration) : VarGlobale() {
 	this->declaration = declaration;
 }
-~VarGlobaleDeclaration() {}
+~VarGlobaleDeclaration() {
+  delete declaration;
+}

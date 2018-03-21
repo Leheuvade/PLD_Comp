@@ -11,18 +11,12 @@
 
 
 class InitialisationTab: public Initialisation {
+	public:
+		InitialisationTab(Val *size,ParametreAppel *valeurs);
+		InitialisationTab();
+		virtual ~InitialisationTab();
 
-
-
-
-public:
-	InitialisationTab(Val *size,ParametreAppel *valeurs);
-	InitialisationTab();
-	~InitialisationTab()
-
-protected:
-	Val *size;
-	ParametreAppel *valeurs;
-
+	protected:
+		Val *size;
+		ParametreAppel *valeurs;
 };
-

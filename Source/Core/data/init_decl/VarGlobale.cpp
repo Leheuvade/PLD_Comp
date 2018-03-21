@@ -9,5 +9,5 @@
  * VarGlobale implementation
  */
 
- VarGlobale::VarGlobale() {}
-virtual VarGlobale::~VarGlobale() {}
+VarGlobale::VarGlobale() {}
+VarGlobale::~VarGlobale() {}

@@ -3,20 +3,16 @@
  */
 
 
-#ifndef _VARGLOBALEINITIALISATION_H
-#define _VARGLOBALEINITIALISATION_H
+#pragma once
 
 #include "VarGlobale.h"
 #include "Initialisation.h"
 
-
 class VarGlobaleInitialisation: public VarGlobale {
-public:
-VarGlobaleInitialisation();
-VarGlobaleInitialisation(Initialisation *initialisation);
-~VarGlobaleInitialisation();
-protected: 
-	Initialisation *initialisation;
+	public:
+		VarGlobaleInitialisation();
+		VarGlobaleInitialisation(Initialisation *initialisation);
+		virtual ~VarGlobaleInitialisation();
+	protected:
+		Initialisation *initialisation;
 };
-
-#endif //_VARGLOBALEINITIALISATION_H

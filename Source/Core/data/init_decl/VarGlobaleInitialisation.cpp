@@ -9,8 +9,12 @@
  * VarGlobaleInitialisation implementation
  */
 
- VarGlobaleInitialisation::VarGlobaleInitialisation(){}
-VarGlobaleInitialisation(Initialisation *initialisation){
-this->initialisation = initialisation;
+VarGlobaleInitialisation::VarGlobaleInitialisation(){}
+
+VarGlobaleInitialisation::VarGlobaleInitialisation(Initialisation *initialisation) : VarGlobale() {
+  this->initialisation = initialisation;
 }
-~VarGlobaleInitialisation(){}
+
+VarGlobaleInitialisation::~VarGlobaleInitialisation(){
+  delete initialisation;
+}
