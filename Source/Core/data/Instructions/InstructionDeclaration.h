@@ -10,9 +10,9 @@
 
 class InstructionDeclaration: public Instruction {
 public:
-InstructionDeclaration::InstructionDeclaration(Declaration declaration);
+InstructionDeclaration::InstructionDeclaration(Declaration* declaration);
     ~InstructionDeclaration();
 protected:
-	Declaration declaration;
+	Declaration* declaration;
 };
 

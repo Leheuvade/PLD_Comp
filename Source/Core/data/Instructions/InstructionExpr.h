@@ -9,10 +9,10 @@
 
 class InstructionExpr: public Instruction {
 public:
-InstructionExpr::InstructionExpr(Expr expr);
+InstructionExpr::InstructionExpr(Expr* expr);
     ~InstructionExpr();
 
 protected:
-	Expr expr;
+	Expr* expr;
 };
 

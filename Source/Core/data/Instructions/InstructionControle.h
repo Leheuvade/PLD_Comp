@@ -12,9 +12,9 @@
 class InstructionControle: public Instruction {
 public: 
 
-	InstructionControle::InstructionControle(StructureControle structControle);
+	InstructionControle::InstructionControle(StructureControle* structControle);
     ~InstructionControle();
 
 protected:
-    StructureControle structControle;
+    StructureControle* structControle;
 };

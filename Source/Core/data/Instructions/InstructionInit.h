@@ -10,9 +10,9 @@
 
 class InstructionInit: public Instruction {
 public:
-InstructionInit::InstructionInit(Initialisation initialisation);
+InstructionInit::InstructionInit(Initialisation* initialisation);
     ~InstructionInit();
 
 protected:
-	Initialisation initialisation;
+	Initialisation* initialisation;
 };
