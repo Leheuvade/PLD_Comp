@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _DEFINITION_H
-#define _DEFINITION_H
+#pragma once
 #include "Type.h"
 #include "Name.h"
 #include "ParametreDefinition.h"
@@ -20,10 +18,10 @@ Definition::Definition(Type *type, Name *name, ParametreDefinition *params, Bloc
 ~Definition();
 
 protected:
-	Type type;
-	Name name;
-	ParametreDefinition params;
-	Bloc bloc;
+	Type *type;
+	Name *name;
+	ParametreDefinition *params;
+	Bloc *bloc;
 };
 
 #endif //_DEFINITION_H

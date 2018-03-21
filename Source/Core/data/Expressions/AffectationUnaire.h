@@ -7,7 +7,10 @@
 #define _AFFECTATIONUNAIRE_H
 
 #include "Affectation.h"
+#include "../enums/OperateurAffectationUnaire.h"
 
+
+class LeftValue;
 
 class AffectationUnaire: public Affectation {
 

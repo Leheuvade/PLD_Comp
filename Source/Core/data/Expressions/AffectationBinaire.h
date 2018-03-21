@@ -7,7 +7,10 @@
 #define _AFFECTATIONBINAIRE_H
 
 #include "Affectation.h"
+#include "../enums/OperateurAffectationBinaire.h"
 
+
+class LeftValue;
 
 class AffectationBinaire: public Affectation {
 

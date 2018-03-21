@@ -13,7 +13,7 @@
 #include "../Expressions/Name.h"
 
 
-Definition::Definition(Type t, Name *n, ParametreDefinition p, Bloc* b)
+Definition::Definition(Type *t, Name *n, ParametreDefinition* p, Bloc* b)
 {
     type=t;
     name=n;

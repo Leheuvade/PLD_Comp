@@ -6,6 +6,8 @@
 #ifndef _ELSEBLOC_H
 #define _ELSEBLOC_H
 
+class Bloc;
+
 class ElseBloc {
   public:
     ElseBloc();

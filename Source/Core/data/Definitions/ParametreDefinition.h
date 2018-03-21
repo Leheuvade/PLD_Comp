@@ -6,15 +6,16 @@
 #ifndef _PARAMETREDEFINITION_H
 #define _PARAMETREDEFINITION_H
 #include "Parametre.h"
+#include <vector>
 
 class ParametreDefinition {
 
 public:
-ParametreDefinition::ParametreDefinition(Vector<Parametre> parameters);
+ParametreDefinition::ParametreDefinition(std::vector<Parametre> parameters);
 ~ParametreDefinition();
 
 protected:
-	Vector<Parametre> parameters;
+	std::vector<Parametre> parameters;
 };
 
 #endif //_PARAMETREDEFINITION_H

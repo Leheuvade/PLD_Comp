@@ -6,6 +6,9 @@
 #ifndef _STRUCTURECONTROLE_H
 #define _STRUCTURECONTROLE_H
 
+class Bloc;
+class Expr;
+
 class StructureControle {
 	public:
 		StructureControle();

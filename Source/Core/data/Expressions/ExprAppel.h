@@ -9,6 +9,9 @@
 #include "Expr.h"
 
 
+class ParametreAppel;
+class Name;
+
 class ExprAppel: public Expr {
 public: 
 	ExprAppel();

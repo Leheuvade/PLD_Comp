@@ -7,6 +7,7 @@
 #define _OPERATIONUNAIRE_H
 
 #include "Operation.h"
+#include "../enums/OperateurBinaire.h"
 
 
 class OperationUnaire: public Operation {

@@ -10,8 +10,8 @@
 
 class Parametre {
 public: 
-	Type type;
-	Name name;
+	Type *type;
+	Name *name;
 	bool hasBrackets;
 };
 
