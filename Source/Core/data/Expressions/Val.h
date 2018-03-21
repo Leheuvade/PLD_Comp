@@ -11,6 +11,10 @@
 
 class Val: public Expr {
 public: 
+	Val();
+	Val(int val);
+	virtual ~Val();
+protected: 
 	int val;
 };
 

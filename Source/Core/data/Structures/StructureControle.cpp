@@ -5,6 +5,19 @@
 
 #include "StructureControle.h"
 
-/**
- * StructureControle implementation
- */
+StructureControle::StructureControle()
+{
+  this->condition = nullptr;
+  this->bloc = nullptr;
+}
+
+StructureControle::StructureControle(Expr* condition, Bloc* bloc)
+{
+  this->condition = condition;
+  this->bloc = bloc;
+}
+
+StructureControle::~StructureControle()
+{
+
+}

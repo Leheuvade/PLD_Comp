@@ -7,8 +7,12 @@
 #define _PARAMETREAPPEL_H
 
 class ParametreAppel {
-public: 
-	Vector<Expr> parameters;
+public:
+	ParametreAppel();
+	ParametreAppel(Vector<Expr*> parameters);
+	virtual ~ParametreAppel();
+protected: 
+	Vector<Expr*> parameters;
 };
 
 #endif //_PARAMETREAPPEL_H
