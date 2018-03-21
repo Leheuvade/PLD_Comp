@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _DEFINITION_H
-#define _DEFINITION_H
+
 #include "Type.h"
 #include "Name.h"
 #include "ParametreDefinition.h"
@@ -12,14 +11,13 @@
 
 class Definition {
 public:
-Definition::Definition(Type type, Name name, ParametreDefinition params, Bloc bloc);
+Definition::Definition(Type* type, Name* name, ParametreDefinition* params, Bloc* bloc);
 ~Definition();
 
 protected:
-	Type type;
-	Name name;
-	ParametreDefinition params;
-	Bloc bloc;
+	Type* type;
+	Name* name;
+	ParametreDefinition* params;
+	Bloc* bloc;
 };
 
-#endif //_DEFINITION_H

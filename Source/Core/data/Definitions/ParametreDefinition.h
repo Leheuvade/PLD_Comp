@@ -10,11 +10,11 @@
 class ParametreDefinition {
 
 public:
-ParametreDefinition::ParametreDefinition(Vector<Parametre> parameters);
+ParametreDefinition::ParametreDefinition(Vector<Parametre*> parameters);
 ~ParametreDefinition();
 
 protected:
-	Vector<Parametre> parameters;
+	Vector<Parametre*> parameters;
 };
 
 #endif //_PARAMETREDEFINITION_H
