@@ -10,7 +10,14 @@
 
 
 class DeclarationTab: public Declaration {
-public: 
+
+
+public:
+	DeclarationTab();
+	DeclarationTab(Val size);
+	~DeclarationTab();
+
+protected:
 	Val size;
 };
 

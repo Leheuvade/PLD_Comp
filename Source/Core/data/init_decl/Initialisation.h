@@ -7,7 +7,13 @@
 #define _INITIALISATION_H
 
 class Initialisation {
-public: 
+
+public:
+	Initialisation();
+	Initialisation(Type type,Name name,bool isConst);
+	~Initialisation();
+
+protected:
 	Type type;
 	Name name;
 	bool isConst;

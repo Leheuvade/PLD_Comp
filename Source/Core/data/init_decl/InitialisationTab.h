@@ -10,7 +10,15 @@
 
 
 class InitialisationTab: public Initialisation {
-public: 
+
+
+
+public:
+	InitialisationTab(Val size,ParametreAppel valeurs);
+	InitialisationTab();
+	~InitialisationTab()
+
+protected:
 	Val size;
 	ParametreAppel valeurs;
 };

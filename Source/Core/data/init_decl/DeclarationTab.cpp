@@ -5,6 +5,19 @@
 
 #include "DeclarationTab.h"
 
-/**
- * DeclarationTab implementation
- */
+DeclarationTab(){
+
+  size = 0;
+
+}
+
+DeclarationTab(Val size){
+
+  this.size = size;
+
+}
+
+~DeclarationTab(){
+
+
+}
