@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _INSTRUCTIONRETURN_H
-#define _INSTRUCTIONRETURN_H
+#pragma once
 
 #include "Instruction.h"
 #include "Expression.h"
@@ -18,5 +16,3 @@ InstructionReturn::InstructionReturn(Expr expr);
 protected:
 	Expr expr;
 };
-
-#endif //_INSTRUCTIONRETURN_H

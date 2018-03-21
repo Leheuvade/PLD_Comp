@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _INSTRUCTIONCONTROLE_H
-#define _INSTRUCTIONCONTROLE_H
+#pragma once
 
 #include "Instruction.h"
 #include "StructureControle.h"
@@ -19,5 +18,3 @@ public:
 protected:
     StructureControle structControle;
 };
-
-#endif //_INSTRUCTIONCONTROLE_H

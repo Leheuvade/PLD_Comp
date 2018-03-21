@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _INSTRUCTIONDECLARATION_H
-#define _INSTRUCTIONDECLARATION_H
+#pragma once
 
 #include "Instruction.h"
 #include "Declaration.h"
@@ -17,4 +16,3 @@ protected:
 	Declaration declaration;
 };
 
-#endif //_INSTRUCTIONDECLARATION_H

@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _INSTRUCTIONINIT_H
-#define _INSTRUCTIONINIT_H
+#pragma once
 
 #include "Instruction.h"
 #include "Initialisation.h"
@@ -17,5 +16,3 @@ InstructionInit::InstructionInit(Initialisation initialisation);
 protected:
 	Initialisation initialisation;
 };
-
-#endif //_INSTRUCTIONINIT_H

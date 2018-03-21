@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _INSTRUCTIONEXPR_H
-#define _INSTRUCTIONEXPR_H
+#pragma once
 
 #include "Instruction.h"
 #include "Expression.h"
@@ -18,4 +16,3 @@ protected:
 	Expr expr;
 };
 
-#endif //_INSTRUCTIONEXPR_H
