@@ -8,3 +8,6 @@
 /**
  * VarGlobale implementation
  */
+
+ VarGlobale::VarGlobale() {}
+virtual VarGlobale::~VarGlobale() {}

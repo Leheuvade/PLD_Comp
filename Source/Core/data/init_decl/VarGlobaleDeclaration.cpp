@@ -8,3 +8,9 @@
 /**
  * VarGlobaleDeclaration implementation
  */
+
+ VarGlobaleDeclaration::VarGlobaleDeclaration() {}
+VarGlobaleDeclaration(Declaration *declaration) {
+	this->declaration = declaration;
+}
+~VarGlobaleDeclaration() {}
