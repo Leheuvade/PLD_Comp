@@ -8,23 +8,23 @@
 /**
  * Declaration implementation
  */
- Declaration(){
+Declaration::Declaration(){
 
-   this.type = nullptr;
-   this.name = nullptr;
-   this.isConst = true;
-
- }
-
- Declaration(Type type,Name name,bool isConst){
-
-   this.type = type;
-   this.name = name;
-   this.isConst = isConst;
+   type = nullptr;
+   name = nullptr;
+   isConst = true;
 
  }
 
- ~DeclarationTab(){
+Declaration::Declaration(Type *type,Name *name,bool isConst){
+
+   this->type = type;
+   this->name = name;
+   this->isConst = isConst;
+
+ }
+
+Declaration::~Declaration(){
 
 
  }

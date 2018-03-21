@@ -5,19 +5,20 @@
 
 #include "DeclarationTab.h"
 
-DeclarationTab(){
+DeclarationTab::DeclarationTab(){
 
   size = 0;
 
 }
 
-DeclarationTab(Val size){
+DeclarationTab::DeclarationTab(Type *type, Name *name, bool isConst,Val *size)
+	:Declaration(type,name,isConst){
 
-  this.size = size;
+  this->size = size;
 
 }
 
-~DeclarationTab(){
+DeclarationTab::~DeclarationTab(){
 
 
 }

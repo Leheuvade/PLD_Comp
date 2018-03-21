@@ -12,7 +12,7 @@ class Declaration {
 public:
 	Declaration();
 	Declaration(Type *type,Name *name,bool isConst);
-	~Declaration();
+	virtual ~Declaration();
 
 protected:
 	Type *type;
