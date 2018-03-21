@@ -8,3 +8,9 @@
 /**
  * Affectation implementation
  */
+
+Affectation::Affectation() {
+}
+
+virtual Affectation::Affectation() {
+}

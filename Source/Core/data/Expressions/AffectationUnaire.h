@@ -12,7 +12,7 @@
 class AffectationUnaire: public Affectation {
 public: 
 	LeftValue leftValue;
-	OperateurAffectationUnaire operator;
+	OperateurAffectationUnaire op;
 };
 
 #endif //_AFFECTATIONUNAIRE_H

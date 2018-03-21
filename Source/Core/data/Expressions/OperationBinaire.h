@@ -12,7 +12,7 @@
 class OperationBinaire: public Operation {
 public: 
 	Expr expr1;
-	OperateurUnaire operator;
+	OperateurUnaire op;
 	Expr expr2;
 };
 
