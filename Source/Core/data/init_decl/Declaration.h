@@ -3,16 +3,23 @@
  */
 
 
-#ifndef _DECLARATION_H
-#define _DECLARATION_H
+#pragma once
 #include "../enums/Type.h"
 #include "../Expressions/Name.h"
 
 class Declaration {
-public: 
-	Type* type;
+
+public:
+	Declaration();
+	Declaration(Type *type,Name *name,bool isConst);
+	~Declaration();
+
+protected:
+	Type *type;
 	Name *name;
+
 	bool isConst;
 };
 
-#endif //_DECLARATION_H
+
+
