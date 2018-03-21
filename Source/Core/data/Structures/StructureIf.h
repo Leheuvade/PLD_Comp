@@ -7,6 +7,9 @@
 
 #include "StructureControle.h"
 
+
+class ElseBloc;
+
 class StructureIf: public StructureControle {
 	public:
 		StructureIf();

@@ -5,7 +5,10 @@
 #pragma once
 
 #include "Affectation.h"
+#include "../enums/OperateurAffectationUnaire.h"
 
+
+class LeftValue;
 
 class AffectationUnaire: public Affectation {
 

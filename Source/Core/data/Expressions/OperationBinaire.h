@@ -4,6 +4,7 @@
 #pragma once
  
 #include "Operation.h"
+#include "../enums/OperateurUnaire.h"
 
 
 class OperationBinaire: public Operation {

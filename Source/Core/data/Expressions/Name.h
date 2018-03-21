@@ -7,7 +7,7 @@
 #include "Expr.h"
 #include <string>
 
-
+using namespace std;
 class Name: public Expr {
 public:
 	Name();
