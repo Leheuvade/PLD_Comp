@@ -5,14 +5,17 @@
 
 using namespace std;
 
-class Calc : public ExprBaseVisitor {
+class Calc : public grammaireBaseVisitor {
 public:
 	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *ctx) override {
-    return visitChildren(ctx);
+    if(ctx->declaration()!=nullptr)
+    {
+      return (Instruction *) visit(ctx->declaration());
+    }
   }
 
   virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *ctx) override {
@@ -80,7 +83,7 @@ public:
   }
 
   virtual antlrcpp::Any visitExprName(grammaireParser::ExprNameContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expression *) new Name(visit(ctx->NAME()->getText()));
   }
 
   virtual antlrcpp::Any visitExprNoBit(grammaireParser::ExprNoBitContext *ctx) override {
