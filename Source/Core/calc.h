@@ -1,7 +1,8 @@
 #pragma once
 #include "antlr4-runtime.h"
-#include "ExprBaseVisitor.h"
 #include "Reader/grammaireParser.h"
+#include "Visitor/grammaireBaseVisitor.h"
+#include "data/Instructions/Instruction.h"
 
 using namespace std;
 
