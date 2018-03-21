@@ -5,6 +5,8 @@
 
 #ifndef _PARAMETRE_H
 #define _PARAMETRE_H
+#include "../enums/Type.h"
+#include "../Expressions/Name.h"
 
 class Parametre {
 public: 
