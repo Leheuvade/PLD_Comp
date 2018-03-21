@@ -6,6 +6,7 @@
 
 #include "antlr4-runtime.h"
 #include "grammaireVisitor.h"
+#include "../Reader/grammaireParser.h"
 
 
 /**
