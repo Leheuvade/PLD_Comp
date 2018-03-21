@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _NAME_H
-#define _NAME_H
+#pragma once
 
 #include "Expr.h"
 #include <string>
@@ -18,5 +16,3 @@ public:
 protected: 
 	string name;
 };
-
-#endif //_NAME_H

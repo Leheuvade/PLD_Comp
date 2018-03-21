@@ -7,9 +7,14 @@
 #define _STRUCTURECONTROLE_H
 
 class StructureControle {
-public: 
-	Expr condition;
-	Bloc bloc;
+	public:
+		StructureControle();
+		StructureControle(Expr* condition, Bloc* bloc);
+		virtual ~StructureControle();
+
+	protected:
+		Expr* condition;
+		Bloc* bloc;
 };
 
 #endif //_STRUCTURECONTROLE_H

@@ -7,8 +7,13 @@
 #define _ELSEBLOC_H
 
 class ElseBloc {
-public: 
-	Bloc bloc;
+  public:
+    ElseBloc();
+    ElseBloc(Bloc* bloc);
+    virtual ~ElseBloc();
+
+  protected:
+    Bloc* bloc;
 };
 
 #endif //_ELSEBLOC_H
