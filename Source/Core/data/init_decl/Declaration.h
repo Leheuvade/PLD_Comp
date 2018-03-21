@@ -17,9 +17,5 @@ public:
 protected:
 	Type *type;
 	Name *name;
-
 	bool isConst;
 };
-
-
-
