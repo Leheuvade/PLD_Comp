@@ -15,6 +15,6 @@ ExprAppel::ExprAppel(Name* name, ParametreAppel* parameters){
 	this->name = name;
 	this->parameters = parameters;
 }
-virtual ExprAppel::~ExprAppel(){
+ExprAppel::~ExprAppel(){
 
 }

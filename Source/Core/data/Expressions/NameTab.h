@@ -9,8 +9,8 @@
 
 class NameTab: public Name {
 public: 
-	NameTab(string name);
-	NameTab(Expr* indice);
+	NameTab();
+	NameTab(string name,Expr* indice);
 	virtual ~NameTab();
 protected: 
 	Expr* indice;

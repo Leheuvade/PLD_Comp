@@ -11,7 +11,7 @@ class ParametreDefinition {
 
 public:
 
-ParametreDefinition::ParametreDefinition(vector<Parametre*> parameters);
+ParametreDefinition(vector<Parametre*> parameters);
 ~ParametreDefinition();
 
 protected:

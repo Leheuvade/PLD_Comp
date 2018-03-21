@@ -17,6 +17,6 @@ AffectationUnaire::AffectationUnaire(LeftValue* leftValue, OperateurAffectationU
 	this->op = op;
 }
 
-virtual AffectationUnaire::~AffectationUnaire(){
+AffectationUnaire::~AffectationUnaire(){
 
 }

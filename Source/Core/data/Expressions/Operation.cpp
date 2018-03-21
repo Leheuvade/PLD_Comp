@@ -9,4 +9,4 @@
  * Operation implementation
  */
 Operation::Operation(){}
-virtual Operation::~Operation(){}
+Operation::~Operation(){}

@@ -12,4 +12,4 @@ Val::Val(){}
 Val::Val(int val){
 	this->val = val;
 }
-virtual ~Val(){}
+Val::~Val(){}

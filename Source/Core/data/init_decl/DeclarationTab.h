@@ -2,17 +2,22 @@
  * Project Untitled
  */
 
-
-#ifndef _DECLARATIONTAB_H
-#define _DECLARATIONTAB_H
-
+#pragma once
 #include "Declaration.h"
 #include "../Expressions/Val.h"
 
 
 class DeclarationTab: public Declaration {
-public: 
+
+
+
+public:
+	DeclarationTab();
+	DeclarationTab(Type *type, Name *name, bool isConst,Val *size);
+	virtual ~DeclarationTab();
+
+protected:
 	Val *size;
+
 };
 
-#endif //_DECLARATIONTAB_H

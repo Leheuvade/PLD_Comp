@@ -3,9 +3,7 @@
  */
 
 
-#ifndef _OPERATEURAFFECTATIONUNAIRE_H
-#define _OPERATEURAFFECTATIONUNAIRE_H
+#pragma once
 
 enum OperateurAffectationUnaire { PPLUS, MMOINS };
 
-#endif //_OPERATEURAFFECTATIONUNAIRE_H

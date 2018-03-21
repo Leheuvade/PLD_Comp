@@ -9,7 +9,7 @@
  * ParametreAppel implementation
  */
 ParametreAppel::ParametreAppel(){}
-ParametreAppel::ParametreAppel(Vector<Expr*> parameters){
+ParametreAppel::ParametreAppel(vector<Expr*> &parameters){
 	this->parameters = parameters;
 }
 virtual ParametreAppel::~ParametreAppel(){}

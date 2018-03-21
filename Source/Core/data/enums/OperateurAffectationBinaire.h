@@ -3,9 +3,8 @@
  */
 
 
-#ifndef _OPERATEURAFFECTATIONBINAIRE_H
-#define _OPERATEURAFFECTATIONBINAIRE_H
+#pragma once
+
 
 enum OperateurAffectationBinaire { PLUS_EGAL, MOINS_EGAL };
 
-#endif //_OPERATEURAFFECTATIONBINAIRE_H
