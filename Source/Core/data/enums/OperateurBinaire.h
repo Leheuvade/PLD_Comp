@@ -3,9 +3,8 @@
  */
 
 
-#ifndef _OPERATEURBINAIRE_H
-#define _OPERATEURBINAIRE_H
+#pragma once
+
 
 enum OperateurBinaire { PLUS, MOINS, FOIS, DIVISER };
 
-#endif //_OPERATEURBINAIRE_H

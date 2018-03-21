@@ -12,5 +12,5 @@ Expr::Expr(){
 
 }
 
-virtual Expr::~Expr(){
+Expr::~Expr(){
 }

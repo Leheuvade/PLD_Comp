@@ -8,11 +8,15 @@
 #include "Expression.h"
 
 
+class Expr;
+
 class InstructionReturn: public Instruction {
 public:
-InstructionReturn::InstructionReturn(Expr expr);
+
+InstructionReturn(Expr *expr);
     ~InstructionReturn();
 
 protected:
-	Expr expr;
+	Expr *expr;
+
 };

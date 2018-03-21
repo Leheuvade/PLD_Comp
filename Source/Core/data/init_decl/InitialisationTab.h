@@ -3,24 +3,26 @@
  */
 
 
-#ifndef _INITIALISATIONTAB_H
-#define _INITIALISATIONTAB_H
+#pragma once
 
 #include "Initialisation.h"
+#include "../Expressions/Val.h"
+#include "../Expressions/ParametreAppel.h"
 
 
 class InitialisationTab: public Initialisation {
 
 
 
+
 public:
-	InitialisationTab(Val size,ParametreAppel valeurs);
+	InitialisationTab(Val *size,ParametreAppel *valeurs);
 	InitialisationTab();
 	~InitialisationTab()
 
 protected:
-	Val size;
-	ParametreAppel valeurs;
+	Val *size;
+	ParametreAppel *valeurs;
+
 };
 
-#endif //_INITIALISATIONTAB_H

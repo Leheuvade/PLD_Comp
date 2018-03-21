@@ -5,6 +5,9 @@
 
 #pragma once
 
+class Bloc;
+class Expr;
+
 class StructureControle {
 	public:
 		StructureControle();

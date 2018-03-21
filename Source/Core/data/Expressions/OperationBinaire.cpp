@@ -15,4 +15,4 @@ OperationBinaire::OperationBinaire(Expr* expr1, OperateurUnaire* op, Expr* expr2
 	this->expr2 = expr2;
 }
 
-virtual OperationBinaire::~OperationBinaire(){}
+OperationBinaire::~OperationBinaire(){}

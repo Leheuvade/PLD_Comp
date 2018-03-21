@@ -3,20 +3,22 @@
  */
 
 
-#ifndef _INITIALISATION_H
-#define _INITIALISATION_H
+#pragma once
+#include "../enums/Type.h"
+#include "../Expressions/Name.h"
 
 class Initialisation {
 
+
 public:
 	Initialisation();
-	Initialisation(Type type,Name name,bool isConst);
+	Initialisation(Type *type,Name *name,bool isConst);
 	~Initialisation();
 
 protected:
-	Type type;
-	Name name;
+	Type *type;
+	Name *name;
+
 	bool isConst;
 };
 
-#endif //_INITIALISATION_H

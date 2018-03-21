@@ -6,7 +6,7 @@
 #include "ParametreDefinition.h"
 #include "Parametre.h"
 
-ParametreDefinition::ParametreDefinition(Vector<Parametre> p)
+ParametreDefinition::ParametreDefinition(vector<Parametre*> p)
 {
     parameters=p;
 }

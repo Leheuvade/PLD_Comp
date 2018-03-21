@@ -17,6 +17,6 @@ Name::Name(string name){
 	this->name = name;
 }
 
-virtual Name::~Name(){
+Name::~Name(){
 
 }

@@ -2,15 +2,18 @@
  * Project Untitled
  */
 
-
-#ifndef _PARAMETRE_H
-#define _PARAMETRE_H
+#pragma once
+#include "../enums/Type.h"
+#include "../Expressions/Name.h"
 
 class Parametre {
-public: 
-	Type type;
-	Name name;
+public:
+	Parametre(Type *type, Name *name, bool hasBrackets);
+	~Parametre();
+
+protected:
+	Type *type;
+	Name *name;
 	bool hasBrackets;
 };
 
-#endif //_PARAMETRE_H

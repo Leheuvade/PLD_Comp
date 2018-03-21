@@ -3,18 +3,18 @@
  */
 
 
-#ifndef _PARAMETREDEFINITION_H
-#define _PARAMETREDEFINITION_H
+#pragma once
 #include "Parametre.h"
-
+#include <vector>
+using namespace std;
 class ParametreDefinition {
 
 public:
-ParametreDefinition::ParametreDefinition(Vector<Parametre> parameters);
+
+ParametreDefinition(vector<Parametre*> parameters);
 ~ParametreDefinition();
 
 protected:
-	Vector<Parametre> parameters;
+	vector<Parametre*> parameters;
 };
 
-#endif //_PARAMETREDEFINITION_H
