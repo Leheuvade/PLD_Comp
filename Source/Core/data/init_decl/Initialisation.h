@@ -13,12 +13,10 @@ class Initialisation {
 public:
 	Initialisation();
 	Initialisation(Type *type,Name *name,bool isConst);
-	~Initialisation();
+	virtual ~Initialisation();
 
 protected:
 	Type *type;
 	Name *name;
-
 	bool isConst;
 };
-

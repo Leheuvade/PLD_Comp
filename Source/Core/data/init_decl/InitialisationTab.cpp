@@ -10,22 +10,20 @@
  */
 
 
-  InitialisationTab(){
+InitialisationTab::InitialisationTab(){
+  type = nullptr;
+  name = nullptr;
+  isConst = true;
+}
 
-    this.type = nullptr;
-    this.name = nullptr;
-    this.isConst = true;
+InitialisationTab::InitialisationTab(Type* type,Name* name, bool isConst, Val* size, ParametreAppel* valeurs)
+: Initialisation(type, name, isConst)
+{
+ this->size = size;
+ this->valeurs = valeurs;
+}
 
-  }
-
-
-   InitialisationTab(Val  *size,ParametreAppel* valeurs){
-
-     this.size = size;
-     this.valeurs = valeurs;
-   }
-
-   ~InitialisationTab(){
-
-
-   }
+InitialisationTab::~InitialisationTab(){
+  delete size;
+  delete valeurs;
+}
