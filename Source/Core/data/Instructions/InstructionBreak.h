@@ -10,6 +10,11 @@
 
 
 class InstructionBreak: public Instruction {
+
+public:
+InstructionBreak::InstructionBreak();
+~InstructionBreak();
+
 };
 
 #endif //_INSTRUCTIONBREAK_H

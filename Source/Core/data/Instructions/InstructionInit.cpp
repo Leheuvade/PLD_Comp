@@ -4,7 +4,13 @@
 
 
 #include "InstructionInit.h"
+#include "Initialisation.h"
 
-/**
- * InstructionInit implementation
- */
+InstructionInit::InstructionInit(Initialisation i)
+{
+ init = i;
+}
+
+InstructionInit::~InstructionInit()
+{
+}

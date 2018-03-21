@@ -7,10 +7,14 @@
 #define _INSTRUCTIONINIT_H
 
 #include "Instruction.h"
-
+#include "Initialisation.h"
 
 class InstructionInit: public Instruction {
-public: 
+public:
+InstructionInit::InstructionInit(Initialisation initialisation);
+    ~InstructionInit();
+
+protected:
 	Initialisation initialisation;
 };
 
