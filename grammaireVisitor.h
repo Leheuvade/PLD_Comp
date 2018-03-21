@@ -151,6 +151,5 @@ public:
 
     virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *context) = 0;
 
-
 };
 

@@ -99,3 +99,4 @@ NAME : ([A-Za-z][0-9_a-zA-Z]*);
 VAL : ([0-9]+);
 COMMENTAIRE : '/*' .*? '*/';
 CHAR : '\''('\\'['"?abfnrtv\\]|.|)'\'';
+WS : [ \t\n\r]+ -> skip ;
