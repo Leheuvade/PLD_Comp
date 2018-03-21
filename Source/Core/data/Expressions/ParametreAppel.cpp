@@ -12,4 +12,13 @@ ParametreAppel::ParametreAppel(){}
 ParametreAppel::ParametreAppel(vector<Expr*> &parameters){
 	this->parameters = parameters;
 }
-virtual ParametreAppel::~ParametreAppel(){}
+ParametreAppel::~ParametreAppel()
+{
+	for (int i = 0; i<parameters.size(); i++)
+	{
+		if (parameters[i])
+		{
+			delete parameters[i];
+		}
+	}
+}

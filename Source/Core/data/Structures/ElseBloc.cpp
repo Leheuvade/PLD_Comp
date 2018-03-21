@@ -18,5 +18,5 @@ ElseBloc::ElseBloc(Bloc* bloc)
 
 ElseBloc::~ElseBloc()
 {
-  delete this->bloc;
+  delete bloc;
 }

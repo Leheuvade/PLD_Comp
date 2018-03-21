@@ -12,7 +12,7 @@
 
 class InitialisationTab: public Initialisation {
 	public:
-		InitialisationTab(Val *size,ParametreAppel *valeurs);
+		InitialisationTab(Type* type, Name* name, bool isConst, Val *size,ParametreAppel *valeurs);
 		InitialisationTab();
 		virtual ~InitialisationTab();
 

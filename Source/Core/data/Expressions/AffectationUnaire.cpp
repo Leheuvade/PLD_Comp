@@ -4,6 +4,7 @@
 
 
 #include "AffectationUnaire.h"
+#include "../LeftValue.h"
 
 /**
  * AffectationUnaire implementation
@@ -18,5 +19,6 @@ AffectationUnaire::AffectationUnaire(LeftValue* leftValue, OperateurAffectationU
 }
 
 AffectationUnaire::~AffectationUnaire(){
-
+	delete leftValue;
+	delete op;
 }

@@ -26,5 +26,7 @@ Declaration::Declaration(Type *type,Name *name,bool isConst){
 
 Declaration::~Declaration(){
 
+	delete type;
+	delete name;
 
  }

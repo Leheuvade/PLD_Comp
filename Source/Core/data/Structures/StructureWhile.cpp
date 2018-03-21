@@ -21,6 +21,5 @@ StructureWhile::StructureWhile(Expr* condition, Bloc* bloc)
 
 StructureWhile::~StructureWhile()
 {
-	delete condition;
-	delete bloc;
+	
 }
