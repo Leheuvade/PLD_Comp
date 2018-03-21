@@ -5,6 +5,10 @@
 
 #include "InstructionBreak.h"
 
-/**
- * InstructionBreak implementation
- */
+InstructionBreak::InstructionBreak()
+{
+}
+
+InstructionBreak::~InstructionBreak()
+{
+}

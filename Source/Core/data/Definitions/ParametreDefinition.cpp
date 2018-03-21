@@ -4,7 +4,13 @@
 
 
 #include "ParametreDefinition.h"
+#include "Parametre.h"
 
-/**
- * ParametreDefinition implementation
- */
+ParametreDefinition::ParametreDefinition(Vector<Parametre> p)
+{
+    parameters=p;
+}
+
+ParametreDefinition::~ParametreDefinition()
+{
+}

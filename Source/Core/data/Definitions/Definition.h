@@ -5,9 +5,17 @@
 
 #ifndef _DEFINITION_H
 #define _DEFINITION_H
+#include "Type.h"
+#include "Name.h"
+#include "ParametreDefinition.h"
+#include "Bloc.h"
 
 class Definition {
-public: 
+public:
+Definition::Definition(Type type, Name name, ParametreDefinition params, Bloc bloc);
+~Definition();
+
+protected:
 	Type type;
 	Name name;
 	ParametreDefinition params;

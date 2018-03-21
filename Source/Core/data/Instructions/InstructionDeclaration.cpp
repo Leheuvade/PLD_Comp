@@ -4,7 +4,14 @@
 
 
 #include "InstructionDeclaration.h"
+#include "Declaration.h"
 
-/**
- * InstructionDeclaration implementation
- */
+InstructionDeclaration::InstructionDeclaration(Declaration d)
+{
+    declaration = d;
+}
+
+InstructionDeclaration::~InstructionDeclaration()
+{
+}
+

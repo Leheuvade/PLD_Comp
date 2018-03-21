@@ -4,7 +4,13 @@
 
 
 #include "InstructionControle.h"
+#include "StructureControle.h"
 
-/**
- * InstructionControle implementation
- */
+InstructionControle::InstructionControle(StructureControle s)
+{
+    structControle = s;
+}
+
+InstructionControle::~InstructionControle()
+{
+}

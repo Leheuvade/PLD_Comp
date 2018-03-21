@@ -5,6 +5,11 @@
 
 #include "Instruction.h"
 
-/**
- * Instruction implementation
- */
+Instruction::Instruction()
+{
+}
+
+Instruction::~Instruction()
+{
+}
+

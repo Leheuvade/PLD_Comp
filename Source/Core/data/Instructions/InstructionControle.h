@@ -7,11 +7,17 @@
 #define _INSTRUCTIONCONTROLE_H
 
 #include "Instruction.h"
+#include "StructureControle.h"
 
 
 class InstructionControle: public Instruction {
 public: 
-	StructureControle structControle;
+
+	InstructionControle::InstructionControle(StructureControle structControle);
+    ~InstructionControle();
+
+protected:
+    StructureControle structControle;
 };
 
 #endif //_INSTRUCTIONCONTROLE_H

@@ -7,10 +7,14 @@
 #define _INSTRUCTIONEXPR_H
 
 #include "Instruction.h"
-
+#include "Expression.h"
 
 class InstructionExpr: public Instruction {
-public: 
+public:
+InstructionExpr::InstructionExpr(Expr expr);
+    ~InstructionExpr();
+
+protected:
 	Expr expr;
 };
 

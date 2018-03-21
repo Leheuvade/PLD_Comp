@@ -7,10 +7,13 @@
 #define _INSTRUCTIONDECLARATION_H
 
 #include "Instruction.h"
-
+#include "Declaration.h"
 
 class InstructionDeclaration: public Instruction {
-public: 
+public:
+InstructionDeclaration::InstructionDeclaration(Declaration declaration);
+    ~InstructionDeclaration();
+protected:
 	Declaration declaration;
 };
 
