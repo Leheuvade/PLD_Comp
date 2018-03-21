@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _NAMETAB_H
-#define _NAMETAB_H
+#pragma once
 
 #include "Name.h"
 #include <string>
@@ -17,5 +15,3 @@ public:
 protected: 
 	Expr* indice;
 };
-
-#endif //_NAMETAB_H

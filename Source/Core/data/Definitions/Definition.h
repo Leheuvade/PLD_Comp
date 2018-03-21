@@ -2,6 +2,7 @@
  * Project Untitled
  */
 
+
 #pragma once
 #include "Type.h"
 #include "Name.h"
@@ -14,14 +15,14 @@ class Bloc;
 
 class Definition {
 public:
-Definition::Definition(Type *type, Name *name, ParametreDefinition *params, Bloc *bloc);
+Definition::Definition(Type* type, Name* name, ParametreDefinition* params, Bloc* bloc);
 ~Definition();
 
 protected:
-	Type *type;
-	Name *name;
-	ParametreDefinition *params;
-	Bloc *bloc;
+	Type* type;
+	Name* name;
+	ParametreDefinition* params;
+	Bloc* bloc;
+
 };
 
-#endif //_DEFINITION_H

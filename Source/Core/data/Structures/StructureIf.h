@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _STRUCTUREIF_H
-#define _STRUCTUREIF_H
+#pragma once
 
 #include "StructureControle.h"
 
@@ -19,5 +18,3 @@ class StructureIf: public StructureControle {
 	private:
 		ElseBloc* elseBloc;
 };
-
-#endif //_STRUCTUREIF_H

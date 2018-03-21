@@ -3,18 +3,20 @@
  */
 
 
-#ifndef _PARAMETREAPPEL_H
-#define _PARAMETREAPPEL_H
+
+#pragma once
 #include "Expr.h"
 #include <vector>
 
+using namespace std;
 class ParametreAppel {
 public:
 	ParametreAppel();
-	ParametreAppel(std::vector<Expr*> parameters);
+	ParametreAppel(vector<Expr*> parameters);
 	virtual ~ParametreAppel();
+
 protected:
-	std::vector<Expr*> parameters;
+	vector<Expr*> parameters;
 };
 
-#endif //_PARAMETREAPPEL_H
+

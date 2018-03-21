@@ -1,10 +1,7 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _CHAR_H
-#define _CHAR_H
+#pragma once
 
 #include "Expr.h"
 
@@ -18,5 +15,3 @@ public:
 protected: 
 	char val;
 };
-
-#endif //_CHAR_H

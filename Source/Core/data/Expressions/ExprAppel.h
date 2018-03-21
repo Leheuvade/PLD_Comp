@@ -1,10 +1,7 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _EXPRAPPEL_H
-#define _EXPRAPPEL_H
+#pragma once
 
 #include "Expr.h"
 
@@ -21,5 +18,3 @@ protected:
 	Name* name;
 	ParametreAppel* parameters;
 };
-
-#endif //_EXPRAPPEL_H

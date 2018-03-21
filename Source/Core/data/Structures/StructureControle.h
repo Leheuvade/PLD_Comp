@@ -3,8 +3,7 @@
  */
 
 
-#ifndef _STRUCTURECONTROLE_H
-#define _STRUCTURECONTROLE_H
+#pragma once
 
 class Bloc;
 class Expr;
@@ -19,5 +18,3 @@ class StructureControle {
 		Expr* condition;
 		Bloc* bloc;
 };
-
-#endif //_STRUCTURECONTROLE_H

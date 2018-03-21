@@ -1,11 +1,8 @@
 /**
  * Project Untitled
  */
-
-
-#ifndef _OPERATIONBINAIRE_H
-#define _OPERATIONBINAIRE_H
-
+#pragma once
+ 
 #include "Operation.h"
 #include "../enums/OperateurUnaire.h"
 
@@ -15,11 +12,9 @@ public:
 	OperationBinaire();
 	OperationBinaire(Expr* expr1, OperateurUnaire* op, Expr* expr2);
 	virtual ~OperationBinaire();
-	
+
 protected: 
 	Expr* expr1;
 	OperateurUnaire* op;
 	Expr* expr2;
 };
-
-#endif //_OPERATIONBINAIRE_H
