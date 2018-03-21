@@ -11,8 +11,8 @@
 
 class OperationUnaire: public Operation {
 public: 
-	Expr expr;
-	OperateurBinaire operator;
+	Expr* expr;
+	OperateurBinaire* op;
 };
 
 #endif //_OPERATIONUNAIRE_H

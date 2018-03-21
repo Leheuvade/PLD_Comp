@@ -7,11 +7,15 @@
 #define _NAMETAB_H
 
 #include "Name.h"
-
+#include <string>
 
 class NameTab: public Name {
 public: 
-	Expr indice;
+	NameTab(string name);
+	NameTab(Expr* indice);
+	virtual ~NameTab();
+protected: 
+	Expr* indice;
 };
 
 #endif //_NAMETAB_H
