@@ -11,9 +11,14 @@
 
 class OperationBinaire: public Operation {
 public: 
-	Expr expr1;
-	OperateurUnaire op;
-	Expr expr2;
+	OperationBinaire();
+	OperationBinaire(Expr* expr1, OperateurUnaire* op, Expr* expr2);
+	virtual ~OperationBinaire();
+	
+protected: 
+	Expr* expr1;
+	OperateurUnaire* op;
+	Expr* expr2;
 };
 
 #endif //_OPERATIONBINAIRE_H

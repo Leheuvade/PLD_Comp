@@ -8,3 +8,15 @@
 /**
  * Name implementation
  */
+
+Name::Name(){
+
+}
+
+Name::Name(string name){
+	this->name = name;
+}
+
+virtual Name::~Name(){
+
+}
