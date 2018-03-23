@@ -5,8 +5,8 @@
 
 
 #include "antlr4-runtime.h"
-
-
+#include <string>
+#include <vector>
 
 
 class  grammaireLexer : public antlr4::Lexer {

@@ -5,9 +5,7 @@
 
 
 #include "antlr4-runtime.h"
-#include "grammaireParser.h"
-
-
+#include "../Reader/grammaireParser.h"
 
 /**
  * This class defines an abstract visitor for a parse tree

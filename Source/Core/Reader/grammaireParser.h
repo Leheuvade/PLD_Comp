@@ -5,8 +5,10 @@
 
 
 #include "antlr4-runtime.h"
-
-
+#include "../Visitor/grammaireVisitor.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 
 class  grammaireParser : public antlr4::Parser {
