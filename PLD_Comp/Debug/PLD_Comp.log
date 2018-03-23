@@ -1,30 +1,8 @@
 ﻿  Bloc.cpp
-b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(22): warning C4018: '<' : incompatibilité signed/unsigned
-  Definition.cpp
-  Parametre.cpp
-  ParametreDefinition.cpp
-b:\users\xavier\git\pld_comp\source\core\data\definitions\parametredefinition.cpp(16): warning C4018: '<' : incompatibilité signed/unsigned
-  Affectation.cpp
-  Declaration.cpp
-  DeclarationTab.cpp
-  Initialisation.cpp
+b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(20): warning C4018: '<' : incompatibilité signed/unsigned
   InitialisationTab.cpp
-  VarGlobale.cpp
-  VarGlobaleDeclaration.cpp
-  VarGlobaleInitialisation.cpp
-  Instruction.cpp
-  InstructionDeclaration.cpp
-  InstructionExpr.cpp
-  InstructionInit.cpp
-  InstructionReturn.cpp
-  Programme.cpp
-b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(23): warning C4018: '<' : incompatibilité signed/unsigned
-b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(30): warning C4018: '<' : incompatibilité signed/unsigned
-  ElseBloc.cpp
   grammaireLexer.cpp
 b:\users\xavier\git\pld_comp\source\core\reader\grammairelexer.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
-  Génération de code en cours...
-  Compilation en cours...
   grammaireParser.cpp
 b:\users\xavier\git\pld_comp\source\core\reader\grammaireparser.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   grammaireBaseVisitor.cpp
