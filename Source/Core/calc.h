@@ -64,27 +64,60 @@ public:
   }
 
   virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
-    return visitChildren(ctx);
+		return (Declaration*)
+			new Declaration(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				true
+			);
   }
 
   virtual antlrcpp::Any visitDeclVar(grammaireParser::DeclVarContext *ctx) override {
-    return visitChildren(ctx);
+  	return (Declaration*)
+			new Declaration(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false
+			);1
   }
 
   virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
-    return visitChildren(ctx);
+		return (DeclarationTab*)
+			new DeclarationTab(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false,
+				(Val*) new Val(stoi(ctx->VAL()->getText()))
+			);
   }
 
   virtual antlrcpp::Any visitInitTab(grammaireParser::InitTabContext *ctx) override {
-    return visitChildren(ctx);
+    return (InitialisationTab*)
+			new InitialisationTab(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false,
+				(Val*) new Val(stoi(ctx->VAL()->getText())),
+				(ParametreAppel*) visit(ctx->parametreAppel())
+			);
   }
 
   virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
-    return visitChildren(ctx);
+		return (InitialisationTab*)
+			new InitialisationTab(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false
+			);
   }
 
   virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
-    return visitChildren(ctx);
+		return (InitialisationTab*)
+			new InitialisationTab(
+				(Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				true
+			);
   }
 
   virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
@@ -272,19 +305,18 @@ public:
   }
 
   virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
-    return visitChildren(ctx);
+    return (Type) int32_type;
   }
 
   virtual antlrcpp::Any visitInt64(grammaireParser::Int64Context *ctx) override {
-    return visitChildren(ctx);
+    return (Type) int64_type;
   }
 
   virtual antlrcpp::Any visitChar(grammaireParser::CharContext *ctx) override {
-    return visitChildren(ctx);
+    return (Type) char_type;
   }
 
   virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
-    return visitChildren(ctx);
+    return (Type) void_type;
   }
-
 };
