@@ -5,7 +5,6 @@
 
 #include "grammaireParser.h"
 
-
 using namespace antlrcpp;
 using namespace antlr4;
 

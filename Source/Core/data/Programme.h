@@ -6,7 +6,11 @@
 #pragma once
 
 #include "init_decl/VarGlobale.h"
-#include "Definitions/Definition.h"
+#include <vector> 
+using namespace std;
+
+class Definition;
+
 using namespace std;
 class Programme {
 public: 
