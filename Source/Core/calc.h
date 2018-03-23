@@ -319,9 +319,4 @@ public:
   virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
     return (Type) void_type;
   }
-<<<<<<< HEAD
 };
-=======
-
-};
->>>>>>> 162425bdfb9d8670571cba61bf831bb5391cf11e
