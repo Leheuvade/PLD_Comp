@@ -1,8 +1,7 @@
 #pragma once
 #include "antlr4-runtime.h"
+#include "ExprBaseVisitor.h"
 #include "Reader/grammaireParser.h"
-#include "Visitor/grammaireBaseVisitor.h"
-#include "data/Instructions/Instruction.h"
 
 using namespace std;
 
@@ -13,34 +12,47 @@ public:
   }
 
   virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *ctx) override {
-    if(ctx->declaration()!=nullptr)
+    if(ctx->declaration!=nullptr)
     {
-      return (Instruction *) visit(ctx->declaration());
+      return (Instruction *) visit(ctx->declaration);
     }
   }
 
   virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
+    if(ctx->init!=nullptr)
+        {
+          return (Instruction *) visit(ctx->init);
+        }
+}
   virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
+    if(ctx->expr!=nullptr)
+        {
+          return (Instruction *) visit(ctx->expr);
+        }
+}
   virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
-    return visitChildren(ctx);
-  }
+    if(ctx->bloc!=nullptr)
+        {
+          return (Instruction *) visit(ctx->bloc);
+        }
+     }
 
   virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstStrucControlContext *ctx) override {
-    return visitChildren(ctx);
+     if(ctx->structControle!=nullptr)
+            {
+              return (Instruction *) visit(ctx->structControle);
+            }
   }
 
   virtual antlrcpp::Any visitInstBreak(grammaireParser::InstBreakContext *ctx) override {
-    return visitChildren(ctx);
+
   }
 
   virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
-    return visitChildren(ctx);
+    if(ctx->expr!=nullptr)
+                {
+                  return (Instruction *) visit(ctx->expr);
+                }
   }
 
   virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
@@ -274,4 +286,5 @@ public:
   virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
     return visitChildren(ctx);
   }
+
 };

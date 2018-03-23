@@ -13,7 +13,7 @@ class Bloc;
 class Definition {
 public:
 Definition(Type* type, Name* name, ParametreDefinition* params, Bloc* bloc);
-~Definition();
+virtual ~Definition();
 
 protected:
 	Type* type;

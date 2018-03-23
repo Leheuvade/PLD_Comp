@@ -4,11 +4,12 @@
 
 #pragma once
 
-
-#include "Instructions/Instruction.h"
 #include <vector>
 
+#include "Instructions/Instruction.h"
+
 using namespace std;
+
 class Bloc: public Instruction {
 public:
 	Bloc();
