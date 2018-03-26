@@ -11,6 +11,7 @@
 using namespace std;
 
 class Bloc {
+	friend class MapperSymbol;
 public:
 	Bloc();
 	Bloc(vector<InitDecl*> &initDecl, vector<InstructionStruct*> instructions);

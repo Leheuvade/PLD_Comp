@@ -4,9 +4,10 @@
 
 
 #pragma once
+#include "Symbole.h"
 
 
-class InitDecl {
+class InitDecl:public Symbole {
 
 public:
 	InitDecl();

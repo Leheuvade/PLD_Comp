@@ -8,7 +8,7 @@
 #include "../Expressions/Name.h"
 
 class Declaration {
-
+	friend class MapperSymbol;
 public:
 	Declaration();
 	Declaration(Type *type,Name *name,bool isConst);
