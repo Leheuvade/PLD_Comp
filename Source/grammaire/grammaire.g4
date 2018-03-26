@@ -81,8 +81,17 @@ parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|param
 	| type_void #ParamDefinitionVide
 	;
 
+<<<<<<< Updated upstream
 parametreSimple : type NAME;
 parametreTab : type NAME'['']';
+=======
+parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|parametreTab))* #ParamDefinitionNonVide
+	| type_void #ParamDefinitionVide
+	;
+
+parametreSimple : type NAME; #ParametreSimple
+parametreTab : type NAME'['']'; #ParametreTab
+>>>>>>> Stashed changes
 
 structureControle : 'if' '('expr')' blocStruct elseBloc? #If
 	| 'while' '('expr')' blocStruct #While
