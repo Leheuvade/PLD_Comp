@@ -27,9 +27,8 @@ public:
     RuleProgramme = 0, RuleInitDecl = 1, RuleInstructionStruct = 2, RuleVarGlobale = 3, 
     RuleDeclaration = 4, RuleInitialisation = 5, RuleExpr = 6, RuleParametreAppel = 7, 
     RuleAffectation = 8, RuleLeftValue = 9, RuleDefinition = 10, RuleBloc = 11, 
-    RuleBlocStruct = 12, RuleParametreDefinition = 13, RuleParametreSimple = 14, 
-    RuleParametreTab = 15, RuleStructureControle = 16, RuleElseBloc = 17, 
-    RuleType = 18, RuleType_void = 19
+    RuleBlocStruct = 12, RuleParametreDefinition = 13, RuleParametre = 14, 
+    RuleStructureControle = 15, RuleElseBloc = 16, RuleType = 17, RuleType_void = 18
   };
 
   grammaireParser(antlr4::TokenStream *input);
@@ -56,8 +55,7 @@ public:
   class BlocContext;
   class BlocStructContext;
   class ParametreDefinitionContext;
-  class ParametreSimpleContext;
-  class ParametreTabContext;
+  class ParametreContext;
   class StructureControleContext;
   class ElseBlocContext;
   class TypeContext;
@@ -750,40 +748,45 @@ public:
   public:
     ParamDefinitionNonVideContext(ParametreDefinitionContext *ctx);
 
-    std::vector<ParametreSimpleContext *> parametreSimple();
-    ParametreSimpleContext* parametreSimple(size_t i);
-    std::vector<ParametreTabContext *> parametreTab();
-    ParametreTabContext* parametreTab(size_t i);
+    std::vector<ParametreContext *> parametre();
+    ParametreContext* parametre(size_t i);
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   ParametreDefinitionContext* parametreDefinition();
 
-  class  ParametreSimpleContext : public antlr4::ParserRuleContext {
+  class  ParametreContext : public antlr4::ParserRuleContext {
   public:
-    ParametreSimpleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    TypeContext *type();
-    antlr4::tree::TerminalNode *NAME();
+    ParametreContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ParametreContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(ParametreContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
 
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+    virtual size_t getRuleIndex() const override;
+
    
   };
 
-  ParametreSimpleContext* parametreSimple();
-
-  class  ParametreTabContext : public antlr4::ParserRuleContext {
+  class  ParametreSimpleContext : public ParametreContext {
   public:
-    ParametreTabContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
+    ParametreSimpleContext(ParametreContext *ctx);
+
     TypeContext *type();
     antlr4::tree::TerminalNode *NAME();
-
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
   };
 
-  ParametreTabContext* parametreTab();
+  class  ParametreTabContext : public ParametreContext {
+  public:
+    ParametreTabContext(ParametreContext *ctx);
+
+    TypeContext *type();
+    antlr4::tree::TerminalNode *NAME();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  ParametreContext* parametre();
 
   class  StructureControleContext : public antlr4::ParserRuleContext {
   public:
