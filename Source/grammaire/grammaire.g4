@@ -1,30 +1,30 @@
 grammar grammaire;
-
 programme : (varGlobale)* (definition)+;
 
-instruction : declaration #InstDecl
-			| initialisation #InstInit
-			| expr';' #InstExpr
-			| bloc #Instbloc
-			| structureControle #InstStrucControl
-			| 'break;' #InstBreak
-			|'return' expr ';' #InstReturn
-			;
+
+initDecl: declaration #InstDecl
+    | initialisation #InstInit
+	;
+instructionStruct :  expr';' #InstExpr
+	| blocStruct #Instbloc
+	| structureControle #InstStrucControl
+	| 'break;' #InstBreak
+	|'return' expr ';' #InstReturn
+	;
 
 varGlobale: declaration #VarDecl
-			| initialisation #VarInit
-			;
+	| initialisation #VarInit
+	;
 
 declaration : 'const' type NAME #DeclConst
-			| type NAME';' #DeclVar
-			| type NAME'['VAL'];' #DeclTab
-			;
-
+	| type NAME';' #DeclVar
+	| type NAME'['VAL'];' #DeclTab
+	;
 
 initialisation : type NAME '['VAL']' '=' '{'parametreAppel'}'';' #InitTab
-				| type NAME '=' VAL ';' #InitVar
-				| 'const' type NAME '=' VAL';' #InitConst
-				;
+	| type NAME '=' VAL ';' #InitVar
+	| 'const' type NAME '=' VAL';' #InitConst
+	;
 
 expr : affectation #ExprAffect
 	| NAME #ExprName
@@ -54,39 +54,41 @@ expr : affectation #ExprAffect
 
 parametreAppel : (expr',')* expr;
 
-
 affectation : leftValue '=' expr #AffectEqual
-			| leftValue '+=' expr #AffectPlusEqual
-			| leftValue '-=' expr #AffectMinusEqual
-			| leftValue '*=' expr #AffectMultEqual
-			| leftValue '/=' expr #AffectDivision
-			| leftValue '&=' expr #AffectBitwiseAnd
-			| leftValue '|=' expr #AffectBitwiseOr
-			| leftValue '^=' expr #AffectBitwiseXor
-			| leftValue '>>=' expr #AffectBitwiseRightShift
-			| '++' leftValue expr #AffectIncrementationBefore
-			| '--' leftValue #AffectDecrementationBefore
-			| leftValue '++' #AffectIncrementationAfter
-			| leftValue '--' #AffectDecrementationAfter
-			;
+| leftValue '+=' expr #AffectPlusEqual
+	| leftValue '-=' expr #AffectMinusEqual
+| leftValue '*=' expr #AffectMultEqual
+	| leftValue '/=' expr #AffectDivision
+	| leftValue '&=' expr #AffectBitwiseAnd
+	| leftValue '|=' expr #AffectBitwiseOr
+	| leftValue '^=' expr #AffectBitwiseXor
+	| leftValue '>>=' expr #AffectBitwiseRightShift
+	| '++' leftValue expr #AffectIncrementationBefore
+	| '--' leftValue #AffectDecrementationBefore
+	| leftValue '++' #AffectIncrementationAfter
+	| leftValue '--' #AffectDecrementationAfter
+	;
 
 leftValue : NAME #LeftValueVar
-		| NAME'['expr']' #LeftValueTab
-		;
+	| NAME'['expr']' #LeftValueTab
+	;
 
 definition : type NAME'('parametreDefinition')' bloc;
 
-bloc : '{' (instruction)* '}';
+bloc : '{' (instruction)* (instructionStruct)* '}';
+blocStruct : '{' (instructionStruct)* '}';
+parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|parametreTab))* #ParamDefinitionNonVide
+	| type_void #ParamDefinitionVide
+	;
 
-parametreDefinition : type NAME('['']')? (',' type NAME('['']')?)* #ParamDefinitionNonVide
-					| type_void #ParamDefinitionVide
-					;
+parametreSimple : type NAME;
+parametreTab : type NAME'['']';
 
-structureControle : 'if' '('expr')' bloc elseBloc? #If
-				| 'while' '('expr')' bloc #While
-				;
+structureControle : 'if' '('expr')' blocStruct elseBloc? #If
+	| 'while' '('expr')' blocStruct #While
+;
 
-elseBloc : 'else' bloc;
+elseBloc : 'else' blocStruct ;
 
 type : 'int32_t' #Int32
 	|'int64_t' #Int64

@@ -5,7 +5,8 @@
 
 
 #include "antlr4-runtime.h"
-#include "../Reader/grammaireParser.h"
+#include "grammaireParser.h"
+
 
 
 /**

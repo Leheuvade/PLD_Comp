@@ -13,7 +13,7 @@ StructureWhile::StructureWhile()
 
 }
 
-StructureWhile::StructureWhile(Expr* condition, Bloc* bloc)
+StructureWhile::StructureWhile(Expr* condition, BlocStruct* bloc)
 : StructureControle(condition, bloc)
 {
 

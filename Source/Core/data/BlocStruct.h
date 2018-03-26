@@ -5,18 +5,17 @@
 #pragma once
 
 #include <vector>
+
 #include "Instructions/InstructionStruct.h"
-#include "init_decl/InitDecl.h"
 
 using namespace std;
 
-class Bloc {
+class BlocStruct: public InstructionStruct {
 public:
-	Bloc();
-	Bloc(vector<InitDecl*> &initDecl, vector<InstructionStruct*> instructions);
-	virtual ~Bloc();
+	BlocStruct();
+	BlocStruct(vector<InstructionStruct*> &instructions);
+	virtual ~BlocStruct();
 protected:
-	vector<InitDecl*> initDecl;
 	vector<InstructionStruct*> instructions;
 };
 

@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "Instruction.h"
+#include "InstructionStruct.h"
 
 
 class StructureControle;
 
-class InstructionControle: public Instruction {
+class InstructionControle: public InstructionStruct {
 public: 
 
 

@@ -4,6 +4,7 @@
 
 
 #include "Programme.h"
+#include "Definitions/Definition.h"
 
 /**
  * Programme implementation
