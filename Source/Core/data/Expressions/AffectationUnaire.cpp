@@ -13,7 +13,7 @@ AffectationUnaire::AffectationUnaire(){
 
 }
 
-AffectationUnaire::AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire* op){
+AffectationUnaire::AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire * op){
 	this->leftValue = leftValue;
 	this->op = op;
 }

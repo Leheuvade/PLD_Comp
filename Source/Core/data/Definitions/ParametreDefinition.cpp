@@ -6,6 +6,10 @@
 #include "ParametreDefinition.h"
 #include "Parametre.h"
 
+ParametreDefinition::ParametreDefinition()
+{
+}
+
 ParametreDefinition::ParametreDefinition(vector<Parametre*> p)
 {
     parameters=p;
@@ -13,11 +17,11 @@ ParametreDefinition::ParametreDefinition(vector<Parametre*> p)
 
 ParametreDefinition::~ParametreDefinition()
 {
-	for (int i = 0; i<parameters.size(); i++)
-	{
-		if (parameters[i])
-		{
-			delete parameters[i];
-		}
-	}
+    for (int i = 0; i<parameters.size(); i++)
+  	{
+  		if (parameters[i])
+  		{
+  			delete parameters[i];
+  		}
+  	}
 }
