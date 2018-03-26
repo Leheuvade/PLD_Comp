@@ -8,7 +8,11 @@
 #include "dotexport.h"
 
 using namespace antlr4;
+int titi;
 
+void toto(){
+  int clara;
+}
 int main(int , const char **) {
 	
   ANTLRInputStream input("1+3");
@@ -33,7 +37,7 @@ int main(int , const char **) {
   out.close();
   system("dot -Tpdf -o out.pdf tmp.dot");
 
-  
+
   cout<<"toto";
   return 0;
 }

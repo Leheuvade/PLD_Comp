@@ -79,12 +79,15 @@ definition : type NAME'('parametreDefinition')' bloc;
 bloc : '{' (initDecl)* (instructionStruct)* '}';
 blocStruct : '{' (instructionStruct)* '}';
 
-parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|parametreTab))* #ParamDefinitionNonVide
+
+parametreDefinition : parametre (',' parametre)* #ParamDefinitionNonVide
 	| type_void #ParamDefinitionVide
 	;
 
-parametreSimple : type NAME; 
-parametreTab : type NAME'['']'; 
+parametre: type NAME #ParametreSimple
+  | type NAME'['']' #ParametreTab
+  ;
+
 
 structureControle : 'if' '('expr')' blocStruct elseBloc? #If
 	| 'while' '('expr')' blocStruct #While
