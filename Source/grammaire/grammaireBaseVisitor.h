@@ -6,7 +6,6 @@
 
 #include "antlr4-runtime.h"
 #include "grammaireVisitor.h"
-#include "../Reader/grammaireParser.h"
 
 
 /**
@@ -20,11 +19,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *ctx) override {
+  virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *ctx) override {
+  virtual antlrcpp::Any visitInit(grammaireParser::InitContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -224,6 +223,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -244,11 +247,23 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
     return visitChildren(ctx);
   }
 

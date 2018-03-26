@@ -5,7 +5,9 @@
 
 
 #include "antlr4-runtime.h"
-#include "../Reader/grammaireParser.h"
+#include "grammaireParser.h"
+
+
 
 /**
  * This class defines an abstract visitor for a parse tree
@@ -19,9 +21,9 @@ public:
    */
     virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *context) = 0;
 
-    virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *context) = 0;
+    virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *context) = 0;
 
-    virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *context) = 0;
+    virtual antlrcpp::Any visitInit(grammaireParser::InitContext *context) = 0;
 
     virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *context) = 0;
 
@@ -121,6 +123,8 @@ public:
 
     virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *context) = 0;
 
+    virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *context) = 0;
+
     virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *context) = 0;
 
     virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *context) = 0;
@@ -131,9 +135,15 @@ public:
 
     virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *context) = 0;
 
+    virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *context) = 0;
+
     virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *context) = 0;
 
     virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *context) = 0;
+
+    virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *context) = 0;
+
+    virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *context) = 0;
 
     virtual antlrcpp::Any visitIf(grammaireParser::IfContext *context) = 0;
 

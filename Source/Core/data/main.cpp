@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "antlr4-runtime.h"
-#include "../Reader/grammaireLexer.h"
-#include "../Reader/grammaireParser.h"
+#include "../../grammaire/grammaireLexer.h"
+#include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
 #include "dotexport.h"
@@ -19,7 +19,7 @@ int main(int , const char **) {
     std::cout << token->toString() << std::endl;
   }
 
-  /*grammaireParser parser(&tokens);
+  grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.expr();
 
   std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
@@ -30,7 +30,9 @@ int main(int , const char **) {
   out.open("tmp.dot");
   out<<dotexport.getDotFile();
   out.close();
-  system("dot -Tpdf -o out.pdf tmp.dot");*/
+  system("dot -Tpdf -o out.pdf tmp.dot");
 
+  
+  cout<<"toto";
   return 0;
 }
