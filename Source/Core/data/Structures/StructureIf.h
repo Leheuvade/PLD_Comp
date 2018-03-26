@@ -14,6 +14,7 @@ class StructureIf: public StructureControle {
 	public:
 		StructureIf();
 		StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc);
+		StructureIf(Expr* condition, Bloc* bloc);
 		virtual ~StructureIf();
 	private:
 		ElseBloc* elseBloc;
