@@ -48,11 +48,11 @@ public:
   }
 
   virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-    return visitChildren(ctx);
+    return (varGlobale*) visit(ctx->declaration());
   }
 
   virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
-    return visitChildren(ctx);
+    return (varGlobale*) visit(ctx->initialisation());
   }
 
   virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
@@ -95,11 +95,23 @@ public:
   }
 
   virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
-    return visitChildren(ctx);
+    return (InitialisationVal*)
+      new InitialisationVal(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        false,
+        (Val*) new Val(stoi(ctx->VAL()->getText()))
+      );
   }
 
   virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
-    return visitChildren(ctx);
+    return (InitialisationVal*)
+      new InitialisationVal(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        true,
+        (Val*) new Val(stoi(ctx->VAL()->getText()))
+      );
   }
 
   virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
