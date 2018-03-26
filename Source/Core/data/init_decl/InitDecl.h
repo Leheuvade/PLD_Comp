@@ -6,11 +6,11 @@
 #pragma once
 
 
-class Instruction {
+class InitDecl {
 
 public:
-Instruction();
-virtual ~Instruction();
+	InitDecl();
+virtual ~InitDecl();
 
 };
 

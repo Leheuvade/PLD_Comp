@@ -10,6 +10,6 @@
 class StructureWhile: public StructureControle {
   public:
     StructureWhile();
-    StructureWhile(Expr* condition, Bloc* bloc);
+    StructureWhile(Expr* condition, BlocStruct* bloc);
     virtual ~StructureWhile();
 };

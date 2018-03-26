@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "Instruction.h"
+#include "InitDecl.h"
 
 class Declaration;
 
-class InstructionDeclaration: public Instruction {
+class InstructionDeclaration: public InitDecl {
 public:
 
 InstructionDeclaration(Declaration *declaration);

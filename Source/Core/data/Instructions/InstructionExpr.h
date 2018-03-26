@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "Instruction.h"
+#include "InstructionStruct.h"
 
 class Expr;
 
-class InstructionExpr: public Instruction {
+class InstructionExpr: public InstructionStruct {
 public:
 
 InstructionExpr(Expr* expr);

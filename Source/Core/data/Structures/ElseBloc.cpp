@@ -4,14 +4,14 @@
 
 
 #include "ElseBloc.h"
-#include "../Bloc.h"
+#include "../BlocStruct.h"
 
 ElseBloc::ElseBloc()
 {
   this->bloc = nullptr;
 }
 
-ElseBloc::ElseBloc(Bloc* bloc)
+ElseBloc::ElseBloc(BlocStruct* bloc)
 {
   this->bloc = bloc;
 }

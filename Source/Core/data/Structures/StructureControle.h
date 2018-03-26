@@ -5,16 +5,16 @@
 
 #pragma once
 
-class Bloc;
+class BlocStruct;
 class Expr;
 
 class StructureControle {
 	public:
 		StructureControle();
-		StructureControle(Expr* condition, Bloc* bloc);
+		StructureControle(Expr* condition, BlocStruct* bloc);
 		virtual ~StructureControle();
 
 	protected:
 		Expr* condition;
-		Bloc* bloc;
+		BlocStruct* bloc;
 };

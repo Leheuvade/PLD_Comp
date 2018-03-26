@@ -5,14 +5,14 @@
 
 #pragma once
 
-class Bloc;
+class BlocStruct;
 
 class ElseBloc {
   public:
     ElseBloc();
-    ElseBloc(Bloc* bloc);
+    ElseBloc(BlocStruct* bloc);
     virtual ~ElseBloc();
 
   protected:
-    Bloc* bloc;
+	  BlocStruct * bloc;
 };

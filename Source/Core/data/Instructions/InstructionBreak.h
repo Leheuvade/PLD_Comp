@@ -4,10 +4,10 @@
 
 
 #pragma once
-#include "Instruction.h"
+#include "InstructionStruct.h"
 
 
-class InstructionBreak: public Instruction {
+class InstructionBreak: public InstructionStruct {
 
 public:
 InstructionBreak();
