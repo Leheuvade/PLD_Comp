@@ -11,31 +11,31 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *ctx) override {
+  virtual antlrcpp::Any visitInstDecl(grammaireParser::InitDeclContext *ctx) override {
 
-      return (Instruction *) visit(ctx->declaration());
+      return (InitDecl *) visit(ctx->declaration());
 
   }
 
-  virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *ctx) override {
+  virtual antlrcpp::Any visitInstInit(grammaireParser::InitContext *ctx) override {
 
-     return (Instruction *) visit(ctx->initialisation());
+     return (InitDecl *) visit(ctx->initialisation());
 
 }
   virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
 
-    return (Instruction *) visit(ctx->expr());
+    return (InstructionStruct *) visit(ctx->expr());
 
 }
   virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
 
-      return (Instruction *) visit(ctx->bloc());
+      return (InstructionStruct *) visit(ctx->bloc());
 
      }
 
   virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstructionControle *ctx) override {
 
-    return (Instruction *) visit(ctx->structControle());
+    return (InstructionStruct *) visit(ctx->structControle());
 
   }
 
@@ -47,7 +47,7 @@ public:
   virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
 
 
-    return (Instruction *) visit(ctx->expr);
+    return (InstructionStruct *) visit(ctx->expr);
 
   }
 
@@ -99,8 +99,8 @@ public:
   }
 
   virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
-		return (InitialisationTab*)
-			new InitialisationTab(
+		return (InitialisationVal*)
+			new InitialisationVal(
 				(Type) visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false
@@ -435,7 +435,13 @@ public:
            MMOINS,
           );
   }
-
+  virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *context) override {
+    return (Affectation *)
+                new AffectationBinaire(
+                (LeftValue *)visit(ctx->leftValue()),
+                 PPLUS_AFTER,
+                );
+  }
   virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
     return (Affectation *)
               new AffectationBinaire(
@@ -467,14 +473,31 @@ public:
   }
 
   virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
-    vector<Instruction *> vecteurInstr =new vector<Instruction *>();
+    vector<InstructionStruct *> vecteurInstr =new vector<InstructionStruct *>();
+    vector<InitDecl *> vecteurDecl =new vector<InitDecl *>();
         for(int i=0;i<(ctx->instructions()).size();i++)
         {
-            vecteurInstr.push_back(ctx->instruction(i));
+            vecteurInstr.push_back(ctx->instructions(i));
         }
+        for(int i=0;i<(ctx->initDecl()).size();i++)
+                {
+                    vecteurDecl.push_back(ctx->initDecl(i));
+                }
         return (Bloc *)
-        new Bloc(vecteurInstr);
+        new Bloc((InitDecl *)visit(ctx->vecteurDecl), (InstructionStruct *)visit(ctx->instructions));
       }
+
+  virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *context){
+    vector<InstructionStruct *> vecteurInstr =new vector<InstructionStruct *>();
+            for(int i=0;i<(ctx->instructions()).size();i++)
+            {
+                vecteurInstr.push_back(ctx->instruction(i));
+            }
+            return (BlocStruct *)
+            new BlocStruct(vecteurInstr);
+          }
+
+  }
 
   virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
     return visitChildren(ctx);
@@ -485,17 +508,17 @@ public:
 
   virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
     return (StructControle *)
-    new StructureIf((Expr *)visit(ctx->condition),(Bloc *)visit(ctx->bloc()),(ElseBloc *)visit(ctx->elsebloc()));
+    new StructureIf((Expr *)visit(ctx->condition),(BlocStruct *)visit(ctx->blocStruct()),(ElseBloc *)visit(ctx->elsebloc()));
   }
 
   virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
     return (StructControle *)
-        new StructureWhile((Expr *)visit(ctx->condition), (Bloc *)visit(ctx->bloc()));
+        new StructureWhile((Expr *)visit(ctx->condition), (BlocStruct *)visit(ctx->blocStruct()));
   }
 
   virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
     return (ElseBloc *)
-        new ElseBloc((Bloc *)visit(ctx->bloc()));
+        new ElseBloc((BlocStruct *)visit(ctx->blocStruct()));
   }
 
   virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
