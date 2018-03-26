@@ -13,7 +13,7 @@ class ElseBloc;
 class StructureIf: public StructureControle {
 	public:
 		StructureIf();
-		StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc);
+		StructureIf(Expr* condition, BlocStruct* bloc, ElseBloc* elseBloc);
 		virtual ~StructureIf();
 	private:
 		ElseBloc* elseBloc;

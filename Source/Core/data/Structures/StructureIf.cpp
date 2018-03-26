@@ -12,7 +12,7 @@ StructureIf::StructureIf()
   this->elseBloc = nullptr;
 }
 
-StructureIf::StructureIf(Expr* condition, Bloc* bloc, ElseBloc* elseBloc)
+StructureIf::StructureIf(Expr* condition, BlocStruct* bloc, ElseBloc* elseBloc)
 : StructureControle(condition, bloc)
 {
   this->elseBloc = elseBloc;

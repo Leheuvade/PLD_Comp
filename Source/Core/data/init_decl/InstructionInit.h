@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "Instruction.h"
+#include "InitDecl.h"
 
 class Initialisation;
 
-class InstructionInit: public Instruction {
+class InstructionInit: public InitDecl {
 public:
 InstructionInit(Initialisation *initialisation);
     virtual ~InstructionInit();

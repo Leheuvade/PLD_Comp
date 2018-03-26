@@ -5,7 +5,7 @@
 
 #include "StructureControle.h"
 #include "../Expressions/Expr.h"
-#include "../Bloc.h"
+#include "../BlocStruct.h"
 
 StructureControle::StructureControle()
 {
@@ -13,7 +13,7 @@ StructureControle::StructureControle()
   this->bloc = nullptr;
 }
 
-StructureControle::StructureControle(Expr* condition, Bloc* bloc)
+StructureControle::StructureControle(Expr* condition, BlocStruct* bloc)
 {
   this->condition = condition;
   this->bloc = bloc;

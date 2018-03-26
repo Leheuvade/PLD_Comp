@@ -1,12 +1,59 @@
 ﻿  Bloc.cpp
-b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(20): warning C4018: '<' : incompatibilité signed/unsigned
+b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(21): warning C4018: '<' : incompatibilité signed/unsigned
+b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(28): warning C4018: '<' : incompatibilité signed/unsigned
+  Definition.cpp
+  Parametre.cpp
+  ParametreDefinition.cpp
+b:\users\xavier\git\pld_comp\source\core\data\definitions\parametredefinition.cpp(16): warning C4018: '<' : incompatibilité signed/unsigned
+  Affectation.cpp
+  AffectationBinaire.cpp
+  AffectationUnaire.cpp
+  Char.cpp
+  Expr.cpp
+  ExprAppel.cpp
+  Name.cpp
+  NameTab.cpp
+  Operation.cpp
+  OperationBinaire.cpp
+  OperationUnaire.cpp
+  ParametreAppel.cpp
+b:\users\xavier\git\pld_comp\source\core\data\expressions\parametreappel.cpp(17): warning C4018: '<' : incompatibilité signed/unsigned
+  Val.cpp
+  Declaration.cpp
+  DeclarationTab.cpp
+  Initialisation.cpp
+  Génération de code en cours...
+  Compilation en cours...
   InitialisationTab.cpp
+  VarGlobale.cpp
+  VarGlobaleDeclaration.cpp
+  VarGlobaleInitialisation.cpp
+  Instruction.cpp
+c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\Instruction.cpp' : No such file or directory
+  InstructionBreak.cpp
+  InstructionControle.cpp
+  InstructionDeclaration.cpp
+c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\InstructionDeclaration.cpp' : No such file or directory
+  InstructionExpr.cpp
+  InstructionInit.cpp
+c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\InstructionInit.cpp' : No such file or directory
+  InstructionReturn.cpp
+  LeftValue.cpp
+  Programme.cpp
+b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(24): warning C4018: '<' : incompatibilité signed/unsigned
+b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(31): warning C4018: '<' : incompatibilité signed/unsigned
+  ElseBloc.cpp
+  StructureControle.cpp
+  StructureIf.cpp
+  StructureWhile.cpp
   grammaireLexer.cpp
 b:\users\xavier\git\pld_comp\source\core\reader\grammairelexer.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   grammaireParser.cpp
 b:\users\xavier\git\pld_comp\source\core\reader\grammaireparser.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   grammaireBaseVisitor.cpp
 b:\users\xavier\git\pld_comp\source\core\visitor\grammairebasevisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  Génération de code en cours...
+  Compilation en cours...
   grammaireVisitor.cpp
 b:\users\xavier\git\pld_comp\source\core\visitor\grammairevisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   Génération de code en cours...
