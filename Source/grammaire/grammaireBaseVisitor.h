@@ -48,11 +48,11 @@ public:
   }
 
   virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-    return visitChildren(ctx);
+    return (varGlobale*) visit(ctx->declaration());
   }
 
   virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
-    return visitChildren(ctx);
+    return (varGlobale*) visit(ctx->initialisation());
   }
 
   virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
@@ -95,11 +95,23 @@ public:
   }
 
   virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
-    return visitChildren(ctx);
+    return (InitialisationVal*)
+      new InitialisationVal(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        false,
+        (Val*) new Val(stoi(ctx->VAL()->getText()))
+      );
   }
 
   virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
-    return visitChildren(ctx);
+    return (InitialisationVal*)
+      new InitialisationVal(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        true,
+        (Val*) new Val(stoi(ctx->VAL()->getText()))
+      );
   }
 
   virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
@@ -486,19 +498,33 @@ public:
   }
 
   virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
-    return visitChildren(ctx);
+    vector<Parametre *> vecteurParam =new vector<Parametre *>();
+    for(int i=0; i<(ctx->parametre()).size(); i++){
+        vecteurParam.push_back((Parametre*) visit(ctx->parametre(i)));
+    }
+    return (ParametreDefinition*) new ParametreDefinition(vecteurParam);
   }
 
   virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
-    return visitChildren(ctx);
+    return (ParametreDefinition*) new ParametreDefinition();
   }
 
   virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
-    return visitChildren(ctx);
+    return (Parametre*)
+      new Parametre(
+        (Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false // hasBrackets
+      );
   }
 
   virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
-    return visitChildren(ctx);
+    return (Parametre*)
+      new Parametre(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        true // hasBrackets
+      );
   }
 
  virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
@@ -532,5 +558,3 @@ public:
     return (Type) void_type;
   }
 };
-
-
