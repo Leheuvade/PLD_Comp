@@ -10,6 +10,7 @@
 class Declaration;
 
 class InstructionDeclaration: public InitDecl {
+	friend class MapperSymbol;
 public:
 
 InstructionDeclaration(Declaration *declaration);

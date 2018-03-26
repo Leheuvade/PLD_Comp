@@ -15,9 +15,9 @@
 class  grammaireBaseVisitor : public grammaireVisitor {
 public:
 
-  virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
-    return visitChildren(ctx);
-  }
+	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
+		ctxCourant = ctx;
+		antlrcpp::Any firstVisit = visitChildren(ctx);
 
   virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
      return (InitDecl *) visit(ctx->declaration());
@@ -557,4 +557,11 @@ public:
   virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
     return (Type) void_type;
   }
+
+
+
+protected:
+	grammaireParser::ProgrammeContext *ctxCourant;
+	grammaireParser::BlocContext *ctxBlocCourant;
+
 };
