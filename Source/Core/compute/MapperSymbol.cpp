@@ -8,6 +8,8 @@
 #include "../data/init_decl/VarGlobaleDeclaration.h"
 #include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Bloc.h"
+#include "../data/init_decl/InstructionDeclaration.h"
+#include "../data/init_decl/InstructionInit.h"
 
 /**
  * MapperSymbol implementation
@@ -50,7 +52,7 @@ Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext
 	Bloc * bloc = ctxBlocCourant->bloc();
 	for (int i = 0; i<bloc->initDecl.size(); i++)
 	{
-		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
+		InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
 		if (varDecl)
 		{
 			if (varDecl->declaration->name->name == name->name)
@@ -60,7 +62,7 @@ Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext
 		}
 		else
 		{
-			VarGlobaleInitialisation * varInit = static_cast<VarGlobaleInitialisation*>(prog->varGlobales[i]);
+			InstructionInit * varInit = static_cast<InstructionInit*>(bloc->initDecl[i]);
 			if (varInit->initialisation->name->name == name->name)
 			{
 				return varInit;
@@ -68,6 +70,6 @@ Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext
 
 		}
 	}
-
+	return nullptr;
 
 }
