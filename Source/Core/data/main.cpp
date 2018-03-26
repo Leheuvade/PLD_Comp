@@ -32,6 +32,7 @@ int main(int , const char **) {
   out.close();
   system("dot -Tpdf -o out.pdf tmp.dot");
 
+  
   cout<<"toto";
   return 0;
 }
