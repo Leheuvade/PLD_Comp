@@ -77,12 +77,13 @@ definition : type NAME'('parametreDefinition')' bloc;
 
 bloc : '{' (instruction)* (instructionStruct)* '}';
 blocStruct : '{' (instructionStruct)* '}';
+
 parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|parametreTab))* #ParamDefinitionNonVide
 	| type_void #ParamDefinitionVide
 	;
 
-parametreSimple : type NAME;
-parametreTab : type NAME'['']';
+parametreSimple : type NAME; #ParametreSimple
+parametreTab : type NAME'['']'; #ParametreTab
 
 structureControle : 'if' '('expr')' blocStruct elseBloc? #If
 	| 'while' '('expr')' blocStruct #While
