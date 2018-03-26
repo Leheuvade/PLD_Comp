@@ -17,6 +17,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 # Main target
 $(EXEC): $(OBJECTS)
+	rm -f $(EXEC) $(OBJECTS)
 	echo $(CC) $(OBJECTS) -o $(EXEC) $(LIB)
 	$(CC) $(OBJECTS) -o $(EXEC) $(LIB)
 
