@@ -2,9 +2,10 @@ grammar grammaire;
 programme : (varGlobale)* (definition)+;
 
 
-initDecl: declaration #InstDecl
-    | initialisation #InstInit
+initDecl: declaration #Decl
+    | initialisation #Init
 	;
+
 instructionStruct :  expr';' #InstExpr
 	| blocStruct #Instbloc
 	| structureControle #InstStrucControl
@@ -55,9 +56,9 @@ expr : affectation #ExprAffect
 parametreAppel : (expr',')* expr;
 
 affectation : leftValue '=' expr #AffectEqual
-| leftValue '+=' expr #AffectPlusEqual
+	| leftValue '+=' expr #AffectPlusEqual
 	| leftValue '-=' expr #AffectMinusEqual
-| leftValue '*=' expr #AffectMultEqual
+	| leftValue '*=' expr #AffectMultEqual
 	| leftValue '/=' expr #AffectDivision
 	| leftValue '&=' expr #AffectBitwiseAnd
 	| leftValue '|=' expr #AffectBitwiseOr
@@ -75,15 +76,15 @@ leftValue : NAME #LeftValueVar
 
 definition : type NAME'('parametreDefinition')' bloc;
 
-bloc : '{' (instruction)* (instructionStruct)* '}';
+bloc : '{' (initDecl)* (instructionStruct)* '}';
 blocStruct : '{' (instructionStruct)* '}';
 
 parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|parametreTab))* #ParamDefinitionNonVide
 	| type_void #ParamDefinitionVide
 	;
 
-parametreSimple : type NAME ; #ParametreSimple
-parametreTab : type NAME'['']' ; #ParametreTab
+parametreSimple : type NAME; 
+parametreTab : type NAME'['']'; 
 
 structureControle : 'if' '('expr')' blocStruct elseBloc? #If
 	| 'while' '('expr')' blocStruct #While
