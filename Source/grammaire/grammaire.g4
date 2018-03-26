@@ -82,8 +82,8 @@ parametreDefinition : (parametreSimple|parametreTab) (',' (parametreSimple|param
 	| type_void #ParamDefinitionVide
 	;
 
-parametreSimple : type NAME; #ParametreSimple
-parametreTab : type NAME'['']'; #ParametreTab
+parametreSimple : type NAME ; #ParametreSimple
+parametreTab : type NAME'['']' ; #ParametreTab
 
 structureControle : 'if' '('expr')' blocStruct elseBloc? #If
 	| 'while' '('expr')' blocStruct #While
