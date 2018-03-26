@@ -4,15 +4,15 @@
 #pragma once
 
 #include "Operation.h"
-#include "../enums/OperateurBinaire.h"
+#include "../enums/OperateurUnaire.h"
 
 
 class OperationUnaire: public Operation {
 public:
 	OperationUnaire();
-	OperationUnaire(Expr* expr, OperateurBinaire* op);
+	OperationUnaire(Expr* expr, OperateurUnaire* op);
 	virtual ~OperationUnaire();
 protected: 
 	Expr* expr;
-	OperateurBinaire* op;
+	OperateurUnaire* op;
 };

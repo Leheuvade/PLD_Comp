@@ -5,6 +5,9 @@
 
 #pragma once
 #include "Initialisation.h"
+
+class Val; 
+
 class InitialisationVal {
 
 
@@ -14,7 +17,8 @@ public:
 	virtual ~InitialisationVal();
 
 protected:
-	Val *value;
-	Name *name;
+	Val * value;
+	Name * name;
 	bool isConst;
+	Type * type;
 };
