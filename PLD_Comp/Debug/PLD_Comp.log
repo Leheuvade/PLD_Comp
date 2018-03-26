@@ -1,6 +1,8 @@
 ﻿  Bloc.cpp
 b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(21): warning C4018: '<' : incompatibilité signed/unsigned
 b:\users\xavier\git\pld_comp\source\core\data\bloc.cpp(28): warning C4018: '<' : incompatibilité signed/unsigned
+  BlocStruct.cpp
+b:\users\xavier\git\pld_comp\source\core\data\blocstruct.cpp(20): warning C4018: '<' : incompatibilité signed/unsigned
   Definition.cpp
   Parametre.cpp
   ParametreDefinition.cpp
@@ -21,30 +23,48 @@ b:\users\xavier\git\pld_comp\source\core\data\expressions\parametreappel.cpp(17)
   Val.cpp
   Declaration.cpp
   DeclarationTab.cpp
-  Initialisation.cpp
   Génération de code en cours...
   Compilation en cours...
+  InitDecl.cpp
+  Initialisation.cpp
   InitialisationTab.cpp
+  InitialisationVal.cpp
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(13): error C2061: erreur de syntaxe : identificateur 'Val'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(17): error C2143: erreur de syntaxe : absence de ';' avant '*'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(17): error C4430: spécificateur de type manquant - int est pris en compte par défaut. Remarque : C++ ne prend pas en charge int par défaut
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(17): error C2238: jetons inattendus avant ';'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(14): error C2065: 'type' : identificateur non déclaré
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(19): error C2061: erreur de syntaxe : identificateur 'Val'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(20): error C2039: 'type' : n'est pas membre de 'InitialisationVal'
+  b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(8): note: voir la déclaration de 'InitialisationVal'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(23): error C2039: 'value' : n'est pas membre de 'InitialisationVal'
+  b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.h(8): note: voir la déclaration de 'InitialisationVal'
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(23): error C2065: 'value' : identificateur non déclaré
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(28): error C2065: 'type' : identificateur non déclaré
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(28): error C2541: 'delete' : impossible de détruire des objets qui ne sont pas des pointeurs
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(30): error C2065: 'value' : identificateur non déclaré
+b:\users\xavier\git\pld_comp\source\core\data\init_decl\initialisationval.cpp(30): error C2541: 'delete' : impossible de détruire des objets qui ne sont pas des pointeurs
+  InstructionDeclaration.cpp
+  InstructionInit.cpp
   VarGlobale.cpp
   VarGlobaleDeclaration.cpp
   VarGlobaleInitialisation.cpp
-  Instruction.cpp
-c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\Instruction.cpp' : No such file or directory
   InstructionBreak.cpp
   InstructionControle.cpp
-  InstructionDeclaration.cpp
-c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\InstructionDeclaration.cpp' : No such file or directory
   InstructionExpr.cpp
-  InstructionInit.cpp
-c1xx : fatal error C1083: Impossible d'ouvrir le fichier source : '..\Source\Core\data\Instructions\InstructionInit.cpp' : No such file or directory
   InstructionReturn.cpp
+  InstructionStruct.cpp
   LeftValue.cpp
+  main.cpp
+b:\users\xavier\git\pld_comp\source\core\data\main.cpp(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   Programme.cpp
 b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(24): warning C4018: '<' : incompatibilité signed/unsigned
 b:\users\xavier\git\pld_comp\source\core\data\programme.cpp(31): warning C4018: '<' : incompatibilité signed/unsigned
   ElseBloc.cpp
   StructureControle.cpp
   StructureIf.cpp
+  Génération de code en cours...
+  Compilation en cours...
   StructureWhile.cpp
   grammaireLexer.cpp
 b:\users\xavier\git\pld_comp\source\core\reader\grammairelexer.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
@@ -52,8 +72,6 @@ b:\users\xavier\git\pld_comp\source\core\reader\grammairelexer.h(7): fatal error
 b:\users\xavier\git\pld_comp\source\core\reader\grammaireparser.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   grammaireBaseVisitor.cpp
 b:\users\xavier\git\pld_comp\source\core\visitor\grammairebasevisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
-  Génération de code en cours...
-  Compilation en cours...
   grammaireVisitor.cpp
 b:\users\xavier\git\pld_comp\source\core\visitor\grammairevisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
   Génération de code en cours...
