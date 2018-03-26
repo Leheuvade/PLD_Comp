@@ -10,6 +10,7 @@
 
 
 class VarGlobaleDeclaration: public VarGlobale {
+	friend class MapperSymbol;
 	public:
 		VarGlobaleDeclaration();
 		VarGlobaleDeclaration(Declaration *declaration);

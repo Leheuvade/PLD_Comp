@@ -9,7 +9,7 @@
 
 class Initialisation {
 
-
+	friend class MapperSymbol;
 public:
 	Initialisation();
 	Initialisation(Type *type,Name *name,bool isConst);

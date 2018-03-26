@@ -3,8 +3,9 @@
  */
 
 #pragma once
+#include "Symbole.h"
 
-class VarGlobale {
+class VarGlobale: public Symbole {
   public:
     VarGlobale();
     virtual ~VarGlobale();

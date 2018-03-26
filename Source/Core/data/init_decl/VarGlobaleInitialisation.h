@@ -9,6 +9,7 @@
 #include "Initialisation.h"
 
 class VarGlobaleInitialisation: public VarGlobale {
+	friend class MapperSymbol;
 	public:
 		VarGlobaleInitialisation();
 		VarGlobaleInitialisation(Initialisation *initialisation);

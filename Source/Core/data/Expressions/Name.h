@@ -9,6 +9,7 @@
 
 using namespace std;
 class Name: public Expr {
+	friend class MapperSymbol;
 public:
 	Name();
 	Name(string name);
