@@ -2,7 +2,7 @@
 #include "antlr4-runtime.h"
 #include "ExprBaseVisitor.h"
 #include "Reader/grammaireParser.h"
-
+#include <vector>
 using namespace std;
 
 class Calc : public grammaireBaseVisitor {
@@ -12,47 +12,43 @@ public:
   }
 
   virtual antlrcpp::Any visitInstDecl(grammaireParser::InstDeclContext *ctx) override {
-    if(ctx->declaration!=nullptr)
-    {
-      return (Instruction *) visit(ctx->declaration);
-    }
+
+      return (Instruction *) visit(ctx->declaration());
+
   }
 
   virtual antlrcpp::Any visitInstInit(grammaireParser::InstInitContext *ctx) override {
-    if(ctx->init!=nullptr)
-        {
-          return (Instruction *) visit(ctx->init);
-        }
+
+     return (Instruction *) visit(ctx->initialisation());
+
 }
   virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
-    if(ctx->expr!=nullptr)
-        {
-          return (Instruction *) visit(ctx->expr);
-        }
+
+    return (Instruction *) visit(ctx->expr());
+
 }
   virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
-    if(ctx->bloc!=nullptr)
-        {
-          return (Instruction *) visit(ctx->bloc);
-        }
+
+      return (Instruction *) visit(ctx->bloc());
+
      }
 
-  virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstStrucControlContext *ctx) override {
-     if(ctx->structControle!=nullptr)
-            {
-              return (Instruction *) visit(ctx->structControle);
-            }
+  virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstructionControle *ctx) override {
+
+    return (Instruction *) visit(ctx->structControle());
+
   }
 
   virtual antlrcpp::Any visitInstBreak(grammaireParser::InstBreakContext *ctx) override {
+     return 0;
 
   }
 
   virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
-    if(ctx->expr!=nullptr)
-                {
-                  return (Instruction *) visit(ctx->expr);
-                }
+
+
+    return (Instruction *) visit(ctx->expr);
+
   }
 
   virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
@@ -78,7 +74,7 @@ public:
 				(Type) visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false
-			);1
+			);
   }
 
   virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
@@ -121,187 +117,385 @@ public:
   }
 
   virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+          new OperationBinaire(
+          (Expr *)visit(ctx->expr(0)),
+           BITWISE_XOR,
+          (Expr *)visit(ctx->expr(1))
+          );
   }
 
   virtual antlrcpp::Any visitExprMult(grammaireParser::ExprMultContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+              new OperationBinaire(
+              (Expr *)visit(ctx->expr(0)),
+               MULT,
+              (Expr *)visit(ctx->expr(1))
+              );
   }
 
   virtual antlrcpp::Any visitExprName(grammaireParser::ExprNameContext *ctx) override {
-    return (Expression *) new Name(visit(ctx->NAME()->getText()));
+     return (Expr *)
+                  new Name(ctx->NAME()->getText());
   }
 
   virtual antlrcpp::Any visitExprNoBit(grammaireParser::ExprNoBitContext *ctx) override {
-    return visitChildren(ctx);
+     return (Expr *)
+                  new OperationUnaire((Expr *)visit(ctx->expr(1)),NO_BIT);
   }
 
   virtual antlrcpp::Any visitExprChar(grammaireParser::ExprCharContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                      new Char((ctx->CHAR()->getText()).at(0));
   }
 
   virtual antlrcpp::Any visitExprSupOrEqual(grammaireParser::ExprSupOrEqualContext *ctx) override {
-    return visitChildren(ctx);
+     return (Expr *)
+              new OperationBinaire(
+              (Expr *)visit(ctx->expr(0)),
+               SUP_EGAL,
+              (Expr *)visit(ctx->expr(1))
+              );
   }
 
   virtual antlrcpp::Any visitExprAffect(grammaireParser::ExprAffectContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                  new Affectation(ctx->affectation());
   }
 
   virtual antlrcpp::Any visitExprSup(grammaireParser::ExprSupContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                      new OperationBinaire(
+                                    (Expr *)visit(ctx->expr(0)),
+                                     SUP,
+                                    (Expr *)visit(ctx->expr(1))
+                                    );
   }
 
   virtual antlrcpp::Any visitExprInfOrEqual(grammaireParser::ExprInfOrEqualContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                  new OperationBinaire(
+                  (Expr *)visit(ctx->expr(0)),
+                   INF_EGAL,
+                  (Expr *)visit(ctx->expr(1))
+                  );
   }
 
   virtual antlrcpp::Any visitExprFnct(grammaireParser::ExprFnctContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                      new ExprAppel(
+                      (Name *)visit(ctx->name()),
+                      (ParametreAppel *)visit(ctx->parameters())
+                      );
   }
 
   virtual antlrcpp::Any visitExprDiv(grammaireParser::ExprDivContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+    new OperationBinaire(
+                          (Expr *)visit(ctx->expr(0)),
+                           DIV,
+                          (Expr *)visit(ctx->expr(1))
+                          );
   }
 
   virtual antlrcpp::Any visitExprAnd(grammaireParser::ExprAndContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+    new OperationBinaire(
+            (Expr *)visit(ctx->expr(0)),
+             AND,
+             (Expr *)visit(ctx->expr(1))
+              );
   }
 
   virtual antlrcpp::Any visitExprTab(grammaireParser::ExprTabContext *ctx) override {
-    return visitChildren(ctx);
+       return (Expr *)
+           new NameTab(ctx->NAME()->getText()),
+                        (Expr *)visit(ctx->indice())
+                         );
   }
 
   virtual antlrcpp::Any visitExprOr(grammaireParser::ExprOrContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+        new OperationBinaire(
+                (Expr *)visit(ctx->expr(0)),
+                 OR,
+                 (Expr *)visit(ctx->expr(1))
+                  );
   }
 
   virtual antlrcpp::Any visitExprNo(grammaireParser::ExprNoContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+        new OperationUnaire(
+                (Expr *)visit(ctx->expr()),
+                 NO);
   }
 
   virtual antlrcpp::Any visitExprDiff(grammaireParser::ExprDiffContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+            new OperationUnaire(
+                    (Expr *)visit(ctx->expr()),
+                     DIFF);
   }
 
   virtual antlrcpp::Any visitExprSub(grammaireParser::ExprSubContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+        new OperationBinaire(
+                (Expr *)visit(ctx->expr(0)),
+                 MINUS,
+                 (Expr *)visit(ctx->expr(1))
+                  );
   }
 
   virtual antlrcpp::Any visitExprAndBit(grammaireParser::ExprAndBitContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+        new OperationBinaire(
+                (Expr *)visit(ctx->expr(0)),
+                 BITWISE_AND,
+                 (Expr *)visit(ctx->expr(1))
+                  );
   }
 
   virtual antlrcpp::Any visitExprOrBit(grammaireParser::ExprOrBitContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+            new OperationBinaire(
+                    (Expr *)visit(ctx->expr(0)),
+                     BITWISE_OR,
+                     (Expr *)visit(ctx->expr(1))
+                      );
   }
 
   virtual antlrcpp::Any visitExprEqual(grammaireParser::ExprEqualContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                new OperationBinaire(
+                        (Expr *)visit(ctx->expr(0)),
+                         BITWISE_OR,
+                         (Expr *)visit(ctx->expr(1))
+                          );
   }
 
   virtual antlrcpp::Any visitExprVal(grammaireParser::ExprValContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                    new Val(stoi(ctx->VAL()));
   }
 
   virtual antlrcpp::Any visitExprAdd(grammaireParser::ExprAddContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                    new OperationBinaire(
+                            (Expr *)visit(ctx->expr(0)),
+                             EGAL,
+                             (Expr *)visit(ctx->expr(1))
+                              );
   }
 
   virtual antlrcpp::Any visitExprInf(grammaireParser::ExprInfContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                    new OperationBinaire(
+                            (Expr *)visit(ctx->expr(0)),
+                             INF,
+                             (Expr *)visit(ctx->expr(1))
+                              );
   }
 
   virtual antlrcpp::Any visitExprMod(grammaireParser::ExprModContext *ctx) override {
-    return visitChildren(ctx);
+    return (Expr *)
+                    new OperationBinaire(
+                            (Expr *)visit(ctx->expr(0)),
+                             MODULO,
+                             (Expr *)visit(ctx->expr(1))
+                              );
   }
 
   virtual antlrcpp::Any visitParametreAppel(grammaireParser::ParametreAppelContext *ctx) override {
-    return visitChildren(ctx);
+    vector<ParametreAppel *> vecteurParam =new vector<ParametreAppel *>();
+    for(int i=0;i<(ctx->parameters()).size();i++)
+    {
+        vecteurParam.push_back(ctx->expr(i));
+    }
+    return (ParametreAppel *)
+    new ParametreAppel(vecteurParam);
   }
 
   virtual antlrcpp::Any visitAffectEqual(grammaireParser::AffectEqualContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       EGAL,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectPlusEqual(grammaireParser::AffectPlusEqualContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       PLUS_EGAL,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectMinusEqual(grammaireParser::AffectMinusEqualContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       MOINS_EGAL,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectMultEqual(grammaireParser::AffectMultEqualContext *ctx) override {
-    return visitChildren(ctx);
+
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       MULT_EGAL,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectDivision(grammaireParser::AffectDivisionContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       DIV_EGAL,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectBitwiseAnd(grammaireParser::AffectBitwiseAndContext *ctx) override {
-    return visitChildren(ctx);
+
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       BITWISE_AND,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectBitwiseOr(grammaireParser::AffectBitwiseOrContext *ctx) override {
-    return visitChildren(ctx);
+
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       BITWISE_OR,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectBitwiseXor(grammaireParser::AffectBitwiseXorContext *ctx) override {
-    return visitChildren(ctx);
+
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       BITWISE_XOR,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectBitwiseRightShift(grammaireParser::AffectBitwiseRightShiftContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       BITWISE_RIGHTSHIFT,
+      (RightValue *)visit(ctx->rightValue())
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
-    return visitChildren(ctx);
+
+      return (Affectation *)
+      new AffectationBinaire(
+      (LeftValue *)visit(ctx->leftValue()),
+       PPLUS,
+      );
+
   }
 
   virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
-    return visitChildren(ctx);
+    return (Affectation *)
+          new AffectationBinaire(
+          (LeftValue *)visit(ctx->leftValue()),
+           MMOINS,
+          );
   }
 
   virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
-    return visitChildren(ctx);
+    return (Affectation *)
+              new AffectationBinaire(
+              (LeftValue *)visit(ctx->leftValue()),
+               MMOINS_AFTER,
+              );
   }
 
   virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *ctx) override {
-    return visitChildren(ctx);
+    return (LeftValue *)
+                      new Name(ctx->NAME()->getText());
   }
 
   virtual antlrcpp::Any visitLeftValueTab(grammaireParser::LeftValueTabContext *ctx) override {
-    return visitChildren(ctx);
+    return (LeftValue *)
+                      new NameTab(ctx->NAME()->getText()),
+                                    (Expr *)visit(ctx->indice())
+                                   );
   }
 
   virtual antlrcpp::Any visitDefinition(grammaireParser::DefinitionContext *ctx) override {
-    return visitChildren(ctx);
+    return (Definition *)
+          new Definition(
+          (Type *)visit(ctx->type()),
+           (Name *)visit(ctx->name()),
+          (ParametreDefinition *)visit(ctx->params()),
+          (Bloc *)visit(ctx->bloc())
+          );
   }
 
   virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
-    return visitChildren(ctx);
-  }
+    vector<Instruction *> vecteurInstr =new vector<Instruction *>();
+        for(int i=0;i<(ctx->instructions()).size();i++)
+        {
+            vecteurInstr.push_back(ctx->instruction(i));
+        }
+        return (Bloc *)
+        new Bloc(vecteurInstr);
+      }
 
   virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
-    return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
-    return visitChildren(ctx);
+    return (StructControle *)
+    new StructureIf((Expr *)visit(ctx->condition),(Bloc *)visit(ctx->bloc()),(ElseBloc *)visit(ctx->elsebloc()));
   }
 
   virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
-    return visitChildren(ctx);
+    return (StructControle *)
+        new StructureWhile((Expr *)visit(ctx->condition), (Bloc *)visit(ctx->bloc()));
   }
 
   virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
-    return visitChildren(ctx);
+    return (ElseBloc *)
+        new ElseBloc((Bloc *)visit(ctx->bloc()));
   }
 
   virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {

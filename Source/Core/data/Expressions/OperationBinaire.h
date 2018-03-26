@@ -15,6 +15,6 @@ public:
 
 protected: 
 	Expr* expr1;
-	OperateurUnaire* op;
+	OperateurBinaire* op;
 	Expr* expr2;
 };

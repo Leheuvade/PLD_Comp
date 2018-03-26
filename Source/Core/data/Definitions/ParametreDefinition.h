@@ -11,10 +11,10 @@ class ParametreDefinition {
 
 public:
 
+ParametreDefinition();
 ParametreDefinition(vector<Parametre*> parameters);
 ~ParametreDefinition();
 
 protected:
 	vector<Parametre*> parameters;
 };
-

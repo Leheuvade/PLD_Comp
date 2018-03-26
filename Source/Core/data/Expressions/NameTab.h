@@ -14,4 +14,5 @@ public:
 	virtual ~NameTab();
 protected: 
 	Expr* indice;
+
 };
