@@ -252,19 +252,33 @@ public:
   }
 
   virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
-    return visitChildren(ctx);
+    vector<Parametre *> vecteurParam =new vector<Parametre *>();
+    for(int i=0; i<(ctx->parametre()).size(); i++){
+        vecteurParam.push_back((Parametre*) visit(ctx->parametre(i)));
+    }
+    return (ParametreDefinition*) new ParametreDefinition(vecteurParam);
   }
 
   virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
-    return visitChildren(ctx);
+    return (ParametreDefinition*) new ParametreDefinition();
   }
 
   virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
-    return visitChildren(ctx);
+    return (Parametre*)
+      new Parametre(
+        (Type) visit(ctx->type()),
+				(Name*) new Name(ctx->NAME()->getText()),
+				false // hasBrackets
+      );
   }
 
   virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
-    return visitChildren(ctx);
+    return (Parametre*)
+      new Parametre(
+        (Type) visit(ctx->type()),
+        (Name*) new Name(ctx->NAME()->getText()),
+        true // hasBrackets
+      );
   }
 
   virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
@@ -297,4 +311,3 @@ public:
 
 
 };
-
