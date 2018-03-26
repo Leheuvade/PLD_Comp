@@ -74,7 +74,7 @@ public:
 				(Type) visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false
-			);1
+			);
   }
 
   virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
