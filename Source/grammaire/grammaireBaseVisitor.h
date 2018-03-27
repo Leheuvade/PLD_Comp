@@ -496,11 +496,13 @@ public:
 	}
 
 	virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *ctx) override {
+		cout << "LeftValueVar" << endl;
 		return (LeftValue *)
 			new Name(ctx->NAME()->getText());
 	}
 
 	virtual antlrcpp::Any visitLeftValueTab(grammaireParser::LeftValueTabContext *ctx) override {
+		cout << "LeftValueTab" << endl;
 		return (LeftValue *)
 			new NameTab(
         ctx->NAME()->getText(),
@@ -509,6 +511,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitDefinition(grammaireParser::DefinitionContext *ctx) override {
+		cout << "Definition" << endl;
 		return (Definition *)
 			new Definition(
 			(Type *)visit(ctx->type()),
@@ -519,6 +522,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
+		cout << "Bloc" << endl;
 		vector<InstructionStruct *> vecteurInstr;
 		vector<InitDecl *> vecteurDecl;
 		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
@@ -539,6 +543,7 @@ public:
 		{
 			vecteurInstr.push_back(visit(ctx->instructionStruct(i)));
 		}
+		cout << "BlocStruct" << endl;
 		return (BlocStruct *)
 			new BlocStruct(vecteurInstr);
 	}
@@ -548,14 +553,17 @@ virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefiniti
 	for (int i = 0; i < (ctx->parametre()).size(); i++) {
 		vecteurParam.push_back((Parametre*)visit(ctx->parametre(i)));
 	}
+	cout << "ParamDefinitionNonVide" << endl;
 	return (ParametreDefinition*) new ParametreDefinition(vecteurParam);
 }
 
 virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
+	cout << "ParamDefinitionVide" << endl;
 	return (ParametreDefinition*) new ParametreDefinition();
 }
 
 virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
+	cout << "ParamSimple" << endl;
 	return (Parametre*)
 		new Parametre(
 		(Type *)visit(ctx->type()),
@@ -565,6 +573,7 @@ virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleConte
 }
 
 virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
+	cout << "ParametreTab" << endl;
 	return (Parametre*)
 		new Parametre(
 		(Type *) visit(ctx->type()),
@@ -574,33 +583,40 @@ virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ct
 }
 
 virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
+	cout << "If" << endl;
 	return (StructureControle *)
 		new StructureIf((Expr *)visit(ctx->expr()), (BlocStruct *)visit(ctx->blocStruct()), (ElseBloc *) visit(ctx->elseBloc()));
 }
 
 virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
+	cout << "While" << endl;
 	return (StructureControle *)
 		new StructureWhile((Expr *)visit(ctx->expr()), (BlocStruct *) visit(ctx->blocStruct()));
 }
 
 virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
+	cout << "ElseBloc" << endl;
 	return (ElseBloc *)
 		new ElseBloc((BlocStruct *)visit(ctx->blocStruct()));
 }
 
 virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
+	cout << "Int32" << endl;
 	return (Type)int32_type;
 }
 
 virtual antlrcpp::Any visitInt64(grammaireParser::Int64Context *ctx) override {
+	cout << "Int64" << endl;
 	return (Type)int64_type;
 }
 
 virtual antlrcpp::Any visitChar(grammaireParser::CharContext *ctx) override {
+	cout << "Char" << endl;
 	return (Type)char_type;
 }
 
 virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
+	cout << "type_void" << endl;
 	return (Type)void_type;
 }
 
