@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <streambuf>
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
@@ -15,7 +18,12 @@ void toto(){
   int clara;
 }
 int main(int , const char **) {
-  ANTLRInputStream input("void main(){}");
+
+  std::ifstream t("programme.txt");
+  std::string content((std::istreambuf_iterator<char>(t)),
+                      std::istreambuf_iterator<char>());
+
+  ANTLRInputStream input(content);
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);
 
