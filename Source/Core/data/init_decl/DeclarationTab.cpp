@@ -11,7 +11,7 @@ DeclarationTab::DeclarationTab(){
 
 }
 
-DeclarationTab::DeclarationTab(Type *type, Name *name, bool isConst,Val *size)
+DeclarationTab::DeclarationTab(Type type, Name *name, bool isConst,Val *size)
 	:Declaration(type,name,isConst){
 
   this->size = size;

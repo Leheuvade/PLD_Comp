@@ -634,7 +634,6 @@ public:
     AffectIncrementationBeforeContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
-    ExprContext *expr();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -683,14 +682,36 @@ public:
   class  DefinitionContext : public antlr4::ParserRuleContext {
   public:
     DefinitionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    DefinitionContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(DefinitionContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  DefFnctContext : public DefinitionContext {
+  public:
+    DefFnctContext(DefinitionContext *ctx);
+
     TypeContext *type();
     antlr4::tree::TerminalNode *NAME();
     ParametreDefinitionContext *parametreDefinition();
     BlocContext *bloc();
-
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  DefProcContext : public DefinitionContext {
+  public:
+    DefProcContext(DefinitionContext *ctx);
+
+    Type_voidContext *type_void();
+    antlr4::tree::TerminalNode *NAME();
+    ParametreDefinitionContext *parametreDefinition();
+    BlocContext *bloc();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   DefinitionContext* definition();

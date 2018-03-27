@@ -1,6 +1,6 @@
 #include "Parametre.h"
 
-Parametre::Parametre(Type *t, Name *n, bool b)
+Parametre::Parametre(Type t, Name *n, bool b)
 {
 	type = t;
 	name = n;
@@ -10,6 +10,5 @@ Parametre::Parametre(Type *t, Name *n, bool b)
 
 Parametre::~Parametre()
 {
-	delete type;
 	delete name;
 }

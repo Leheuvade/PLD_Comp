@@ -9,14 +9,10 @@
  * Declaration implementation
  */
 Declaration::Declaration(){
-
-   type = nullptr;
    name = nullptr;
-   isConst = true;
-
  }
 
-Declaration::Declaration(Type *type, Name *name, bool isConst){
+Declaration::Declaration(Type type, Name *name, bool isConst){
 
    this->type = type;
    this->name = name;
@@ -25,8 +21,5 @@ Declaration::Declaration(Type *type, Name *name, bool isConst){
  }
 
 Declaration::~Declaration(){
-
-	delete type;
 	delete name;
-
  }

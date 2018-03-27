@@ -11,18 +11,17 @@
 
 
 
-Definition::Definition(Type* t, Name* n, ParametreDefinition* p, Bloc* b)
+Definition::Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc)
 
 {
-    type=t;
-    name=n;
-    params=p;
-    bloc=b;
+    this->type=type;
+    this->name=name;
+    this->params=params;
+    this->bloc=bloc;
 }
 
 Definition::~Definition()
 {
-	delete type;
 	delete name;
 	delete params;
 	delete bloc;
