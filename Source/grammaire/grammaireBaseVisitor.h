@@ -63,46 +63,57 @@ public:
 	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
 		//ctxCourant = ctx;
 		//return antlrcpp::Any firstVisit = visitChildren(ctx);
-    return visitChildren(ctx);
+		cout << "visitProgramme" << endl;
+		return visitChildren(ctx);
 	}
 	virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
+		cout << "visitDecl" << endl;
 		return (InitDecl *)visit(ctx->declaration());
 	}
 
 	virtual antlrcpp::Any visitInit(grammaireParser::InitContext *ctx) override {
-		return (InitDecl *)visit(ctx->initialisation());
+		cout << "visitInit" << endl;
+		return  (InitDecl *)visit(ctx->initialisation());
 	}
 
 	virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->expr());
+		cout << "visitInstExpr" << endl;
+		return  (InstructionStruct *)visit(ctx->expr());
 	}
 
 	virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->blocStruct());
+		cout << "visitInstbloc" << endl;
+		return  (InstructionStruct *)visit(ctx->blocStruct());
 	}
 
 	virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstStrucControlContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->structureControle());
+		cout << "visitInstStrucControl" << endl;
+		return  (InstructionStruct *)visit(ctx->structureControle());
 	}
 
 	virtual antlrcpp::Any visitInstBreak(grammaireParser::InstBreakContext *ctx) override {
-		return 0;
+		cout << "visitInstBreak" << endl;
+		return  0;
 	}
 
 	virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->expr());
+		cout << "visitInstReturn" << endl;
+		return  (InstructionStruct *)visit(ctx->expr());
 	}
 
 	virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-		return (VarGlobale*)visit(ctx->declaration());
+		cout << "visitVarDecl" << endl;
+		return  (VarGlobale*)visit(ctx->declaration());
 	}
 
 	virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
-		return (VarGlobale*)visit(ctx->initialisation());
+		cout << "visitVarInit" << endl;
+		return  (VarGlobale*)visit(ctx->initialisation());
 	}
 
 	virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
-		return (Declaration*)
+		cout << "visitDeclConst" << endl;
+		return  (Declaration*)
 			new Declaration(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -111,7 +122,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitDeclVar(grammaireParser::DeclVarContext *ctx) override {
-		return (Declaration*)
+		cout << "visitDeclVar" << endl;
+		return  (Declaration*)
 			new Declaration(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -120,7 +132,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
-		return (DeclarationTab*)
+		cout << "visitDeclTab" << endl;
+		return  (DeclarationTab*)
 			new DeclarationTab(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -130,7 +143,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitInitTab(grammaireParser::InitTabContext *ctx) override {
-		return (InitialisationTab*)
+		cout << "visitInitTab" << endl;
+		return  (InitialisationTab*)
 			new InitialisationTab(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -141,7 +155,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
-		return (InitialisationVal*)
+		cout << "visitInitVar" << endl;
+		return  (InitialisationVal*)
 			new InitialisationVal(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -151,7 +166,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
-		return (InitialisationVal*)
+		cout << "visitInitConst" << endl;
+		return  (InitialisationVal*)
 			new InitialisationVal(
 			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
@@ -161,17 +177,17 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
-		cout<<"visitExprXorBit"<<endl;
+		cout << "visitExprXorBit" << endl;
 		return (Expr *)
 			new OperationBinaire(
-			(Expr *) visit(ctx->expr(0)),
+			(Expr *)visit(ctx->expr(0)),
 				BITWISE_XOR,
-				(Expr *) visit(ctx->expr(1))
+				(Expr *)visit(ctx->expr(1))
 			);
 	}
 
 	virtual antlrcpp::Any visitExprMult(grammaireParser::ExprMultContext *ctx) override {
-		cout<<"visitExprMult"<<endl;
+		cout << "visitExprMult" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -181,25 +197,25 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprName(grammaireParser::ExprNameContext *ctx) override {
-		cout<<"visitExprName"<<endl;
+		cout << "visitExprName" << endl;
 		return (Expr *)
 			new Name(ctx->NAME()->getText());
 	}
 
 	virtual antlrcpp::Any visitExprNoBit(grammaireParser::ExprNoBitContext *ctx) override {
-		cout<<"visitExprNoBit"<<endl;
+		cout << "visitExprNoBit" << endl;
 		return (Expr *)
-			new OperationUnaire((Expr *) visit(ctx->expr()), NO_BIT);
+			new OperationUnaire((Expr *)visit(ctx->expr()), NO_BIT);
 	}
 
 	virtual antlrcpp::Any visitExprChar(grammaireParser::ExprCharContext *ctx) override {
-		cout<<"visitExprChar"<<endl;
+		cout << "visitExprChar" << endl;
 		return (Expr *)
 			new Char((ctx->CHAR()->getText()).at(0));
 	}
 
 	virtual antlrcpp::Any visitExprSupOrEqual(grammaireParser::ExprSupOrEqualContext *ctx) override {
-		cout<<"visitExprSupOrEqual"<<endl;
+		cout << "visitExprSupOrEqual" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -209,12 +225,12 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAffect(grammaireParser::ExprAffectContext *ctx) override {
-		cout<<"visitExprAffect"<<endl;
-		return (Expr *) visit(ctx->affectation());
+		cout << "visitExprAffect" << endl;
+		return (Expr *)visit(ctx->affectation());
 	}
 
 	virtual antlrcpp::Any visitExprSup(grammaireParser::ExprSupContext *ctx) override {
-		cout<<"visitExprSup"<<endl;
+		cout << "visitExprSup" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -224,7 +240,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprInfOrEqual(grammaireParser::ExprInfOrEqualContext *ctx) override {
-		cout<<"visitExprInfOrEqual"<<endl;
+		cout << "visitExprInfOrEqual" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -234,16 +250,16 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprFnct(grammaireParser::ExprFnctContext *ctx) override {
-		cout<<"visitExprFnct"<<endl;
+		cout << "visitExprFnct" << endl;
 		return (Expr *)
 			new ExprAppel(
-        new Name(ctx->NAME()->getText()),
-				(ParametreAppel *) visit(ctx->parametreAppel())
+				new Name(ctx->NAME()->getText()),
+				(ParametreAppel *)visit(ctx->parametreAppel())
 			);
 	}
 
 	virtual antlrcpp::Any visitExprDiv(grammaireParser::ExprDivContext *ctx) override {
-		cout<<"visitExprDiv"<<endl;
+		cout << "visitExprDiv" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -253,7 +269,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAnd(grammaireParser::ExprAndContext *ctx) override {
-		cout<<"visitExprAndContext"<<endl;
+		cout << "visitExprAndContext" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -263,16 +279,16 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprTab(grammaireParser::ExprTabContext *ctx) override {
-		cout<<"visitExprTab"<<endl;
+		cout << "visitExprTab" << endl;
 		return (Expr *)
 			new NameTab(
-        ctx->NAME()->getText(),
-			(Expr *)visit(ctx->expr())
+				ctx->NAME()->getText(),
+				(Expr *)visit(ctx->expr())
 			);
 	}
 
 	virtual antlrcpp::Any visitExprOr(grammaireParser::ExprOrContext *ctx) override {
-		cout<<"visitExprOr"<<endl;
+		cout << "visitExprOr" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -282,7 +298,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprNo(grammaireParser::ExprNoContext *ctx) override {
-		cout<<"visitExprNo"<<endl;
+		cout << "visitExprNo" << endl;
 		return (Expr *)
 			new OperationUnaire(
 			(Expr *)visit(ctx->expr()),
@@ -290,15 +306,15 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprDiff(grammaireParser::ExprDiffContext *ctx) override {
-		cout<<"visitExprDiff"<<endl;
+		cout << "visitExprDiff" << endl;
 		return (Expr *)
 			new OperationBinaire(
-			(Expr *) visit(ctx->expr(0)),
-				DIFF, (Expr *) visit(ctx->expr(1)));
+			(Expr *)visit(ctx->expr(0)),
+				DIFF, (Expr *)visit(ctx->expr(1)));
 	}
 
 	virtual antlrcpp::Any visitExprSub(grammaireParser::ExprSubContext *ctx) override {
-		cout<<"visitExprSub"<<endl;
+		cout << "visitExprSub" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -308,7 +324,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAndBit(grammaireParser::ExprAndBitContext *ctx) override {
-		cout<<"visitExprAndBit"<<endl;
+		cout << "visitExprAndBit" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -318,7 +334,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprOrBit(grammaireParser::ExprOrBitContext *ctx) override {
-		cout<<"visitExprOrBit"<<endl;
+		cout << "visitExprOrBit" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -328,7 +344,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprEqual(grammaireParser::ExprEqualContext *ctx) override {
-		cout<<"visitExprEqual"<<endl;
+		cout << "visitExprEqual" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -338,23 +354,23 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprVal(grammaireParser::ExprValContext *ctx) override {
-		cout<<"visitExprVal"<<endl;
+		cout << "visitExprVal" << endl;
 		return (Expr *)
 			new Val(stoi(ctx->VAL()->getText()));
 	}
 
 	virtual antlrcpp::Any visitExprAdd(grammaireParser::ExprAddContext *ctx) override {
-		cout<<"visitExprAdd"<<endl;
+		cout << "visitExprAdd" << endl;
 		return (Expr *)
 			new OperationBinaire(
-			(Expr *) visit(ctx->expr(0)),
+			(Expr *)visit(ctx->expr(0)),
 				PLUS,
-				(Expr *) visit(ctx->expr(1))
+				(Expr *)visit(ctx->expr(1))
 			);
 	}
 
 	virtual antlrcpp::Any visitExprInf(grammaireParser::ExprInfContext *ctx) override {
-		cout<<"visitExprInf"<<endl;
+		cout << "visitExprInf" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -364,7 +380,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprMod(grammaireParser::ExprModContext *ctx) override {
-		cout<<"visitExprMod"<<endl;
+		cout << "visitExprMod" << endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -377,26 +393,29 @@ public:
 		vector<Expr *> vecteurParam;
 		for (int i = 0; i < (ctx->expr()).size(); i++)
 		{
-			vecteurParam.push_back((Expr *) visit(ctx->expr(i)));
+			vecteurParam.push_back((Expr *)visit(ctx->expr(i)));
 		}
-		return (ParametreAppel *)
+		cout << "visitParametreAppel" << endl;
+		return  (ParametreAppel *)
 			new ParametreAppel(vecteurParam);
 	}
 
 	virtual antlrcpp::Any visitAffectEqual(grammaireParser::AffectEqualContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectEqual" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *) visit(ctx->leftValue()),
+			(LeftValue *)visit(ctx->leftValue()),
 				EGAL,
-				(Expr *) visit(ctx->expr())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
 
 	virtual antlrcpp::Any visitAffectPlusEqual(grammaireParser::AffectPlusEqualContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectPlusEqual" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				PLUS_EGAL,
@@ -407,7 +426,8 @@ public:
 
 	virtual antlrcpp::Any visitAffectMinusEqual(grammaireParser::AffectMinusEqualContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectMinusEqual" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MOINS_EGAL,
@@ -419,7 +439,8 @@ public:
 	virtual antlrcpp::Any visitAffectMultEqual(grammaireParser::AffectMultEqualContext *ctx) override {
 
 
-		return (Affectation *)
+		cout << "visitAffectMultEqual" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MULT_EGAL,
@@ -430,9 +451,10 @@ public:
 
 	virtual antlrcpp::Any visitAffectDivision(grammaireParser::AffectDivisionContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectDivision" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *) visit(ctx->leftValue()),
+			(LeftValue *)visit(ctx->leftValue()),
 				DIV_EGAL,
 				(Expr *)visit(ctx->expr())
 			);
@@ -442,11 +464,12 @@ public:
 	virtual antlrcpp::Any visitAffectBitwiseAnd(grammaireParser::AffectBitwiseAndContext *ctx) override {
 
 
-		return (Affectation *)
+		cout << "visitAffectBitwiseAnd" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *) visit(ctx->leftValue()),
+			(LeftValue *)visit(ctx->leftValue()),
 				BITWISE_AND_A,
-				(Expr *) visit(ctx->expr())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -454,7 +477,8 @@ public:
 	virtual antlrcpp::Any visitAffectBitwiseOr(grammaireParser::AffectBitwiseOrContext *ctx) override {
 
 
-		return (Affectation *)
+		cout << "visitAffectBitwiseOr" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				BITWISE_OR_A,
@@ -466,7 +490,8 @@ public:
 	virtual antlrcpp::Any visitAffectBitwiseXor(grammaireParser::AffectBitwiseXorContext *ctx) override {
 
 
-		return (Affectation *)
+		cout << "visitAffectBitwiseXor" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				BITWISE_XOR_A,
@@ -477,7 +502,8 @@ public:
 
 	virtual antlrcpp::Any visitAffectBitwiseRightShift(grammaireParser::AffectBitwiseRightShiftContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectBitwiseRightShift" << endl;
+		return  (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				BITWISE_RIGHTSHIFT,
@@ -488,39 +514,43 @@ public:
 
 	virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
 
-		return (Affectation *)
+		cout << "visitAffectIncrementationBefore" << endl;
+		return  (Affectation *)
 			new AffectationUnaire(
-			(LeftValue *) visit(ctx->leftValue()),
+			(LeftValue *)visit(ctx->leftValue()),
 				PPLUS
-				);
+			);
 
 	}
 
 	virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
-		return (Affectation *)
+		cout << "visitAffectDecrementationBefore" << endl;
+		return  (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MMOINS
-				);
+			);
 	}
 
 	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
-		return (Affectation *)
+		cout << "visitAffectIncrementationAfter" << endl;
+		return  (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				PPLUS_AFTER
-				);
+			);
 	}
 	virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
-		return (Affectation *)
+		cout << "visitAffectDecrementationAfter" << endl;
+		return  (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MMOINS_AFTER
-				);
+			);
 	}
 
 	virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *ctx) override {
-		cout << "LeftValueVar" << endl;
+		cout << "visitLeftValueVar" << endl;
 		return (LeftValue *)
 			new Name(ctx->NAME()->getText());
 	}
@@ -529,8 +559,8 @@ public:
 		cout << "LeftValueTab" << endl;
 		return (LeftValue *)
 			new NameTab(
-        ctx->NAME()->getText(),
-			(Expr *) visit(ctx->expr())
+				ctx->NAME()->getText(),
+				(Expr *)visit(ctx->expr())
 			);
 	}
 
@@ -546,18 +576,18 @@ public:
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
-		cout << "Bloc" << endl;
 		vector<InstructionStruct *> vecteurInstr;
 		vector<InitDecl *> vecteurDecl;
 		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
 		{
-			vecteurInstr.push_back( (InstructionStruct *) visit(ctx->instructionStruct(i)));
+			vecteurInstr.push_back((InstructionStruct *)visit(ctx->instructionStruct(i)));
 		}
 		for (int i = 0; i < (ctx->initDecl()).size(); i++)
 		{
-			vecteurDecl.push_back((InitDecl *) visit(ctx->initDecl(i)));
+			vecteurDecl.push_back((InitDecl *)visit(ctx->initDecl(i)));
 		}
-		return (Bloc *)
+		cout << "visitProgramme" << endl;
+		return  (Bloc *)
 			new Bloc(vecteurDecl, vecteurInstr);
 	}
 
@@ -572,77 +602,77 @@ public:
 			new BlocStruct(vecteurInstr);
 	}
 
-virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
-	vector<Parametre *> vecteurParam;
-	for (int i = 0; i < (ctx->parametre()).size(); i++) {
-		vecteurParam.push_back((Parametre*)visit(ctx->parametre(i)));
+	virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
+		vector<Parametre *> vecteurParam;
+		for (int i = 0; i < (ctx->parametre()).size(); i++) {
+			vecteurParam.push_back((Parametre*)visit(ctx->parametre(i)));
+		}
+		cout << "ParamDefinitionNonVide" << endl;
+		return (ParametreDefinition*) new ParametreDefinition(vecteurParam);
 	}
-	cout << "ParamDefinitionNonVide" << endl;
-	return (ParametreDefinition*) new ParametreDefinition(vecteurParam);
-}
 
-virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
-	cout << "ParamDefinitionVide" << endl;
-	return (ParametreDefinition*) new ParametreDefinition();
-}
+	virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
+		cout << "ParamDefinitionVide" << endl;
+		return (ParametreDefinition*) new ParametreDefinition();
+	}
 
-virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
-	cout << "ParamSimple" << endl;
-	return (Parametre*)
-		new Parametre(
-		(Type *)visit(ctx->type()),
-		  new Name(ctx->NAME()->getText()),
-			false // hasBrackets
-		);
-}
+	virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
+		cout << "ParamSimple" << endl;
+		return (Parametre*)
+			new Parametre(
+			(Type *)visit(ctx->type()),
+				new Name(ctx->NAME()->getText()),
+				false // hasBrackets
+			);
+	}
 
-virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
-	cout << "ParametreTab" << endl;
-	return (Parametre*)
-		new Parametre(
-		(Type *) visit(ctx->type()),
-			new Name(ctx->NAME()->getText()),
-			true // hasBrackets
-		);
-}
+	virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
+		cout << "ParametreTab" << endl;
+		return (Parametre*)
+			new Parametre(
+			(Type *)visit(ctx->type()),
+				new Name(ctx->NAME()->getText()),
+				true // hasBrackets
+			);
+	}
 
-virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
-	cout << "If" << endl;
-	return (StructureControle *)
-		new StructureIf((Expr *)visit(ctx->expr()), (BlocStruct *)visit(ctx->blocStruct()), (ElseBloc *) visit(ctx->elseBloc()));
-}
+	virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
+		cout << "If" << endl;
+		return (StructureControle *)
+			new StructureIf((Expr *)visit(ctx->expr()), (BlocStruct *)visit(ctx->blocStruct()), (ElseBloc *)visit(ctx->elseBloc()));
+	}
 
-virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
-	cout << "While" << endl;
-	return (StructureControle *)
-		new StructureWhile((Expr *)visit(ctx->expr()), (BlocStruct *) visit(ctx->blocStruct()));
-}
+	virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
+		cout << "While" << endl;
+		return (StructureControle *)
+			new StructureWhile((Expr *)visit(ctx->expr()), (BlocStruct *)visit(ctx->blocStruct()));
+	}
 
-virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
-	cout << "ElseBloc" << endl;
-	return (ElseBloc *)
-		new ElseBloc((BlocStruct *)visit(ctx->blocStruct()));
-}
+	virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
+		cout << "ElseBloc" << endl;
+		return (ElseBloc *)
+			new ElseBloc((BlocStruct *)visit(ctx->blocStruct()));
+	}
 
-virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
-	cout << "Int32" << endl;
-	return (Type)int32_type;
-}
+	virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
+		cout << "Int32" << endl;
+		return (Type)int32_type;
+	}
 
-virtual antlrcpp::Any visitInt64(grammaireParser::Int64Context *ctx) override {
-	cout << "Int64" << endl;
-	return (Type)int64_type;
-}
+	virtual antlrcpp::Any visitInt64(grammaireParser::Int64Context *ctx) override {
+		cout << "Int64" << endl;
+		return (Type)int64_type;
+	}
 
-virtual antlrcpp::Any visitChar(grammaireParser::CharContext *ctx) override {
-	cout << "Char" << endl;
-	return (Type)char_type;
-}
+	virtual antlrcpp::Any visitChar(grammaireParser::CharContext *ctx) override {
+		cout << "Char" << endl;
+		return (Type)char_type;
+	}
 
-virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
-	cout << "type_void" << endl;
-	return (Type)void_type;
-}
+	virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
+		cout << "type_void" << endl;
+		return (Type)void_type;
+	}
 
 
 
