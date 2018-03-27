@@ -65,6 +65,7 @@ public:
     //return antlrcpp::Any firstVisit = visitChildren(ctx);
     cout<<"Programme"<<endl;
     return visitChildren(ctx);
+
   }
   virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
     cout<<"Decl"<<endl;
@@ -390,150 +391,164 @@ public:
   	}
 
   	virtual antlrcpp::Any visitParametreAppel(grammaireParser::ParametreAppelContext *ctx) override {
-  		vector<Expr *> vecteurParam;
-  		for (int i = 0; i < (ctx->expr()).size(); i++)
-  		{
-  			vecteurParam.push_back((Expr *) visit(ctx->expr(i)));
-  		}
-  		return (ParametreAppel *)
-  			new ParametreAppel(vecteurParam);
-  	}
+		vector<Expr *> vecteurParam;
+		for (int i = 0; i < (ctx->expr()).size(); i++)
+		{
+			vecteurParam.push_back((Expr *) visit(ctx->expr(i)));
+		}
+		cout << "visitParametreAppel" << endl;
+		return (ParametreAppel *)
+			new ParametreAppel(vecteurParam);
+	}
 
-  	virtual antlrcpp::Any visitAffectEqual(grammaireParser::AffectEqualContext *ctx) override {
+	virtual antlrcpp::Any visitAffectEqual(grammaireParser::AffectEqualContext *ctx) override {
+		cout << "visitAffectEqual" << endl;
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *) visit(ctx->leftValue()),
-  				EGAL,
-  				(Expr *) visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *) visit(ctx->leftValue()),
+				EGAL,
+				(Expr *) visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectPlusEqual(grammaireParser::AffectPlusEqualContext *ctx) override {
+	virtual antlrcpp::Any visitAffectPlusEqual(grammaireParser::AffectPlusEqualContext *ctx) override {
+		cout << "visitAffectPlusEqual" << endl;
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				PLUS_EGAL,
-  				(Expr *)visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				PLUS_EGAL,
+				(Expr *)visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectMinusEqual(grammaireParser::AffectMinusEqualContext *ctx) override {
+	virtual antlrcpp::Any visitAffectMinusEqual(grammaireParser::AffectMinusEqualContext *ctx) override {
+		cout << "visitAffectMinusEqual" << endl;
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				MOINS_EGAL,
-  				(Expr *)visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				MOINS_EGAL,
+				(Expr *)visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectMultEqual(grammaireParser::AffectMultEqualContext *ctx) override {
-
-
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				MULT_EGAL,
-  				(Expr *)visit(ctx->expr())
-  			);
-
-  	}
-
-  	virtual antlrcpp::Any visitAffectDivision(grammaireParser::AffectDivisionContext *ctx) override {
-
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *) visit(ctx->leftValue()),
-  				DIV_EGAL,
-  				(Expr *)visit(ctx->expr())
-  			);
-
-  	}
-
-  	virtual antlrcpp::Any visitAffectBitwiseAnd(grammaireParser::AffectBitwiseAndContext *ctx) override {
+	virtual antlrcpp::Any visitAffectMultEqual(grammaireParser::AffectMultEqualContext *ctx) override {
+		cout << "visitAffectMultEqual" << endl;
 
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *) visit(ctx->leftValue()),
-  				BITWISE_AND_A,
-  				(Expr *) visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				MULT_EGAL,
+				(Expr *)visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectBitwiseOr(grammaireParser::AffectBitwiseOrContext *ctx) override {
+	virtual antlrcpp::Any visitAffectDivision(grammaireParser::AffectDivisionContext *ctx) override {
+		cout << "visitAffectDivision" << endl;
+
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *) visit(ctx->leftValue()),
+				DIV_EGAL,
+				(Expr *)visit(ctx->expr())
+			);
+
+	}
+
+	virtual antlrcpp::Any visitAffectBitwiseAnd(grammaireParser::AffectBitwiseAndContext *ctx) override {
+		cout << "visitAffectBitwiseAnd" << endl;
 
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				BITWISE_OR_A,
-  				(Expr *)visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *) visit(ctx->leftValue()),
+				BITWISE_AND_A,
+				(Expr *) visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectBitwiseXor(grammaireParser::AffectBitwiseXorContext *ctx) override {
+	virtual antlrcpp::Any visitAffectBitwiseOr(grammaireParser::AffectBitwiseOrContext *ctx) override {
+
+		cout << "visitAffectBitwiseOr" << endl;
+
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				BITWISE_OR_A,
+				(Expr *)visit(ctx->expr())
+			);
+
+	}
+
+	virtual antlrcpp::Any visitAffectBitwiseXor(grammaireParser::AffectBitwiseXorContext *ctx) override {
+		cout << "visitAffectBitwiseXor" << endl;
 
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				BITWISE_XOR_A,
-  				(Expr *)visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				BITWISE_XOR_A,
+				(Expr *)visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectBitwiseRightShift(grammaireParser::AffectBitwiseRightShiftContext *ctx) override {
+	virtual antlrcpp::Any visitAffectBitwiseRightShift(grammaireParser::AffectBitwiseRightShiftContext *ctx) override {
+		cout << "visitAffectBitwiseRightShift" << endl;
 
-  		return (Affectation *)
-  			new AffectationBinaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				BITWISE_RIGHTSHIFT,
-  				(Expr *)visit(ctx->expr())
-  			);
+		return (Affectation *)
+			new AffectationBinaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				BITWISE_RIGHTSHIFT,
+				(Expr *)visit(ctx->expr())
+			);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
+	virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
+		cout << "visitAffectIncrementationBefore" << endl;
 
-  		return (Affectation *)
-  			new AffectationUnaire(
-  			(LeftValue *) visit(ctx->leftValue()),
-  				PPLUS
-  				);
+		return (Affectation *)
+			new AffectationUnaire(
+			(LeftValue *) visit(ctx->leftValue()),
+				PPLUS
+				);
 
-  	}
+	}
 
-  	virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
-  		return (Affectation *)
-  			new AffectationUnaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				MMOINS
-  				);
-  	}
+	virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
+		cout << "visitAffectDecrementationBefore" << endl;
+		return (Affectation *)
+			new AffectationUnaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				MMOINS
+				);
+	}
 
-  	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
-  		return (Affectation *)
-  			new AffectationUnaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				PPLUS_AFTER
-  				);
-  	}
-  	virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
-  		return (Affectation *)
-  			new AffectationUnaire(
-  			(LeftValue *)visit(ctx->leftValue()),
-  				MMOINS_AFTER
-  				);
-  	}
+	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
+		cout << "visitAffectIncrementationAfter" << endl;
+		return (Affectation *)
+			new AffectationUnaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				PPLUS_AFTER
+				);
+	}
+	virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
+		cout << "visitAffectDecrementationAfter" << endl;
+		return (Affectation *)
+			new AffectationUnaire(
+			(LeftValue *)visit(ctx->leftValue()),
+				MMOINS_AFTER
+				);
+	}
 
   	virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *ctx) override {
   		return (LeftValue *)
