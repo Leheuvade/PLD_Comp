@@ -8,7 +8,6 @@
 
 ParametreDefinition::ParametreDefinition()
 {
-    parameters = new vector<Parametre*>();
 }
 
 ParametreDefinition::ParametreDefinition(vector<Parametre*> p)
