@@ -161,6 +161,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
+		cout<<"visitExprXorBit"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *) visit(ctx->expr(0)),
@@ -170,6 +171,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprMult(grammaireParser::ExprMultContext *ctx) override {
+		cout<<"visitExprMult"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -179,21 +181,25 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprName(grammaireParser::ExprNameContext *ctx) override {
+		cout<<"visitExprName"<<endl;
 		return (Expr *)
 			new Name(ctx->NAME()->getText());
 	}
 
 	virtual antlrcpp::Any visitExprNoBit(grammaireParser::ExprNoBitContext *ctx) override {
+		cout<<"visitExprNoBit"<<endl;
 		return (Expr *)
 			new OperationUnaire((Expr *) visit(ctx->expr()), NO_BIT);
 	}
 
 	virtual antlrcpp::Any visitExprChar(grammaireParser::ExprCharContext *ctx) override {
+		cout<<"visitExprChar"<<endl;
 		return (Expr *)
 			new Char((ctx->CHAR()->getText()).at(0));
 	}
 
 	virtual antlrcpp::Any visitExprSupOrEqual(grammaireParser::ExprSupOrEqualContext *ctx) override {
+		cout<<"visitExprSupOrEqual"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -203,10 +209,12 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAffect(grammaireParser::ExprAffectContext *ctx) override {
+		cout<<"visitExprAffect"<<endl;
 		return (Expr *) visit(ctx->affectation());
 	}
 
 	virtual antlrcpp::Any visitExprSup(grammaireParser::ExprSupContext *ctx) override {
+		cout<<"visitExprSup"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -216,6 +224,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprInfOrEqual(grammaireParser::ExprInfOrEqualContext *ctx) override {
+		cout<<"visitExprInfOrEqual"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -225,6 +234,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprFnct(grammaireParser::ExprFnctContext *ctx) override {
+		cout<<"visitExprFnct"<<endl;
 		return (Expr *)
 			new ExprAppel(
         new Name(ctx->NAME()->getText()),
@@ -233,6 +243,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprDiv(grammaireParser::ExprDivContext *ctx) override {
+		cout<<"visitExprDiv"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -242,6 +253,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAnd(grammaireParser::ExprAndContext *ctx) override {
+		cout<<"visitExprAndContext"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -251,6 +263,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprTab(grammaireParser::ExprTabContext *ctx) override {
+		cout<<"visitExprTab"<<endl;
 		return (Expr *)
 			new NameTab(
         ctx->NAME()->getText(),
@@ -259,7 +272,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprOr(grammaireParser::ExprOrContext *ctx) override {
-		return (Expr *) 
+		cout<<"visitExprOr"<<endl;
+		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
 				OR,
@@ -268,6 +282,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprNo(grammaireParser::ExprNoContext *ctx) override {
+		cout<<"visitExprNo"<<endl;
 		return (Expr *)
 			new OperationUnaire(
 			(Expr *)visit(ctx->expr()),
@@ -275,6 +290,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprDiff(grammaireParser::ExprDiffContext *ctx) override {
+		cout<<"visitExprDiff"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *) visit(ctx->expr(0)),
@@ -282,6 +298,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprSub(grammaireParser::ExprSubContext *ctx) override {
+		cout<<"visitExprSub"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -291,6 +308,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAndBit(grammaireParser::ExprAndBitContext *ctx) override {
+		cout<<"visitExprAndBit"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -300,6 +318,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprOrBit(grammaireParser::ExprOrBitContext *ctx) override {
+		cout<<"visitExprOrBit"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -309,6 +328,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprEqual(grammaireParser::ExprEqualContext *ctx) override {
+		cout<<"visitExprEqual"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -318,11 +338,13 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprVal(grammaireParser::ExprValContext *ctx) override {
+		cout<<"visitExprVal"<<endl;
 		return (Expr *)
 			new Val(stoi(ctx->VAL()->getText()));
 	}
 
 	virtual antlrcpp::Any visitExprAdd(grammaireParser::ExprAddContext *ctx) override {
+		cout<<"visitExprAdd"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *) visit(ctx->expr(0)),
@@ -332,6 +354,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprInf(grammaireParser::ExprInfContext *ctx) override {
+		cout<<"visitExprInf"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
@@ -341,6 +364,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprMod(grammaireParser::ExprModContext *ctx) override {
+		cout<<"visitExprMod"<<endl;
 		return (Expr *)
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
