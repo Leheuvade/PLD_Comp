@@ -355,11 +355,13 @@ public:
 		{
 			vecteurParam.push_back((Expr *) visit(ctx->expr(i)));
 		}
+		cout << "visitParametreAppel" << endl;
 		return (ParametreAppel *)
 			new ParametreAppel(vecteurParam);
 	}
 
 	virtual antlrcpp::Any visitAffectEqual(grammaireParser::AffectEqualContext *ctx) override {
+		cout << "visitAffectEqual" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -371,6 +373,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectPlusEqual(grammaireParser::AffectPlusEqualContext *ctx) override {
+		cout << "visitAffectPlusEqual" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -382,6 +385,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectMinusEqual(grammaireParser::AffectMinusEqualContext *ctx) override {
+		cout << "visitAffectMinusEqual" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -393,6 +397,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectMultEqual(grammaireParser::AffectMultEqualContext *ctx) override {
+		cout << "visitAffectMultEqual" << endl;
 
 
 		return (Affectation *)
@@ -405,6 +410,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectDivision(grammaireParser::AffectDivisionContext *ctx) override {
+		cout << "visitAffectDivision" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -416,6 +422,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectBitwiseAnd(grammaireParser::AffectBitwiseAndContext *ctx) override {
+		cout << "visitAffectBitwiseAnd" << endl;
 
 
 		return (Affectation *)
@@ -429,6 +436,7 @@ public:
 
 	virtual antlrcpp::Any visitAffectBitwiseOr(grammaireParser::AffectBitwiseOrContext *ctx) override {
 
+		cout << "visitAffectBitwiseOr" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -440,6 +448,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectBitwiseXor(grammaireParser::AffectBitwiseXorContext *ctx) override {
+		cout << "visitAffectBitwiseXor" << endl;
 
 
 		return (Affectation *)
@@ -452,6 +461,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectBitwiseRightShift(grammaireParser::AffectBitwiseRightShiftContext *ctx) override {
+		cout << "visitAffectBitwiseRightShift" << endl;
 
 		return (Affectation *)
 			new AffectationBinaire(
@@ -463,6 +473,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
+		cout << "visitAffectIncrementationBefore" << endl;
 
 		return (Affectation *)
 			new AffectationUnaire(
@@ -473,6 +484,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
+		cout << "visitAffectDecrementationBefore" << endl;
 		return (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
@@ -481,6 +493,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
+		cout << "visitAffectIncrementationAfter" << endl;
 		return (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
@@ -488,6 +501,7 @@ public:
 				);
 	}
 	virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
+		cout << "visitAffectDecrementationAfter" << endl;
 		return (Affectation *)
 			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
