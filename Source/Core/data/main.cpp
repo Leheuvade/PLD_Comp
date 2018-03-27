@@ -14,7 +14,6 @@ void toto(){
   int clara;
 }
 int main(int , const char **) {
-	
   ANTLRInputStream input("1+3");
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);

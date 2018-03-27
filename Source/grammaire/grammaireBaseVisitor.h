@@ -43,7 +43,6 @@
 #include "../Core/data/Instructions/InstructionStruct.h"
 #include "../Core/data/LeftValue.h"
 #include "../Core/data/Programme.h"
-#include "../Core/data/Structures/"
 #include "../Core/data/Structures/ElseBloc.h"
 #include "../Core/data/Structures/StructureControle.h"
 #include "../Core/data/Structures/StructureIf.h"
@@ -59,8 +58,9 @@ class  grammaireBaseVisitor : public grammaireVisitor {
 public:
 
 	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
-		ctxCourant = ctx;
-		return antlrcpp::Any firstVisit = visitChildren(ctx);
+		//ctxCourant = ctx;
+		//return antlrcpp::Any firstVisit = visitChildren(ctx);
+    return visitChildren(ctx);
 	}
 	virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
 		return (InitDecl *)visit(ctx->declaration());
@@ -75,11 +75,11 @@ public:
 	}
 
 	virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->bloc());
+		return (InstructionStruct *)visit(ctx->blocStruct());
 	}
 
 	virtual antlrcpp::Any visitInstStrucControl(grammaireParser::InstStrucControlContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->structControle());
+		return (InstructionStruct *)visit(ctx->structureControle());
 	}
 
 	virtual antlrcpp::Any visitInstBreak(grammaireParser::InstBreakContext *ctx) override {
@@ -87,21 +87,21 @@ public:
 	}
 
 	virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
-		return (InstructionStruct *)visit(ctx->expr);
+		return (InstructionStruct *)visit(ctx->expr());
 	}
 
 	virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-		return (varGlobale*)visit(ctx->declaration());
+		return (VarGlobale*)visit(ctx->declaration());
 	}
 
 	virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
-		return (varGlobale*)visit(ctx->initialisation());
+		return (VarGlobale*)visit(ctx->initialisation());
 	}
 
 	virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
 		return (Declaration*)
 			new Declaration(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				true
 			);
@@ -110,7 +110,7 @@ public:
 	virtual antlrcpp::Any visitDeclVar(grammaireParser::DeclVarContext *ctx) override {
 		return (Declaration*)
 			new Declaration(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false
 			);
@@ -119,7 +119,7 @@ public:
 	virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
 		return (DeclarationTab*)
 			new DeclarationTab(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false,
 				(Val*) new Val(stoi(ctx->VAL()->getText()))
@@ -129,7 +129,7 @@ public:
 	virtual antlrcpp::Any visitInitTab(grammaireParser::InitTabContext *ctx) override {
 		return (InitialisationTab*)
 			new InitialisationTab(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false,
 				(Val*) new Val(stoi(ctx->VAL()->getText())),
@@ -140,7 +140,7 @@ public:
 	virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
 		return (InitialisationVal*)
 			new InitialisationVal(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				false,
 				(Val*) new Val(stoi(ctx->VAL()->getText()))
@@ -150,7 +150,7 @@ public:
 	virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
 		return (InitialisationVal*)
 			new InitialisationVal(
-			(Type)visit(ctx->type()),
+			(Type*)visit(ctx->type()),
 				(Name*) new Name(ctx->NAME()->getText()),
 				true,
 				(Val*) new Val(stoi(ctx->VAL()->getText()))

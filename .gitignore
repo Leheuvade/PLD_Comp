@@ -48,8 +48,9 @@ SourceArt/**/*.tga
 Binaries/*
 lib/*
 Debug/*
+Debug
 PLD_Comp/*
-.metadata/*
+.metadata
 # Builds
 Build/*
 

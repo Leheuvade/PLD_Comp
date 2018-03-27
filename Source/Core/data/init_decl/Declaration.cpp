@@ -16,7 +16,7 @@ Declaration::Declaration(){
 
  }
 
-Declaration::Declaration(Type *type,Name *name,bool isConst){
+Declaration::Declaration(Type *type, Name *name, bool isConst){
 
    this->type = type;
    this->name = name;
