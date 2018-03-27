@@ -2,6 +2,7 @@
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
+#include "../../grammaire/grammaireBaseVisitor.h"
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
@@ -14,7 +15,7 @@ void toto(){
   int clara;
 }
 int main(int , const char **) {
-  ANTLRInputStream input("1+3");
+  ANTLRInputStream input("void main(){}");
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);
 
@@ -26,6 +27,10 @@ int main(int , const char **) {
   grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.expr();
 
+  grammaireBaseVisitor visitor;
+
+  visitor.visit(tree);
+
   std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
   DotExport dotexport(&parser);
@@ -36,7 +41,5 @@ int main(int , const char **) {
   out.close();
   system("dot -Tpdf -o out.pdf tmp.dot");
 
-
-  cout<<"toto";
   return 0;
 }

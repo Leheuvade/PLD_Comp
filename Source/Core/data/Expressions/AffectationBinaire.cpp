@@ -14,15 +14,14 @@ AffectationBinaire::AffectationBinaire(){
 
 }
 
-AffectationBinaire::AffectationBinaire(LeftValue* leftValue, OperateurAffectationBinaire * op,Expr * rightvalue){
+AffectationBinaire::AffectationBinaire(LeftValue* leftValue, OperateurAffectationBinaire op,Expr * expr){
 	this->leftValue = leftValue; 
 	this->op = op;
-	this->rightValue = rightvalue;
+	this->expr = expr;
 }
 
 AffectationBinaire::~AffectationBinaire(){
 
 	delete leftValue;
-	delete op;
-	delete rightValue;
+	delete expr;
 }
