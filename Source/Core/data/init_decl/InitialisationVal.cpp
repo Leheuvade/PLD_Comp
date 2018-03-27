@@ -12,12 +12,11 @@
 
 
 InitialisationVal::InitialisationVal(){
-  type = nullptr;
   name = nullptr;
-  isConst = true;
+  value = nullptr;
 }
 
-InitialisationVal::InitialisationVal(Type * type,Name * name,bool isConst,Val * value){
+InitialisationVal::InitialisationVal(Type type,Name * name,bool isConst,Val * value){
    this->type = type;
    this->name = name;
    this->isConst = isConst;
@@ -25,9 +24,6 @@ InitialisationVal::InitialisationVal(Type * type,Name * name,bool isConst,Val * 
 }
 
 InitialisationVal::~InitialisationVal(){
-
-	delete type;
 	delete name;
 	delete value;
-
  }

@@ -131,7 +131,9 @@ public:
 
     virtual antlrcpp::Any visitLeftValueTab(grammaireParser::LeftValueTabContext *context) = 0;
 
-    virtual antlrcpp::Any visitDefinition(grammaireParser::DefinitionContext *context) = 0;
+    virtual antlrcpp::Any visitDefFnct(grammaireParser::DefFnctContext *context) = 0;
+
+    virtual antlrcpp::Any visitDefProc(grammaireParser::DefProcContext *context) = 0;
 
     virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *context) = 0;
 
