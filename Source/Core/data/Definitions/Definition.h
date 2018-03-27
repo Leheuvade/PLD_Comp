@@ -12,11 +12,11 @@ class Bloc;
 
 class Definition {
 public:
-Definition(Type* type, Name* name, ParametreDefinition* params, Bloc* bloc);
+Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);
 virtual ~Definition();
 
 protected:
-	Type* type;
+	Type type;
 	Name* name;
 	ParametreDefinition* params;
 	Bloc* bloc;

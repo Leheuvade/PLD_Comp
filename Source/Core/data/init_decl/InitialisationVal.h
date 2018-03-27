@@ -13,12 +13,12 @@ class InitialisationVal {
 
 public:
 	InitialisationVal();
-	InitialisationVal(Type *type,Name *name,bool isConst,Val * value);
+	InitialisationVal(Type type, Name *name,  bool isConst,Val * value);
 	virtual ~InitialisationVal();
 
 protected:
 	Val * value;
 	Name * name;
 	bool isConst;
-	Type * type;
+	Type type;
 };

@@ -8,11 +8,11 @@
 
 class Parametre {
 public:
-	Parametre(Type *type, Name *name, bool hasBrackets);
+	Parametre(Type type, Name *name, bool hasBrackets);
 	~Parametre();
 
 protected:
-	Type *type;
+	Type type;
 	Name *name;
 	bool hasBrackets;
 };

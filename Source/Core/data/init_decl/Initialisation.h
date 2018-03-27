@@ -12,11 +12,11 @@ class Initialisation {
 	friend class MapperSymbol;
 public:
 	Initialisation();
-	Initialisation(Type *type,Name *name,bool isConst);
+	Initialisation(Type type,Name *name,bool isConst);
 	virtual ~Initialisation();
 
 protected:
-	Type *type;
+	Type type;
 	Name *name;
 	bool isConst;
 };

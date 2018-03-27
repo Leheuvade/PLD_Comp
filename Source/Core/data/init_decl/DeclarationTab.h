@@ -13,7 +13,7 @@ class DeclarationTab: public Declaration {
 
 public:
 	DeclarationTab();
-	DeclarationTab(Type *type, Name *name, bool isConst,Val *size);
+	DeclarationTab(Type type, Name *name, bool isConst,Val *size);
 	virtual ~DeclarationTab();
 
 protected:

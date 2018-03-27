@@ -74,7 +74,9 @@ leftValue : NAME #LeftValueVar
 	| NAME'['expr']' #LeftValueTab
 	;
 
-definition : type NAME'('parametreDefinition')' bloc;
+definition : type NAME'('parametreDefinition')' bloc #DefFnct
+	| type_void NAME'('parametreDefinition')' bloc #DefProc
+	;
 
 bloc : '{' (initDecl)* (instructionStruct)* '}';
 blocStruct : '{' (instructionStruct)* '}';
