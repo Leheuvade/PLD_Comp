@@ -321,7 +321,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        EGAL,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -332,7 +332,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        PLUS_EGAL,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -343,7 +343,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        MOINS_EGAL,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -355,7 +355,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        MULT_EGAL,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -366,7 +366,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        DIV_EGAL,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -378,7 +378,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        BITWISE_AND,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -390,7 +390,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        BITWISE_OR,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -402,7 +402,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        BITWISE_XOR,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }
@@ -413,7 +413,7 @@ public:
       new AffectationBinaire(
       (LeftValue *)visit(ctx->leftValue()),
        BITWISE_RIGHTSHIFT,
-      (RightValue *)visit(ctx->rightValue())
+      (Expr *)visit(ctx->Expr())
       );
 
   }

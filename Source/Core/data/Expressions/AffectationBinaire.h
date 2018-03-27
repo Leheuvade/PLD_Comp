@@ -13,10 +13,10 @@ class AffectationBinaire: public Affectation {
 
 public: 
 	AffectationBinaire();
-	AffectationBinaire(LeftValue* leftValue, OperateurAffectationBinaire *  op,Expr * rightvalue);
+	AffectationBinaire(LeftValue* leftValue, OperateurAffectationBinaire  op,Expr * Expr);
 	virtual ~AffectationBinaire();
 protected: 
 	LeftValue* leftValue;
-	OperateurAffectationBinaire *  op;
-	Expr* rightValue;
+	OperateurAffectationBinaire op;
+	Expr* Expr;
 };

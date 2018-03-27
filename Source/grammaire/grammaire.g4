@@ -64,7 +64,7 @@ affectation : leftValue '=' expr #AffectEqual
 	| leftValue '|=' expr #AffectBitwiseOr
 	| leftValue '^=' expr #AffectBitwiseXor
 	| leftValue '>>=' expr #AffectBitwiseRightShift
-	| '++' leftValue expr #AffectIncrementationBefore
+	| '++' leftValue #AffectIncrementationBefore
 	| '--' leftValue #AffectDecrementationBefore
 	| leftValue '++' #AffectIncrementationAfter
 	| leftValue '--' #AffectDecrementationAfter

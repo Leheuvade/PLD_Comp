@@ -47,6 +47,9 @@
 #include "../Core/data/Structures/StructureControle.h"
 #include "../Core/data/Structures/StructureIf.h"
 #include "../Core/data/Structures/StructureWhile.h"
+#include <string>
+#include <vector>
+using namespace std;
 
 
 
@@ -160,9 +163,9 @@ public:
 	virtual antlrcpp::Any visitExprXorBit(grammaireParser::ExprXorBitContext *ctx) override {
 		return (Expr *)
 			new OperationBinaire(
-			(Expr *)visit(ctx->expr(0)),
+			(Expr *) visit(ctx->expr(0)),
 				BITWISE_XOR,
-				(Expr *)visit(ctx->expr(1))
+				(Expr *) visit(ctx->expr(1))
 			);
 	}
 
@@ -182,7 +185,7 @@ public:
 
 	virtual antlrcpp::Any visitExprNoBit(grammaireParser::ExprNoBitContext *ctx) override {
 		return (Expr *)
-			new OperationUnaire((Expr *)visit(ctx->expr(1)), NO_BIT);
+			new OperationUnaire((Expr *) visit(ctx->expr()), NO_BIT);
 	}
 
 	virtual antlrcpp::Any visitExprChar(grammaireParser::ExprCharContext *ctx) override {
@@ -200,8 +203,7 @@ public:
 	}
 
 	virtual antlrcpp::Any visitExprAffect(grammaireParser::ExprAffectContext *ctx) override {
-		return (Expr *)
-			new Affectation(ctx->affectation());
+		return (Expr *) visit(ctx->affectation());
 	}
 
 	virtual antlrcpp::Any visitExprSup(grammaireParser::ExprSupContext *ctx) override {
@@ -225,8 +227,8 @@ public:
 	virtual antlrcpp::Any visitExprFnct(grammaireParser::ExprFnctContext *ctx) override {
 		return (Expr *)
 			new ExprAppel(
-			(Name *)visit(ctx->name()),
-				(ParametreAppel *)visit(ctx->parameters())
+        new Name(ctx->NAME()->getText()),
+				(ParametreAppel *) visit(ctx->parametreAppel())
 			);
 	}
 
@@ -250,13 +252,14 @@ public:
 
 	virtual antlrcpp::Any visitExprTab(grammaireParser::ExprTabContext *ctx) override {
 		return (Expr *)
-			new NameTab(ctx->NAME()->getText()),
-			(Expr *)visit(ctx->indice())
+			new NameTab(
+        ctx->NAME()->getText(),
+			(Expr *)visit(ctx->expr())
 			);
 	}
 
 	virtual antlrcpp::Any visitExprOr(grammaireParser::ExprOrContext *ctx) override {
-		return (Expr *)
+		return (Expr *) 
 			new OperationBinaire(
 			(Expr *)visit(ctx->expr(0)),
 				OR,
@@ -273,9 +276,9 @@ public:
 
 	virtual antlrcpp::Any visitExprDiff(grammaireParser::ExprDiffContext *ctx) override {
 		return (Expr *)
-			new OperationUnaire(
-			(Expr *)visit(ctx->expr()),
-				DIFF);
+			new OperationBinaire(
+			(Expr *) visit(ctx->expr(0)),
+				DIFF, (Expr *) visit(ctx->expr(1)));
 	}
 
 	virtual antlrcpp::Any visitExprSub(grammaireParser::ExprSubContext *ctx) override {
@@ -316,15 +319,15 @@ public:
 
 	virtual antlrcpp::Any visitExprVal(grammaireParser::ExprValContext *ctx) override {
 		return (Expr *)
-			new Val(stoi(ctx->VAL()));
+			new Val(stoi(ctx->VAL()->getText()));
 	}
 
 	virtual antlrcpp::Any visitExprAdd(grammaireParser::ExprAddContext *ctx) override {
 		return (Expr *)
 			new OperationBinaire(
-			(Expr *)visit(ctx->expr(0)),
-				EGAL,
-				(Expr *)visit(ctx->expr(1))
+			(Expr *) visit(ctx->expr(0)),
+				PLUS,
+				(Expr *) visit(ctx->expr(1))
 			);
 	}
 
@@ -347,10 +350,10 @@ public:
 	}
 
 	virtual antlrcpp::Any visitParametreAppel(grammaireParser::ParametreAppelContext *ctx) override {
-		vector<ParametreAppel *> vecteurParam = new vector<ParametreAppel *>();
-		for (int i = 0; i < (ctx->parameters()).size(); i++)
+		vector<Expr *> vecteurParam;
+		for (int i = 0; i < (ctx->expr()).size(); i++)
 		{
-			vecteurParam.push_back(ctx->expr(i));
+			vecteurParam.push_back((Expr *) visit(ctx->expr(i)));
 		}
 		return (ParametreAppel *)
 			new ParametreAppel(vecteurParam);
@@ -360,9 +363,9 @@ public:
 
 		return (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *)visit(ctx->leftValue()),
+			(LeftValue *) visit(ctx->leftValue()),
 				EGAL,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *) visit(ctx->expr())
 			);
 
 	}
@@ -373,7 +376,7 @@ public:
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				PLUS_EGAL,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -384,7 +387,7 @@ public:
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MOINS_EGAL,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -396,7 +399,7 @@ public:
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				MULT_EGAL,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -405,9 +408,9 @@ public:
 
 		return (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *)visit(ctx->leftValue()),
+			(LeftValue *) visit(ctx->leftValue()),
 				DIV_EGAL,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -417,9 +420,9 @@ public:
 
 		return (Affectation *)
 			new AffectationBinaire(
-			(LeftValue *)visit(ctx->leftValue()),
-				BITWISE_AND,
-				(RightValue *)visit(ctx->rightValue())
+			(LeftValue *) visit(ctx->leftValue()),
+				BITWISE_AND_A,
+				(Expr *) visit(ctx->expr())
 			);
 
 	}
@@ -430,8 +433,8 @@ public:
 		return (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
-				BITWISE_OR,
-				(RightValue *)visit(ctx->rightValue())
+				BITWISE_OR_A,
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -442,8 +445,8 @@ public:
 		return (Affectation *)
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
-				BITWISE_XOR,
-				(RightValue *)visit(ctx->rightValue())
+				BITWISE_XOR_A,
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -454,7 +457,7 @@ public:
 			new AffectationBinaire(
 			(LeftValue *)visit(ctx->leftValue()),
 				BITWISE_RIGHTSHIFT,
-				(RightValue *)visit(ctx->rightValue())
+				(Expr *)visit(ctx->expr())
 			);
 
 	}
@@ -462,33 +465,33 @@ public:
 	virtual antlrcpp::Any visitAffectIncrementationBefore(grammaireParser::AffectIncrementationBeforeContext *ctx) override {
 
 		return (Affectation *)
-			new AffectationBinaire(
-			(LeftValue *)visit(ctx->leftValue()),
-				PPLUS,
+			new AffectationUnaire(
+			(LeftValue *) visit(ctx->leftValue()),
+				PPLUS
 				);
 
 	}
 
 	virtual antlrcpp::Any visitAffectDecrementationBefore(grammaireParser::AffectDecrementationBeforeContext *ctx) override {
 		return (Affectation *)
-			new AffectationBinaire(
+			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
-				MMOINS,
+				MMOINS
 				);
 	}
 
-	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *context) override {
+	virtual antlrcpp::Any visitAffectIncrementationAfter(grammaireParser::AffectIncrementationAfterContext *ctx) override {
 		return (Affectation *)
-			new AffectationBinaire(
+			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
-				PPLUS_AFTER,
+				PPLUS_AFTER
 				);
 	}
 	virtual antlrcpp::Any visitAffectDecrementationAfter(grammaireParser::AffectDecrementationAfterContext *ctx) override {
 		return (Affectation *)
-			new AffectationBinaire(
+			new AffectationUnaire(
 			(LeftValue *)visit(ctx->leftValue()),
-				MMOINS_AFTER,
+				MMOINS_AFTER
 				);
 	}
 
@@ -499,8 +502,9 @@ public:
 
 	virtual antlrcpp::Any visitLeftValueTab(grammaireParser::LeftValueTabContext *ctx) override {
 		return (LeftValue *)
-			new NameTab(ctx->NAME()->getText()),
-			(Expr *)visit(ctx->indice())
+			new NameTab(
+        ctx->NAME()->getText(),
+			(Expr *) visit(ctx->expr())
 			);
 	}
 
@@ -508,37 +512,36 @@ public:
 		return (Definition *)
 			new Definition(
 			(Type *)visit(ctx->type()),
-				(Name *)visit(ctx->name()),
-				(ParametreDefinition *)visit(ctx->params()),
+				new Name(ctx->NAME()->getText()),
+				(ParametreDefinition *)visit(ctx->parametreDefinition()),
 				(Bloc *)visit(ctx->bloc())
 			);
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
-		vector<InstructionStruct *> vecteurInstr = new vector<InstructionStruct *>();
-		vector<InitDecl *> vecteurDecl = new vector<InitDecl *>();
-		for (int i = 0; i < (ctx->instructions()).size(); i++)
+		vector<InstructionStruct *> vecteurInstr;
+		vector<InitDecl *> vecteurDecl;
+		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
 		{
-			vecteurInstr.push_back(visit(ctx->instructions(i)));
+			vecteurInstr.push_back( (InstructionStruct *) visit(ctx->instructionStruct(i)));
 		}
 		for (int i = 0; i < (ctx->initDecl()).size(); i++)
 		{
-			vecteurDecl.push_back(visit(ctx->initDecl(i)));
+			vecteurDecl.push_back((InitDecl *) visit(ctx->initDecl(i)));
 		}
 		return (Bloc *)
-			new Bloc((InitDecl *)visit(ctx->vecteurDecl), (InstructionStruct *)visit(ctx->instructions));
+			new Bloc(vecteurDecl, vecteurInstr);
 	}
 
 	virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *ctx) override {
-		vector<InstructionStruct *> vecteurInstr = new vector<InstructionStruct *>();
-		for (int i = 0; i < (ctx->instructions()).size(); i++)
+		vector<InstructionStruct *> vecteurInstr;
+		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
 		{
-			vecteurInstr.push_back(visit(ctx->instructions(i)));
+			vecteurInstr.push_back(visit(ctx->instructionStruct(i)));
 		}
 		return (BlocStruct *)
 			new BlocStruct(vecteurInstr);
 	}
-}
 
 virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
 	vector<Parametre *> vecteurParam = new vector<Parametre *>();

@@ -4,5 +4,5 @@
 
 #pragma once
 
-enum OperateurUnaire { DIFF, NO, NO_BIT };
+enum OperateurUnaire { NO, NO_BIT };
 
