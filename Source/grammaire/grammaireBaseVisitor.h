@@ -544,7 +544,7 @@ public:
 	}
 
 virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
-	vector<Parametre *> vecteurParam = new vector<Parametre *>();
+	vector<Parametre *> vecteurParam;
 	for (int i = 0; i < (ctx->parametre()).size(); i++) {
 		vecteurParam.push_back((Parametre*)visit(ctx->parametre(i)));
 	}
@@ -558,8 +558,8 @@ virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionV
 virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleContext *ctx) override {
 	return (Parametre*)
 		new Parametre(
-		(Type)visit(ctx->type()),
-			(Name*) new Name(ctx->NAME()->getText()),
+		(Type *)visit(ctx->type()),
+		  new Name(ctx->NAME()->getText()),
 			false // hasBrackets
 		);
 }
@@ -567,20 +567,20 @@ virtual antlrcpp::Any visitParametreSimple(grammaireParser::ParametreSimpleConte
 virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
 	return (Parametre*)
 		new Parametre(
-		(Type)visit(ctx->type()),
-			(Name*) new Name(ctx->NAME()->getText()),
+		(Type *) visit(ctx->type()),
+			new Name(ctx->NAME()->getText()),
 			true // hasBrackets
 		);
 }
 
 virtual antlrcpp::Any visitIf(grammaireParser::IfContext *ctx) override {
-	return (StructControle *)
-		new StructureIf((Expr *)visit(ctx->condition), (BlocStruct *)visit(ctx->blocStruct()), (ElseBloc *)visit(ctx->elsebloc()));
+	return (StructureControle *)
+		new StructureIf((Expr *)visit(ctx->expr()), (BlocStruct *)visit(ctx->blocStruct()), (ElseBloc *) visit(ctx->elseBloc()));
 }
 
 virtual antlrcpp::Any visitWhile(grammaireParser::WhileContext *ctx) override {
-	return (StructControle *)
-		new StructureWhile((Expr *)visit(ctx->condition), (BlocStruct *)visit(ctx->blocStruct()));
+	return (StructureControle *)
+		new StructureWhile((Expr *)visit(ctx->expr()), (BlocStruct *) visit(ctx->blocStruct()));
 }
 
 virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {

@@ -2,6 +2,7 @@
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
+#include "../../grammaire/grammaireBaseVisitor.h"
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
@@ -14,7 +15,7 @@ void toto(){
   int clara;
 }
 int main(int , const char **) {
-  ANTLRInputStream input("1+3");
+  ANTLRInputStream input("void main(){}");
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);
 
