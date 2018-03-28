@@ -68,7 +68,7 @@ public:
 	}
 	virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
 		cout << "Decl" << endl;
-		return (InitDecl *)visit(ctx->declaration());
+		return (InitDecl *)(Declaration *) visit(ctx->declaration());
 	}
 
 	virtual antlrcpp::Any visitInit(grammaireParser::InitContext *ctx) override {
@@ -78,7 +78,7 @@ public:
 
 	virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
 		cout << "InstExpr" << endl;
-		return (InstructionStruct *)visit(ctx->expr());
+		return (InstructionStruct *)(Expr *)visit(ctx->expr());
 	}
 
 	virtual antlrcpp::Any visitInstbloc(grammaireParser::InstblocContext *ctx) override {
@@ -227,7 +227,7 @@ public:
 
 	virtual antlrcpp::Any visitExprAffect(grammaireParser::ExprAffectContext *ctx) override {
 		cout << "visitExprAffect" << endl; 
- return  (Expr *)visit(ctx->affectation());
+ return  (Expr *)(Affectation *)visit(ctx->affectation());
 	}
 
 	virtual antlrcpp::Any visitExprSup(grammaireParser::ExprSupContext *ctx) override {
@@ -391,12 +391,13 @@ public:
 	}
 
 	virtual antlrcpp::Any visitParametreAppel(grammaireParser::ParametreAppelContext *ctx) override {
+		cout << "visitParametreAppel" << endl; 
 		vector<Expr *> vecteurParam;
 		for (int i = 0; i < (ctx->expr()).size(); i++)
 		{
 			vecteurParam.push_back((Expr *)visit(ctx->expr(i)));
 		}
-		cout << "visitParametreAppel" << endl; 
+		
  return  (ParametreAppel *)
 			new ParametreAppel(vecteurParam);
 	}
@@ -578,8 +579,7 @@ public:
 
 	virtual antlrcpp::Any visitDefProc(grammaireParser::DefProcContext *ctx) override {
 		cout << "visitDefProc" << endl; 
- return  (Definition *)
-			new Definition(
+ 		return  new Definition(
 				void_type,
 				new Name(ctx->NAME()->getText()),
 				(ParametreDefinition *)visit(ctx->parametreDefinition()),
@@ -588,39 +588,45 @@ public:
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
+		cout << "visitBloc" << endl;
 		vector<InstructionStruct *> vecteurInstr;
 		vector<InitDecl *> vecteurDecl;
+		for (int i = 0; i < (ctx->initDecl()).size(); i++)
+		{
+			cout<<"yo"<<endl;
+			vecteurDecl.push_back((InitDecl *)visit(ctx->initDecl(i)));
+		}
+
 		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
 		{
 			vecteurInstr.push_back((InstructionStruct *)visit(ctx->instructionStruct(i)));
 		}
-		for (int i = 0; i < (ctx->initDecl()).size(); i++)
-		{
-			vecteurDecl.push_back((InitDecl *)visit(ctx->initDecl(i)));
-		}
-		cout << "visitBloc" << endl; 
+		 
  return  (Bloc *)
 			new Bloc(vecteurDecl, vecteurInstr);
 	}
 
 	virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *ctx) override {
+		cout << "visitBlocStruct" << endl; 
 		vector<InstructionStruct *> vecteurInstr;
 		for (int i = 0; i < (ctx->instructionStruct()).size(); i++)
 		{
 			vecteurInstr.push_back(visit(ctx->instructionStruct(i)));
 		}
-		cout << "visitBlocStruct" << endl; 
+		
  return  (BlocStruct *)
 			new BlocStruct(vecteurInstr);
 	}
 
 	virtual antlrcpp::Any visitParamDefinitionNonVide(grammaireParser::ParamDefinitionNonVideContext *ctx) override {
+		cout << "visitParamDefinitionNonVide" << endl; 
 		vector<Parametre *> vecteurParam;
 		for (int i = 0; i < (ctx->parametre()).size(); i++) {
 			vecteurParam.push_back((Parametre*)visit(ctx->parametre(i)));
 		}
-		cout << "visitParamDefinitionNonVide" << endl; 
- return  (ParametreDefinition*) new ParametreDefinition(vecteurParam);
+		
+ 		return  (ParametreDefinition*) new ParametreDefinition(vecteurParam);
+ 
 	}
 
 	virtual antlrcpp::Any visitParamDefinitionVide(grammaireParser::ParamDefinitionVideContext *ctx) override {
