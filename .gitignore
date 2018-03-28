@@ -70,3 +70,4 @@ DerivedDataCache/*
 *.filters
 *.vcxproj
 *.aps
+x64/
