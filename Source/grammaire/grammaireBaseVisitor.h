@@ -103,7 +103,7 @@ public:
 
 	virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
 		cout << "VarDecl" << endl;
-		return (VarGlobale*)visit(ctx->declaration());
+		return (VarGlobale *) (Declaration *) visit(ctx->declaration());
 	}
 
 	virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
@@ -123,13 +123,14 @@ public:
 
 	virtual antlrcpp::Any visitDeclVar(grammaireParser::DeclVarContext *ctx) override {
 		cout << "DeclVar" << endl;
-		return (Declaration*)
-			new Declaration(
-			(Type)visit(ctx->type()),
-				(Name*) new Name(ctx->NAME()->getText()),
-				false
-			);
-	}
+		return (Declaration *)
+
+ 		new Declaration(
+      	static_cast<Type>(visit(ctx->type())),
+        (Name*) new Name(ctx->NAME()->getText()),
+        false
+      );
+  }
 
 	virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
 		cout << "DeclTab" << endl;
@@ -639,7 +640,7 @@ public:
 
 	virtual antlrcpp::Any visitParametreTab(grammaireParser::ParametreTabContext *ctx) override {
 		cout << "visitParametreTab" << endl; 
- return  (Parametre*)
+ 		return  (Parametre*)
 			new Parametre(
 			(Type)visit(ctx->type()),
 				new Name(ctx->NAME()->getText()),
@@ -667,22 +668,22 @@ public:
 
 	virtual antlrcpp::Any visitInt32(grammaireParser::Int32Context *ctx) override {
 		cout << "visitInt32" << endl; 
- return  (Type)int32_type;
+    	return int32_type;
 	}
 
 	virtual antlrcpp::Any visitInt64(grammaireParser::Int64Context *ctx) override {
 		cout << "visitInt64" << endl; 
- return  (Type)int64_type;
+    	return int64_type;
 	}
 
 	virtual antlrcpp::Any visitChar(grammaireParser::CharContext *ctx) override {
 		cout << "visitChar" << endl; 
- return  (Type)char_type;
+    	return char_type;
 	}
 
 	virtual antlrcpp::Any visitType_void(grammaireParser::Type_voidContext *ctx) override {
 		cout << "visitType_void" << endl; 
- return  (Type)void_type;
+    	return void_type;
 	}
 
 
