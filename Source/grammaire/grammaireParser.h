@@ -24,11 +24,11 @@ public:
   };
 
   enum {
-    RuleProgramme = 0, RuleInitDecl = 1, RuleInstructionStruct = 2, RuleVarGlobale = 3, 
-    RuleDeclaration = 4, RuleInitialisation = 5, RuleExpr = 6, RuleParametreAppel = 7, 
-    RuleAffectation = 8, RuleLeftValue = 9, RuleDefinition = 10, RuleBloc = 11, 
-    RuleBlocStruct = 12, RuleParametreDefinition = 13, RuleParametre = 14, 
-    RuleStructureControle = 15, RuleElseBloc = 16, RuleType = 17, RuleType_void = 18
+    RuleEntree = 0, RuleProgramme = 1, RuleInitDecl = 2, RuleInstructionStruct = 3, 
+    RuleVarGlobale = 4, RuleDeclaration = 5, RuleInitialisation = 6, RuleExpr = 7, 
+    RuleParametreAppel = 8, RuleAffectation = 9, RuleLeftValue = 10, RuleDefinition = 11, 
+    RuleBloc = 12, RuleBlocStruct = 13, RuleParametreDefinition = 14, RuleParametre = 15, 
+    RuleStructureControle = 16, RuleElseBloc = 17, RuleType = 18, RuleType_void = 19
   };
 
   grammaireParser(antlr4::TokenStream *input);
@@ -41,6 +41,7 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class EntreeContext;
   class ProgrammeContext;
   class InitDeclContext;
   class InstructionStructContext;
@@ -60,6 +61,18 @@ public:
   class ElseBlocContext;
   class TypeContext;
   class Type_voidContext; 
+
+  class  EntreeContext : public antlr4::ParserRuleContext {
+  public:
+    EntreeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ProgrammeContext *programme();
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  EntreeContext* entree();
 
   class  ProgrammeContext : public antlr4::ParserRuleContext {
   public:

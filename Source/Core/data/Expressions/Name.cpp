@@ -17,6 +17,9 @@ Name::Name(string name){
 	this->name = name;
 }
 
+void setSymbol(Symbole * symbole){
+	this->symbole = symbole;
+}
 Name::~Name(){
 	 
 }

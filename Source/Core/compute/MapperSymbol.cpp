@@ -26,7 +26,7 @@ MapperSymbol::~MapperSymbol()
 
 }
 
-Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::ProgrammeContext* ctxCourant,
+Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
 	Programme * prog = ctxCourant->programme();

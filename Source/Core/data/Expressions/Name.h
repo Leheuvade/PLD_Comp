@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Expr.h"
+#include "../init_decl/Symbole.h"
 #include <string>
 
 using namespace std;
@@ -13,6 +14,7 @@ class Name: public Expr {
 public:
 	Name();
 	Name(string name);
+	void setSymbol(Symbole * symbole);
 	virtual ~Name();
 protected: 
 	string name;
