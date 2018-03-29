@@ -23,7 +23,7 @@ int main(int , const char **) {
   std::string content((std::istreambuf_iterator<char>(t)),
                       std::istreambuf_iterator<char>());*/
 
-  ANTLRInputStream input("void main(void){int32_t i;i=0;}");
+  ANTLRInputStream input("void main(void){int32_t i;i=0;i=i+1;if(0){}else{}}");
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);
 
