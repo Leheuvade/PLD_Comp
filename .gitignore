@@ -46,11 +46,11 @@ SourceArt/**/*.tga
 
 # Binary Files
 Binaries/*
-lib/*
-Debug/*
-Debug
-PLD_Comp/*
-.metadata
+/lib/*
+/Debug/*
+/PLD_Comp/*
+/include/*
+/.metadata/*
 # Builds
 Build/*
 
@@ -70,3 +70,4 @@ DerivedDataCache/*
 *.filters
 *.vcxproj
 *.aps
+x64/
