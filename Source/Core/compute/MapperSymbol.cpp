@@ -26,10 +26,10 @@ MapperSymbol::~MapperSymbol()
 
 }
 
-Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext* ctxCourant,
+Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::ProgrammeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
-	Programme * prog=ctxCourant->programme();
+	Programme * prog = ctxCourant->programme();
 	for(int i = 0;i<prog->varGlobales.size();i++)
 	{
 		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
@@ -49,27 +49,29 @@ Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext
 
 		}
 	}
-	Bloc * bloc = ctxBlocCourant->bloc();
-	for (int i = 0; i<bloc->initDecl.size(); i++)
-	{
-		InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
-		if (varDecl)
+	if(ctxBlocCourant != nullptr){
+		Bloc * bloc = ctxBlocCourant->bloc();
+		for (int i = 0; i<bloc->initDecl.size(); i++)
 		{
-			if (varDecl->declaration->name->name == name->name)
+			InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
+			if (varDecl)
 			{
-				return varDecl;
+				if (varDecl->declaration->name->name == name->name)
+				{
+					return varDecl;
+				}
 			}
-		}
-		else
-		{
-			InstructionInit * varInit = static_cast<InstructionInit*>(bloc->initDecl[i]);
-			if (varInit->initialisation->name->name == name->name)
+			else
 			{
-				return varInit;
-			}
+				InstructionInit * varInit = static_cast<InstructionInit*>(bloc->initDecl[i]);
+				if (varInit->initialisation->name->name == name->name)
+				{
+					return varInit;
+				}
 
+			}
 		}
+	
 	}
 	return nullptr;
-
 }

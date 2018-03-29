@@ -16,6 +16,6 @@ class MapperSymbol {
 public: 
 	MapperSymbol();
 	virtual ~MapperSymbol();
-	Symbole * checkSymbol(Name * name, grammaireParser::ProgrammeContext *ctxCourant, grammaireParser::BlocContext *ctxBlocCourant);
+	Symbole * findSymbol(Name * name, grammaireParser::ProgrammeContext *ctxCourant, grammaireParser::BlocContext *ctxBlocCourant);
 };
 
