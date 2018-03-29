@@ -16,4 +16,5 @@ public:
 	virtual ~Name();
 protected: 
 	string name;
+	Symbole * symbole;
 };
