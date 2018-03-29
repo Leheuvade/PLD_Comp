@@ -29,7 +29,7 @@ MapperSymbol::~MapperSymbol()
 Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
-	/*Programme * prog=ctxCourant->programme();
+	Programme * prog=ctxCourant->programme();
 	for(int i = 0;i<prog->varGlobales.size();i++)
 	{
 		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
@@ -69,7 +69,7 @@ Symbole* MapperSymbol::checkSymbol(Name* name, grammaireParser::ProgrammeContext
 			}
 
 		}
-	}*/
+	}
 	return nullptr;
 
 }
