@@ -29,7 +29,7 @@ MapperSymbol::~MapperSymbol()
 Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
-	Programme * prog = ctxCourant->programme();
+	/*Programme * prog = ctxCourant->programme();
 	for(int i = 0;i<prog->varGlobales.size();i++)
 	{
 		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
@@ -50,7 +50,7 @@ Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ct
 		}
 	}
 	if(ctxBlocCourant != nullptr){
-		Bloc * bloc = ctxBlocCourant->bloc();
+		/*Bloc * bloc = ctxBlocCourant->bloc();
 		for (int i = 0; i<bloc->initDecl.size(); i++)
 		{
 			InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
@@ -72,6 +72,6 @@ Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ct
 			}
 		}
 	
-	}
+	}*/
 	return nullptr;
 }
