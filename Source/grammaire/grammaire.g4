@@ -1,4 +1,7 @@
 grammar grammaire;
+
+entree : programme;
+
 programme : (varGlobale)* (definition)+;
 
 

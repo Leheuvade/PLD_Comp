@@ -19,6 +19,8 @@ public:
   /**
    * Visit parse trees produced by grammaireParser.
    */
+    virtual antlrcpp::Any visitEntree(grammaireParser::EntreeContext *context) = 0;
+
     virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *context) = 0;
 
     virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *context) = 0;

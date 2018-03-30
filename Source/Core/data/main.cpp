@@ -5,7 +5,7 @@
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
-#include "../../grammaire/grammaireBaseVisitor.h"
+#include "../../grammaire/grammaireImplBaseVisitor.h"
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
@@ -35,7 +35,7 @@ int main(int , const char **) {
   grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.programme();
 
-  grammaireBaseVisitor visitor;
+  grammaireImplBaseVisitor visitor;
 
   visitor.visit(tree);
 
