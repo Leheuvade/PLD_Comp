@@ -6,12 +6,14 @@
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
 #include "../../grammaire/grammaireImplBaseVisitor.h"
+#include "../../grammaire/grammaireMappingBaseVisitor.h"
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
 #include "dotexport.h"
 
 using namespace antlr4;
+
 int titi;
 
 void toto(){
@@ -35,10 +37,19 @@ int main(int , const char **) {
   grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.programme();
 
-  grammaireImplBaseVisitor visitor;
+  //grammaireImplBaseVisitor visitor;
 
-  visitor.visit(tree);
+  Programme * p = visitor.visit(tree);
 
+  /*MapperSymbol ms;
+  
+
+  grammaireMappingBaseVisitor v;
+  grammaireParser::BlocContext *ctx = v.visit(tree);
+  //ctx->bloc();
+  ms.test(p, ctx);*/
+
+  
   std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
   DotExport dotexport(&parser);

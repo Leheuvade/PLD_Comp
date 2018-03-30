@@ -7,7 +7,7 @@
 #include "Symbole.h"
 
 
-class InitDecl:public Symbole {
+class InitDecl : public Symbole {
 
 public:
 	InitDecl();

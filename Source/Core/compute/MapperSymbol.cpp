@@ -8,6 +8,7 @@
 #include "../data/init_decl/VarGlobaleDeclaration.h"
 #include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Bloc.h"
+#include "../data/Definitions/Definition.h"
 #include "../data/init_decl/InstructionDeclaration.h"
 #include "../data/init_decl/InstructionInit.h"
 
@@ -22,8 +23,26 @@ MapperSymbol::MapperSymbol()
 
 MapperSymbol::~MapperSymbol()
 {
-	
 
+
+}
+
+void MapperSymbol::addSymboleTable(grammaireParser::BlocContext * ctx, Bloc * bloc){
+	blocs.insert(std::make_pair(ctx, bloc));
+}
+void MapperSymbol::setProgCtx(grammaireParser::ProgrammeContext * programme){
+	this->programme = programme;
+}
+
+void MapperSymbol::test(Programme * p, grammaireParser::BlocContext * b)
+{
+	cout<<p->definitions[0]->name->name<<endl;
+	Bloc * bll= blocs[b];
+
+	blocs[b]->initDecl[0];
+	cout<<"la"<<endl;
+	//Declaration * d = (Declaration *)
+	//cout<<d->name->name<<endl;
 }
 
 Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
@@ -71,7 +90,7 @@ Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ct
 
 			}
 		}
-	
+
 	}*/
 	return nullptr;
 }

@@ -61,11 +61,24 @@ using namespace std;
 class  grammaireImplBaseVisitor : public grammaireBaseVisitor {
 public:
 
-	virtual antlrcpp::Any visitEntree(grammaireParser::EntreeContext *ctx) override {
-	    ctxCourant =  ctx;
-		ctxBlocCourant = nullptr;
-	    return visitChildren(ctx);
-	}
+	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
+    	mapperSymbol.setProgCtx(ctx);
+		vector<VarGlobale*> varGlobales;
+		vector<Definition*> definitions;
+		
+		for (int i = 0; i < (ctx->varGlobale()).size(); i++)
+		{
+			varGlobales.push_back((VarGlobale *)visit(ctx->varGlobale(i)));
+		}
+
+		for (int i = 0; i < (ctx->definition()).size(); i++)
+		{
+			definitions.push_back((Definition *)visit(ctx->definition(i)));
+		}
+
+		Programme * prog = new Programme(varGlobales, definitions);
+ 		return prog;
+  	}
 
 	virtual antlrcpp::Any visitDecl(grammaireParser::DeclContext *ctx) override {
 		cout << "Decl" << endl;
@@ -124,7 +137,7 @@ public:
 	virtual antlrcpp::Any visitDeclVar(grammaireParser::DeclVarContext *ctx) override {
 		cout << "DeclVar" << endl;
 		Name * name =new Name(ctx->NAME()->getText());
-		name->setSymbol(mapperSymbol.findSymbol(name, ctxCourant, ctxBlocCourant));
+		//name->setSymbol(mapperSymbol.findSymbol(name, ctxCourant, ctxBlocCourant));
 		return new Declaration(
       	static_cast<Type>(visit(ctx->type())),
         name,
@@ -572,17 +585,18 @@ public:
 
 	virtual antlrcpp::Any visitDefProc(grammaireParser::DefProcContext *ctx) override {
 		cout << "visitDefProc" << endl; 
+		Name * n = new Name(ctx->NAME()->getText());
  		return  new Definition(
 		void_type,
-		new Name(ctx->NAME()->getText()),
+		n,
 		(ParametreDefinition *)visit(ctx->parametreDefinition()),
 		(Bloc *)visit(ctx->bloc())
 		);
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
+		//ctx->getParent();
 		cout << "visitBloc" << endl;
-		ctxBlocCourant = ctx;
 		vector<InstructionStruct *> vecteurInstr;
 		vector<InitDecl *> vecteurDecl;
 		for (int i = 0; i < (ctx->initDecl()).size(); i++)
@@ -594,8 +608,10 @@ public:
 		{
 			vecteurInstr.push_back((InstructionStruct *)visit(ctx->instructionStruct(i)));
 		}
-		 
- 		return new Bloc(vecteurDecl, vecteurInstr);
+
+		Bloc * bloc = new Bloc(vecteurDecl, vecteurInstr);
+		mapperSymbol.addSymboleTable(ctx, bloc);
+ 		return bloc;
 	}
 
 	virtual antlrcpp::Any visitBlocStruct(grammaireParser::BlocStructContext *ctx) override {
@@ -605,7 +621,6 @@ public:
 		{
 			vecteurInstr.push_back((InstructionStruct *)visit(ctx->instructionStruct(i)));
 		}
-		cout<<"jjj"<<endl;
 		return new BlocStruct(vecteurInstr);
 	}
 
@@ -664,7 +679,6 @@ public:
 	virtual antlrcpp::Any visitElseBloc(grammaireParser::ElseBlocContext *ctx) override {
 		cout << "visitElseBloc" << endl; 
 		ElseBloc * e = new ElseBloc((BlocStruct *)visit(ctx->blocStruct()));
- 		cout<<"coucou"<<endl;
  		return e;
 	}
 
@@ -691,8 +705,6 @@ public:
 
 
 protected:
-	grammaireParser::EntreeContext *ctxCourant;
-	grammaireParser::BlocContext *ctxBlocCourant;
 	MapperSymbol mapperSymbol;
 
 };
