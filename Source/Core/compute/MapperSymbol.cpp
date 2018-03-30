@@ -45,7 +45,7 @@ void MapperSymbol::test(Programme * p, grammaireParser::BlocContext * b)
 	//cout<<d->name->name<<endl;
 }
 
-Symbole* MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
+Symbole * MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
 	grammaireParser::DefProcContext * var = (grammaireParser::DefProcContext *) ctxCourant->programme()->definition(0);
