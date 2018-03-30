@@ -37,7 +37,7 @@ int main(int , const char **) {
   grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.programme();
 
-  //grammaireImplBaseVisitor visitor;
+  grammaireImplBaseVisitor visitor;
 
   Programme * p = visitor.visit(tree);
 
