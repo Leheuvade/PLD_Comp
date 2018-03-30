@@ -17,11 +17,11 @@ using namespace antlr4;
 
 int main(int, const char **) {
 
-	/*std::ifstream t("programme.txt");
+	std::ifstream t("programme.txt");
 	std::string content((std::istreambuf_iterator<char>(t)),
-						std::istreambuf_iterator<char>());*/
+						std::istreambuf_iterator<char>());
 
-	ANTLRInputStream input("int32_t i =0;");
+	ANTLRInputStream input(content);
 	grammaireLexer  lexer(&input);
 	CommonTokenStream tokens(&lexer);
 
