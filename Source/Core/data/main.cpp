@@ -24,8 +24,8 @@ int main(int argc, char *argv[]) {
 	std::ifstream t(argv[1]);
 	std::string content((std::istreambuf_iterator<char>(t)),
 						std::istreambuf_iterator<char>());
-
-	ANTLRInputStream input(content);
+	cout << content << endl;
+	ANTLRInputStream input("int32_t i=0;");
 	grammaireLexer  lexer(&input);
 	CommonTokenStream tokens(&lexer);
 
