@@ -15,7 +15,8 @@ using namespace std;
 class Programme {
 	friend class MapperSymbol;
 	friend class VisitAST;
-public: 
+friend class DebugVisit; 
+ public: 
 	Programme();
 	Programme(vector<VarGlobale*> &varGlobales, vector<Definition*> &definitions);
 	virtual ~Programme();

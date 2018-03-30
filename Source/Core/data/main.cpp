@@ -6,27 +6,22 @@
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
 #include "../../grammaire/grammaireImplBaseVisitor.h"
-#include "../../grammaire/IRVisitor.h"
+#include "../visitor/DebugVisit.h"
 
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
 #include "dotexport.h"
-#include "../ir/NoeudIR.h"
 
 using namespace antlr4;
-int titi;
 
-void toto() {
-	int clara;
-}
 int main(int, const char **) {
 
 	/*std::ifstream t("programme.txt");
 	std::string content((std::istreambuf_iterator<char>(t)),
 						std::istreambuf_iterator<char>());*/
 
-	ANTLRInputStream input("void main(void){int32_t i;i=0;i=i+1;if(0){}else{}}");
+	ANTLRInputStream input("int32_t i =0;");
 	grammaireLexer  lexer(&input);
 	CommonTokenStream tokens(&lexer);
 
@@ -36,11 +31,11 @@ int main(int, const char **) {
 	}
 
 	grammaireParser parser(&tokens);
-	tree::ParseTree* tree = parser.entree();
+	tree::ParseTree* tree = parser.programme();
 
 	grammaireImplBaseVisitor visitor;
 
-	visitor.visit(tree);
+	Programme * p = visitor.visit(tree);
 
 	std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
@@ -51,8 +46,7 @@ int main(int, const char **) {
 	out << dotexport.getDotFile();
 	out.close();
 	system("dot -Tpdf -o out.pdf tmp.dot");
-	IRVisitor ir_visitor;
-	ir_visitor.setIr( new NoeudIR());
-	ir_visitor.visit(tree);
+	DebugVisit visit;
+	visit.visit(p);
 	return 0;
 }

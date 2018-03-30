@@ -6,7 +6,8 @@
 #include "Symbole.h"
 
 class VarGlobale: public Symbole {
-  public:
+  friend class DebugVisit; 
+ public:
     VarGlobale();
     virtual ~VarGlobale();
 };

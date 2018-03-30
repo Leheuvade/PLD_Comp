@@ -8,7 +8,8 @@
 
 
 class OperationUnaire: public Operation {
-public:
+friend class DebugVisit; 
+ public:
 	OperationUnaire();
 	OperationUnaire(Expr* expr, OperateurUnaire op);
 	virtual ~OperationUnaire();

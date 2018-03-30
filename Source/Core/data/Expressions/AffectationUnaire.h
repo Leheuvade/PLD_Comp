@@ -12,7 +12,8 @@ class LeftValue;
 
 class AffectationUnaire: public Affectation {
 
-public: 
+friend class DebugVisit; 
+ public: 
 	AffectationUnaire();
 	AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire op);
 	virtual ~AffectationUnaire();

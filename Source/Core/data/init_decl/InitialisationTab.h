@@ -11,7 +11,8 @@
 
 
 class InitialisationTab: public Initialisation {
-	public:
+	friend class DebugVisit; 
+ public:
 		InitialisationTab(Type type, Name* name, bool isConst, Val *size,ParametreAppel *valeurs);
 		InitialisationTab();
 		virtual ~InitialisationTab();

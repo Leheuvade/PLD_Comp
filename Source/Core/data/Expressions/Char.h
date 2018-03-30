@@ -7,7 +7,8 @@
 
 
 class Char: public Expr {
-public: 
+friend class DebugVisit; 
+ public: 
 	Char();
 	Char(char val);
 	virtual ~Char();

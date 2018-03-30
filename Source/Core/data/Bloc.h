@@ -12,7 +12,8 @@ using namespace std;
 
 class Bloc {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public:
 	Bloc();
 	Bloc(vector<InitDecl*> &initDecl, vector<InstructionStruct*> instructions);
 	virtual ~Bloc();

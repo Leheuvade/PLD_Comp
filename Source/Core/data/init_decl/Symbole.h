@@ -8,7 +8,8 @@
 
 class Symbole {
 
-public:
+friend class DebugVisit; 
+ public:
 	Symbole();
 virtual ~Symbole();
 

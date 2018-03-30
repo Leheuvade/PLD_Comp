@@ -9,7 +9,8 @@ class BlocStruct;
 class Expr;
 
 class StructureControle {
-	public:
+	friend class DebugVisit; 
+ public:
 		StructureControle();
 		StructureControle(Expr* condition, BlocStruct* bloc);
 		virtual ~StructureControle();

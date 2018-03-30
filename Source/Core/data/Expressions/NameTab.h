@@ -8,7 +8,8 @@
 #include <string>
 
 class NameTab: public Name {
-public: 
+friend class DebugVisit; 
+ public: 
 	NameTab();
 	NameTab(string name,Expr* indice);
 	virtual ~NameTab();

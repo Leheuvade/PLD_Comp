@@ -11,7 +11,8 @@ class Val;
 class InitialisationVal {
 
 
-public:
+friend class DebugVisit; 
+ public:
 	InitialisationVal();
 	InitialisationVal(Type type, Name *name,  bool isConst,Val * value);
 	virtual ~InitialisationVal();

@@ -11,7 +11,8 @@
 class StructureControle;
 
 class InstructionControle: public InstructionStruct {
-public: 
+friend class DebugVisit; 
+ public: 
 
 
 	InstructionControle(StructureControle* structControle);

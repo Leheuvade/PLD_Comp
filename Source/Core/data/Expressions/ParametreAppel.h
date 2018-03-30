@@ -10,7 +10,8 @@
 
 using namespace std;
 class ParametreAppel {
-public:
+friend class DebugVisit; 
+ public:
 	ParametreAppel();
 	ParametreAppel(vector<Expr*> &parameters);
 	virtual ~ParametreAppel();

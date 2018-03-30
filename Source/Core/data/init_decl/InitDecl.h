@@ -9,7 +9,8 @@
 
 class InitDecl : public Symbole {
 
-public:
+friend class DebugVisit; 
+ public:
 	InitDecl();
 virtual ~InitDecl();
 

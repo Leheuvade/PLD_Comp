@@ -7,7 +7,8 @@
 
 
 class Operation: public Expr {
-public:
+friend class DebugVisit; 
+ public:
 	Operation();
 	virtual ~Operation();
 };

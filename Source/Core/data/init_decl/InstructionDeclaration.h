@@ -11,7 +11,8 @@ class Declaration;
 
 class InstructionDeclaration: public InitDecl {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public:
 
 InstructionDeclaration(Declaration *declaration);
    virtual ~InstructionDeclaration();

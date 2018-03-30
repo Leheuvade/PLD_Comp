@@ -9,7 +9,8 @@
 
 class InstructionBreak: public InstructionStruct {
 
-public:
+friend class DebugVisit; 
+ public:
 InstructionBreak();
 virtual ~InstructionBreak();
 

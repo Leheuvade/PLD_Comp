@@ -11,7 +11,8 @@
 using namespace std;
 class Name: public Expr {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public:
 	Name();
 	Name(string name);
 	void setSymbol(Symbole * s);

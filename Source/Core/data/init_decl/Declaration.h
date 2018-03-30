@@ -10,7 +10,8 @@
 
 class Declaration : public InitDecl {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public:
 	Declaration();
 	Declaration(Type type, Name *name, bool isConst);
 	virtual ~Declaration();

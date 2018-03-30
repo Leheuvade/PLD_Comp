@@ -9,7 +9,8 @@
 using namespace std;
 class ParametreDefinition {
 
-public:
+friend class DebugVisit; 
+ public:
 
 ParametreDefinition();
 ParametreDefinition(vector<Parametre*> parameters);

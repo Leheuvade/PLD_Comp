@@ -11,7 +11,8 @@
 using namespace std;
 
 class BlocStruct: public InstructionStruct {
-public:
+friend class DebugVisit; 
+ public:
 	BlocStruct();
 	BlocStruct(vector<InstructionStruct*> &instructions);
 	virtual ~BlocStruct();

@@ -8,7 +8,8 @@
 class BlocStruct;
 
 class ElseBloc {
-  public:
+  friend class DebugVisit; 
+ public:
     ElseBloc();
     ElseBloc(BlocStruct* bloc);
     virtual ~ElseBloc();

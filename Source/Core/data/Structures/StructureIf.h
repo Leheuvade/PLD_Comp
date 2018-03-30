@@ -11,7 +11,8 @@
 class ElseBloc;
 
 class StructureIf: public StructureControle {
-	public:
+	friend class DebugVisit; 
+ public:
 		StructureIf();
 		StructureIf(Expr* condition, BlocStruct* bloc, ElseBloc* elseBloc);
 		virtual ~StructureIf();

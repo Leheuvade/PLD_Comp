@@ -8,7 +8,8 @@
 
 class InstructionStruct {
 
-public:
+friend class DebugVisit; 
+ public:
 	InstructionStruct();
 virtual ~InstructionStruct();
 

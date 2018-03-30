@@ -8,7 +8,8 @@
 
 
 class Val: public Expr {
-public: 
+friend class DebugVisit; 
+ public: 
 	Val();
 	Val(int val);
 	virtual ~Val();

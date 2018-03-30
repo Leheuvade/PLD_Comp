@@ -9,7 +9,8 @@
 class Expr;
 
 class InstructionExpr: public InstructionStruct {
-public:
+friend class DebugVisit; 
+ public:
 
 InstructionExpr(Expr* expr);
     virtual ~InstructionExpr();

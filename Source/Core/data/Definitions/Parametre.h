@@ -7,7 +7,8 @@
 #include "../Expressions/Name.h"
 
 class Parametre {
-public:
+friend class DebugVisit; 
+ public:
 	Parametre(Type type, Name *name, bool hasBrackets);
 	~Parametre();
 

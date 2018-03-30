@@ -11,7 +11,8 @@ class DeclarationTab: public Declaration {
 
 
 
-public:
+friend class DebugVisit; 
+ public:
 	DeclarationTab();
 	DeclarationTab(Type type, Name *name, bool isConst,Val *size);
 	virtual ~DeclarationTab();

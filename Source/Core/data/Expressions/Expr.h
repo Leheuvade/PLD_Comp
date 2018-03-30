@@ -5,7 +5,8 @@
 #pragma once
 
 class Expr {
-public: 
+friend class DebugVisit; 
+ public: 
 	Expr();
 	virtual ~Expr();
 };
