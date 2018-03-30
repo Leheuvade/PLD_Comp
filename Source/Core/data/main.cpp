@@ -24,7 +24,6 @@ int main(int , const char **) {
   std::ifstream t("programme.txt");
   std::string content((std::istreambuf_iterator<char>(t)),
                       std::istreambuf_iterator<char>());
-  std::cout << content << endl;
 
   ANTLRInputStream input(content);
   grammaireLexer  lexer(&input);
@@ -38,7 +37,7 @@ int main(int , const char **) {
   grammaireParser parser(&tokens);
   tree::ParseTree* tree = parser.programme();
 
-  //grammaireImplBaseVisitor visitor;
+  grammaireImplBaseVisitor visitor;
 
   Programme * p = visitor.visit(tree);
 
