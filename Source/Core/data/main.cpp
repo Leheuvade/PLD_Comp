@@ -15,9 +15,13 @@
 
 using namespace antlr4;
 
-int main(int, const char **) {
-
-	std::ifstream t("programme.txt");
+int main(int argc, char *argv[]) {
+	if(argc<=1)
+	{
+		cout << "no program to compile, add file name after the executable in the command line" << endl;
+		return 0;
+	}
+	std::ifstream t(argv[1]);
 	std::string content((std::istreambuf_iterator<char>(t)),
 						std::istreambuf_iterator<char>());
 
@@ -45,7 +49,7 @@ int main(int, const char **) {
 	out.open("tmp.dot");
 	out << dotexport.getDotFile();
 	out.close();
-	system("dot -Tpdf -o out.pdf tmp.dot");
+	//system("dot -Tpdf -o out.pdf tmp.dot");
 	DebugVisit visit;
 	visit.visit(p);
 	return 0;
