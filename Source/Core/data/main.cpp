@@ -21,11 +21,12 @@ void toto(){
 }
 int main(int , const char **) {
 
-  /*std::ifstream t("programme.txt");
+  std::ifstream t("programme.txt");
   std::string content((std::istreambuf_iterator<char>(t)),
-                      std::istreambuf_iterator<char>());*/
+                      std::istreambuf_iterator<char>());
+  std::cout << content << endl;
 
-  ANTLRInputStream input("void main(void){int32_t i;i=0;i=i+1;if(0){}else{}}");
+  ANTLRInputStream input(content);
   grammaireLexer  lexer(&input);
   CommonTokenStream tokens(&lexer);
 

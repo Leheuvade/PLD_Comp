@@ -1,1 +1,1 @@
-int i;
+void main(void){int32_t i;i=0;i=i+1;if(0){}else{}}
