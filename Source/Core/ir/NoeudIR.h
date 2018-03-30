@@ -10,6 +10,8 @@ using namespace std;
 class NoeudIR {
 public:
 	NoeudIR();
+	NoeudIR(IRInstr* instr);
+
 	virtual ~NoeudIR();
 	void compute();
 	void add(NoeudIR* next);

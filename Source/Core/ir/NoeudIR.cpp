@@ -9,6 +9,11 @@ NoeudIR::NoeudIR()
 {
 }
 
+NoeudIR::NoeudIR(IRInstr* instr)
+{
+	this->instr = instr;
+}
+
 NoeudIR::~NoeudIR()
 {
 	delete instr;
