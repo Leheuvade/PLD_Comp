@@ -14,8 +14,9 @@ class Name: public Expr {
 public:
 	Name();
 	Name(string name);
-	void setSymbol(Symbole * symbole);
+	void setSymbol(Symbole * s);
 	virtual ~Name();
+
 protected: 
 	string name;
 	Symbole * symbole;

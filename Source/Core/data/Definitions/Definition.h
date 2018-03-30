@@ -11,6 +11,7 @@ class Name;
 class Bloc;
 
 class Definition {
+	friend class MapperSymbol;
 public:
 Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);
 virtual ~Definition();
