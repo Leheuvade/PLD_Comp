@@ -6,8 +6,9 @@
 #pragma once
 #include "../enums/Type.h"
 #include "../Expressions/Name.h"
+#include "InitDecl.h"
 
-class Initialisation {
+class Initialisation : public InitDecl {
 
 	friend class MapperSymbol;
 public:

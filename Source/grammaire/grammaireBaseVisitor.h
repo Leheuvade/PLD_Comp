@@ -16,7 +16,6 @@ class  grammaireBaseVisitor : public grammaireVisitor {
 public:
 
   virtual antlrcpp::Any visitEntree(grammaireParser::EntreeContext *ctx) override {
-    ctx->programme();
     return visitChildren(ctx);
   }
 
