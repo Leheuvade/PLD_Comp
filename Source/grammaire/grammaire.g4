@@ -1,6 +1,6 @@
 grammar grammaire;
 
-entree : programme EOF;
+entree : programme;
 
 programme : (varGlobale)* (definition)+;
 

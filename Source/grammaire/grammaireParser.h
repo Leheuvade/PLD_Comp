@@ -10,7 +10,7 @@
 
 
 class  grammaireParser : public antlr4::Parser {
- public:
+public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
@@ -63,12 +63,10 @@ class  grammaireParser : public antlr4::Parser {
   class Type_voidContext; 
 
   class  EntreeContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     EntreeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ProgrammeContext *programme();
-    antlr4::tree::TerminalNode *EOF();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -77,8 +75,7 @@ class  grammaireParser : public antlr4::Parser {
   EntreeContext* entree();
 
   class  ProgrammeContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ProgrammeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<VarGlobaleContext *> varGlobale();
@@ -93,8 +90,7 @@ class  grammaireParser : public antlr4::Parser {
   ProgrammeContext* programme();
 
   class  InitDeclContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitDeclContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InitDeclContext() : antlr4::ParserRuleContext() { }
@@ -107,8 +103,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InitContext : public InitDeclContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitContext(InitDeclContext *ctx);
 
     InitialisationContext *initialisation();
@@ -116,8 +111,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DeclContext : public InitDeclContext {
-  friend class DebugVisit; 
- public:
+  public:
     DeclContext(InitDeclContext *ctx);
 
     DeclarationContext *declaration();
@@ -127,8 +121,7 @@ class  grammaireParser : public antlr4::Parser {
   InitDeclContext* initDecl();
 
   class  InstructionStructContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstructionStructContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InstructionStructContext() : antlr4::ParserRuleContext() { }
@@ -141,8 +134,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InstReturnContext : public InstructionStructContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstReturnContext(InstructionStructContext *ctx);
 
     ExprContext *expr();
@@ -150,16 +142,14 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InstBreakContext : public InstructionStructContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstBreakContext(InstructionStructContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  InstblocContext : public InstructionStructContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstblocContext(InstructionStructContext *ctx);
 
     BlocStructContext *blocStruct();
@@ -167,8 +157,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InstStrucControlContext : public InstructionStructContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstStrucControlContext(InstructionStructContext *ctx);
 
     StructureControleContext *structureControle();
@@ -176,8 +165,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InstExprContext : public InstructionStructContext {
-  friend class DebugVisit; 
- public:
+  public:
     InstExprContext(InstructionStructContext *ctx);
 
     ExprContext *expr();
@@ -187,8 +175,7 @@ class  grammaireParser : public antlr4::Parser {
   InstructionStructContext* instructionStruct();
 
   class  VarGlobaleContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     VarGlobaleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     VarGlobaleContext() : antlr4::ParserRuleContext() { }
@@ -201,8 +188,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  VarInitContext : public VarGlobaleContext {
-  friend class DebugVisit; 
- public:
+  public:
     VarInitContext(VarGlobaleContext *ctx);
 
     InitialisationContext *initialisation();
@@ -210,8 +196,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  VarDeclContext : public VarGlobaleContext {
-  friend class DebugVisit; 
- public:
+  public:
     VarDeclContext(VarGlobaleContext *ctx);
 
     DeclarationContext *declaration();
@@ -221,8 +206,7 @@ class  grammaireParser : public antlr4::Parser {
   VarGlobaleContext* varGlobale();
 
   class  DeclarationContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     DeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     DeclarationContext() : antlr4::ParserRuleContext() { }
@@ -235,8 +219,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DeclConstContext : public DeclarationContext {
-  friend class DebugVisit; 
- public:
+  public:
     DeclConstContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -245,8 +228,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DeclVarContext : public DeclarationContext {
-  friend class DebugVisit; 
- public:
+  public:
     DeclVarContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -255,8 +237,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DeclTabContext : public DeclarationContext {
-  friend class DebugVisit; 
- public:
+  public:
     DeclTabContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -268,8 +249,7 @@ class  grammaireParser : public antlr4::Parser {
   DeclarationContext* declaration();
 
   class  InitialisationContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitialisationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InitialisationContext() : antlr4::ParserRuleContext() { }
@@ -282,8 +262,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InitConstContext : public InitialisationContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitConstContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -293,8 +272,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InitTabContext : public InitialisationContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitTabContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -305,8 +283,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  InitVarContext : public InitialisationContext {
-  friend class DebugVisit; 
- public:
+  public:
     InitVarContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -318,8 +295,7 @@ class  grammaireParser : public antlr4::Parser {
   InitialisationContext* initialisation();
 
   class  ExprContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ExprContext() : antlr4::ParserRuleContext() { }
@@ -332,8 +308,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprXorBitContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprXorBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -342,8 +317,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprMultContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprMultContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -352,8 +326,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprNameContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprNameContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -361,8 +334,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprNoBitContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprNoBitContext(ExprContext *ctx);
 
     ExprContext *expr();
@@ -370,8 +342,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprCharContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprCharContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *CHAR();
@@ -379,8 +350,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprSupOrEqualContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprSupOrEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -389,8 +359,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprAffectContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprAffectContext(ExprContext *ctx);
 
     AffectationContext *affectation();
@@ -398,8 +367,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprSupContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprSupContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -408,8 +376,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprInfOrEqualContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprInfOrEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -418,8 +385,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprFnctContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprFnctContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -428,8 +394,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprDivContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprDivContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -438,8 +403,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprAndContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprAndContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -448,8 +412,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprTabContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprTabContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -458,8 +421,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprOrContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprOrContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -468,8 +430,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprNoContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprNoContext(ExprContext *ctx);
 
     ExprContext *expr();
@@ -477,8 +438,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprDiffContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprDiffContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -487,8 +447,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprSubContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprSubContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -497,8 +456,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprAndBitContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprAndBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -507,8 +465,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprOrBitContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprOrBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -517,8 +474,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprEqualContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -527,8 +483,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprValContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprValContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *VAL();
@@ -536,8 +491,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprAddContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprAddContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -546,8 +500,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprInfContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprInfContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -556,8 +509,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ExprModContext : public ExprContext {
-  friend class DebugVisit; 
- public:
+  public:
     ExprModContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -568,8 +520,7 @@ class  grammaireParser : public antlr4::Parser {
   ExprContext* expr();
   ExprContext* expr(int precedence);
   class  ParametreAppelContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParametreAppelContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<ExprContext *> expr();
@@ -582,8 +533,7 @@ class  grammaireParser : public antlr4::Parser {
   ParametreAppelContext* parametreAppel();
 
   class  AffectationContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     AffectationContext() : antlr4::ParserRuleContext() { }
@@ -596,8 +546,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectMinusEqualContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectMinusEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -606,8 +555,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectBitwiseAndContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectBitwiseAndContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -616,8 +564,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectBitwiseRightShiftContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectBitwiseRightShiftContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -626,8 +573,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectMultEqualContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectMultEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -636,8 +582,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectDivisionContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectDivisionContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -646,8 +591,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectBitwiseOrContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectBitwiseOrContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -656,8 +600,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectBitwiseXorContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectBitwiseXorContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -666,8 +609,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectDecrementationBeforeContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectDecrementationBeforeContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -675,8 +617,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectEqualContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -685,8 +626,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectPlusEqualContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectPlusEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -695,8 +635,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectIncrementationAfterContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectIncrementationAfterContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -704,8 +643,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectIncrementationBeforeContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectIncrementationBeforeContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -713,8 +651,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  AffectDecrementationAfterContext : public AffectationContext {
-  friend class DebugVisit; 
- public:
+  public:
     AffectDecrementationAfterContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -724,8 +661,7 @@ class  grammaireParser : public antlr4::Parser {
   AffectationContext* affectation();
 
   class  LeftValueContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     LeftValueContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     LeftValueContext() : antlr4::ParserRuleContext() { }
@@ -738,8 +674,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  LeftValueTabContext : public LeftValueContext {
-  friend class DebugVisit; 
- public:
+  public:
     LeftValueTabContext(LeftValueContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -748,8 +683,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  LeftValueVarContext : public LeftValueContext {
-  friend class DebugVisit; 
- public:
+  public:
     LeftValueVarContext(LeftValueContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -759,8 +693,7 @@ class  grammaireParser : public antlr4::Parser {
   LeftValueContext* leftValue();
 
   class  DefinitionContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     DefinitionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     DefinitionContext() : antlr4::ParserRuleContext() { }
@@ -773,8 +706,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DefFnctContext : public DefinitionContext {
-  friend class DebugVisit; 
- public:
+  public:
     DefFnctContext(DefinitionContext *ctx);
 
     TypeContext *type();
@@ -785,8 +717,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  DefProcContext : public DefinitionContext {
-  friend class DebugVisit; 
- public:
+  public:
     DefProcContext(DefinitionContext *ctx);
 
     Type_voidContext *type_void();
@@ -799,8 +730,7 @@ class  grammaireParser : public antlr4::Parser {
   DefinitionContext* definition();
 
   class  BlocContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     BlocContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<InitDeclContext *> initDecl();
@@ -815,8 +745,7 @@ class  grammaireParser : public antlr4::Parser {
   BlocContext* bloc();
 
   class  BlocStructContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     BlocStructContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<InstructionStructContext *> instructionStruct();
@@ -829,8 +758,7 @@ class  grammaireParser : public antlr4::Parser {
   BlocStructContext* blocStruct();
 
   class  ParametreDefinitionContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParametreDefinitionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ParametreDefinitionContext() : antlr4::ParserRuleContext() { }
@@ -843,8 +771,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ParamDefinitionVideContext : public ParametreDefinitionContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParamDefinitionVideContext(ParametreDefinitionContext *ctx);
 
     Type_voidContext *type_void();
@@ -852,8 +779,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ParamDefinitionNonVideContext : public ParametreDefinitionContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParamDefinitionNonVideContext(ParametreDefinitionContext *ctx);
 
     std::vector<ParametreContext *> parametre();
@@ -864,8 +790,7 @@ class  grammaireParser : public antlr4::Parser {
   ParametreDefinitionContext* parametreDefinition();
 
   class  ParametreContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParametreContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ParametreContext() : antlr4::ParserRuleContext() { }
@@ -878,8 +803,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ParametreSimpleContext : public ParametreContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParametreSimpleContext(ParametreContext *ctx);
 
     TypeContext *type();
@@ -888,8 +812,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  ParametreTabContext : public ParametreContext {
-  friend class DebugVisit; 
- public:
+  public:
     ParametreTabContext(ParametreContext *ctx);
 
     TypeContext *type();
@@ -900,8 +823,7 @@ class  grammaireParser : public antlr4::Parser {
   ParametreContext* parametre();
 
   class  StructureControleContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     StructureControleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     StructureControleContext() : antlr4::ParserRuleContext() { }
@@ -914,8 +836,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  WhileContext : public StructureControleContext {
-  friend class DebugVisit; 
- public:
+  public:
     WhileContext(StructureControleContext *ctx);
 
     ExprContext *expr();
@@ -924,8 +845,7 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  IfContext : public StructureControleContext {
-  friend class DebugVisit; 
- public:
+  public:
     IfContext(StructureControleContext *ctx);
 
     ExprContext *expr();
@@ -937,8 +857,7 @@ class  grammaireParser : public antlr4::Parser {
   StructureControleContext* structureControle();
 
   class  ElseBlocContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     ElseBlocContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BlocStructContext *blocStruct();
@@ -950,8 +869,7 @@ class  grammaireParser : public antlr4::Parser {
   ElseBlocContext* elseBloc();
 
   class  TypeContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     TypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     TypeContext() : antlr4::ParserRuleContext() { }
@@ -964,24 +882,21 @@ class  grammaireParser : public antlr4::Parser {
   };
 
   class  Int64Context : public TypeContext {
-  friend class DebugVisit; 
- public:
+  public:
     Int64Context(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  Int32Context : public TypeContext {
-  friend class DebugVisit; 
- public:
+  public:
     Int32Context(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  CharContext : public TypeContext {
-  friend class DebugVisit; 
- public:
+  public:
     CharContext(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -990,8 +905,7 @@ class  grammaireParser : public antlr4::Parser {
   TypeContext* type();
 
   class  Type_voidContext : public antlr4::ParserRuleContext {
-  friend class DebugVisit; 
- public:
+  public:
     Type_voidContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
 
