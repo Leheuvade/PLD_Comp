@@ -574,24 +574,33 @@ public:
 
 	virtual antlrcpp::Any visitDefFnct(grammaireParser::DefFnctContext *ctx) override {
 		cout << "visitDefFnct" << endl; 
- 		return  (Definition *)
-		new Definition(
+		ParametreDefinition * p = (ParametreDefinition *)visit(ctx->parametreDefinition());
+		Bloc * b = (Bloc *)visit(ctx->bloc());
+		Definition * d = new Definition(
 		(Type)visit(ctx->type()),
 		new Name(ctx->NAME()->getText()),
-		(ParametreDefinition *)visit(ctx->parametreDefinition()),
-		(Bloc *)visit(ctx->bloc())
+		p,
+		b
 		);
+		
+		b->setDefinition(d);
+ 		return d;
+		
 	}
 
 	virtual antlrcpp::Any visitDefProc(grammaireParser::DefProcContext *ctx) override {
 		cout << "visitDefProc" << endl; 
 		Name * n = new Name(ctx->NAME()->getText());
- 		return  new Definition(
+		ParametreDefinition * p = (ParametreDefinition *)visit(ctx->parametreDefinition());
+		Bloc * b = (Bloc *)visit(ctx->bloc());
+		Definition * d = new Definition(
 		void_type,
 		n,
-		(ParametreDefinition *)visit(ctx->parametreDefinition()),
-		(Bloc *)visit(ctx->bloc())
+		p,
+		b
 		);
+		b->setDefinition(d);
+ 		return d;
 	}
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
