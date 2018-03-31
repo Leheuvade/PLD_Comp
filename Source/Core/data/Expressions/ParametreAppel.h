@@ -9,9 +9,10 @@
 #include <vector>
 
 using namespace std;
-class ParametreAppel {
+class ParametreAppel : public Visitable {
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	ParametreAppel();
 	ParametreAppel(vector<Expr*> &parameters);
 	virtual ~ParametreAppel();

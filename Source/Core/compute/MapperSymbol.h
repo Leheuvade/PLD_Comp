@@ -17,6 +17,7 @@ using namespace std;
 class MapperSymbol {
 friend class DebugVisit; 
  public: 
+  
 	MapperSymbol();
 	virtual ~MapperSymbol();
 	Symbole * findSymbol(Name * name, grammaireParser::EntreeContext *ctxCourant, grammaireParser::BlocContext *ctxBlocCourant);

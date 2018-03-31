@@ -5,8 +5,7 @@
 #pragma once
 
 class VisitOutput {
- public:
+ public: 
 	VisitOutput();
 	virtual ~VisitOutput();
-
 };

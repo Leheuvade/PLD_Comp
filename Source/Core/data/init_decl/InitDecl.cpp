@@ -3,9 +3,13 @@
  */
 
 
-#include "InitDecl.h"
+#include "InitDecl.h" 
+#include "../../visitor/VisitAST.h"
 
-InitDecl::InitDecl()
+VisitOutput* InitDecl::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}InitDecl::InitDecl()
 {
 }
 

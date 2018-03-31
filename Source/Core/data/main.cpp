@@ -12,6 +12,7 @@
 #include "Programme.h"
 
 #include "dotexport.h"
+#include "../visitor/StringOutput.h"
 
 using namespace antlr4;
 
@@ -51,6 +52,6 @@ int main(int argc, char *argv[]) {
 	out.close();
 	//system("dot -Tpdf -o out.pdf tmp.dot");
 	DebugVisit visit;
-	visit.visit(p);
+	cout << ((StringOutput*)p->accept(&visit))->getVal() << endl;
 	return 0;
 }

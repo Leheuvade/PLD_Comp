@@ -10,7 +10,8 @@
 class InitDecl : public Symbole {
 
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	InitDecl();
 virtual ~InitDecl();
 

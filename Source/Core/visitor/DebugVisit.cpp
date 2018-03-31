@@ -14,17 +14,23 @@ DebugVisit::~DebugVisit()
 {
 }
 
+VisitOutput* DebugVisit::visit(Visitable* p)
+{
+	string val = "Visitable* p: \n";
+	return new StringOutput(val);
+}
+
 VisitOutput* DebugVisit::visit(Programme *p)
 {
 
 	string val = "Programme: \n\n";
 	for (int i = 0; i < p->varGlobales.size(); i++)
 	{
-		val += static_cast<StringOutput*>(visit(p->varGlobales[i]))->val;
+		val += static_cast<StringOutput*>(p->varGlobales[i]->accept(this))->val;
 	}
 	for (int i = 0; i < p->definitions.size(); i++)
 	{
-		val += static_cast<StringOutput*>(visit(p->definitions[i]))->val;
+		val += static_cast<StringOutput*>(p->definitions[i]->accept(this))->val;
 	}
 	return new StringOutput(val);
 }
@@ -177,8 +183,8 @@ VisitOutput* DebugVisit::visit(InitDecl* p)
 VisitOutput* DebugVisit::visit(Initialisation* p)
 {
 	string val = "Initialisation* p: \n";
-	val += static_cast<StringOutput*>(visit(p->type))->val;
-	val += static_cast<StringOutput*>(visit(p->name))->val;
+	val +=std::to_string((int)p->type);
+	val += static_cast<StringOutput*>(p->name->accept(this))->val;
 
 	return new StringOutput(val);
 }
@@ -230,7 +236,7 @@ VisitOutput* DebugVisit::visit(VarGlobaleDeclaration* p)
 VisitOutput* DebugVisit::visit(VarGlobaleInitialisation* p)
 {
 	string val = "VarGlobaleInitialisation: \n";
-	val += static_cast<StringOutput*>(visit(p->initialisation))->val;
+	val += static_cast<StringOutput*>(p->initialisation->accept(this))->val;
 	return new StringOutput(val);
 }
 

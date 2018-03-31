@@ -3,9 +3,13 @@
  */
 
 
-#include "VarGlobaleDeclaration.h"
+#include "VarGlobaleDeclaration.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* VarGlobaleDeclaration::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * VarGlobaleDeclaration implementation
  */
 

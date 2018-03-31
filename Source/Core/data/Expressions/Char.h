@@ -9,6 +9,7 @@
 class Char: public Expr {
 friend class DebugVisit; 
  public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	Char();
 	Char(char val);
 	virtual ~Char();

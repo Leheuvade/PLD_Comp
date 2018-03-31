@@ -11,7 +11,8 @@ class Expr;
 
 class InstructionReturn: public InstructionStruct {
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 
 InstructionReturn(Expr *expr);
    virtual  ~InstructionReturn();

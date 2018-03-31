@@ -14,7 +14,8 @@
  * produced by grammaireParser.
  */
 class  grammaireVisitor : public antlr4::tree::AbstractParseTreeVisitor {
-public:
+public: 
+ 
 
   /**
    * Visit parse trees produced by grammaireParser.

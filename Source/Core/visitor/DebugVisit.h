@@ -7,10 +7,11 @@
 
 using namespace std;
 class DebugVisit : public VisitAST {
- public:
+ public: 
+ 
 	DebugVisit();
 	virtual ~DebugVisit();
-
+	virtual VisitOutput* visit(Visitable *p) override;
 	virtual VisitOutput* visit(Programme *p) override;
 	virtual VisitOutput* visit(Definition *p) override;
 	virtual VisitOutput* visit(Parametre *p) override;

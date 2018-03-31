@@ -12,7 +12,8 @@ class DeclarationTab: public Declaration {
 
 
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	DeclarationTab();
 	DeclarationTab(Type type, Name *name, bool isConst,Val *size);
 	virtual ~DeclarationTab();

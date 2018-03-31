@@ -12,7 +12,8 @@ using namespace std;
 class Name: public Expr {
 	friend class MapperSymbol;
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Name();
 	Name(string name);
 	void setSymbol(Symbole * s);

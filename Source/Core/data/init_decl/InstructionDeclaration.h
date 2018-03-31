@@ -12,7 +12,8 @@ class Declaration;
 class InstructionDeclaration: public InitDecl {
 	friend class MapperSymbol;
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 
 InstructionDeclaration(Declaration *declaration);
    virtual ~InstructionDeclaration();

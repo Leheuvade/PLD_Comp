@@ -9,7 +9,8 @@
 
 class OperationUnaire: public Operation {
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	OperationUnaire();
 	OperationUnaire(Expr* expr, OperateurUnaire op);
 	virtual ~OperationUnaire();

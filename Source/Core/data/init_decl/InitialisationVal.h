@@ -8,18 +8,17 @@
 
 class Val; 
 
-class InitialisationVal {
+class InitialisationVal : public Initialisation {
 
 
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	InitialisationVal();
 	InitialisationVal(Type type, Name *name,  bool isConst,Val * value);
 	virtual ~InitialisationVal();
 
 protected:
-	Val * value;
-	Name * name;
-	bool isConst;
-	Type type;
+	
+	Val* value;
 };

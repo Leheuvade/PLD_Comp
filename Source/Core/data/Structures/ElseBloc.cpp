@@ -4,9 +4,13 @@
 
 
 #include "ElseBloc.h"
-#include "../BlocStruct.h"
+#include "../BlocStruct.h" 
+#include "../../visitor/VisitAST.h"
 
-ElseBloc::ElseBloc()
+VisitOutput* ElseBloc::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}ElseBloc::ElseBloc()
 {
   this->bloc = nullptr;
 }

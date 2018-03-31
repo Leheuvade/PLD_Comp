@@ -7,7 +7,8 @@
 
 class VarGlobale: public Symbole {
   friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
     VarGlobale();
     virtual ~VarGlobale();
 };

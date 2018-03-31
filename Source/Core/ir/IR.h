@@ -16,7 +16,8 @@ class DefFonction;
 //! The class for one 3-address instruction
 class IRInstr {
  
- public:
+ public: 
+ 
 	/** The instructions themselves -- feel free to subclass instead */
 	typedef enum {
 		ldconst,
@@ -66,7 +67,8 @@ class IRInstr {
 */
 
 class BasicBlock {
- public:
+ public: 
+ 
 	BasicBlock(CFG* cfg, string entry_label);
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
@@ -96,7 +98,8 @@ class BasicBlock {
 
  */
 class CFG {
- public:
+ public: 
+ 
 	CFG(DefFonction* ast);
 
 	DefFonction* ast; /**< The AST this CFG comes from */

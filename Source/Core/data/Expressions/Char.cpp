@@ -3,9 +3,13 @@
  */
 
 
-#include "Char.h"
+#include "Char.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* Char::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * Char implementation
  */
 Char::Char(){

@@ -12,7 +12,8 @@
 class VarGlobaleDeclaration: public VarGlobale {
 	friend class MapperSymbol;
 	friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 		VarGlobaleDeclaration();
 		VarGlobaleDeclaration(Declaration *declaration);
 		virtual ~VarGlobaleDeclaration();

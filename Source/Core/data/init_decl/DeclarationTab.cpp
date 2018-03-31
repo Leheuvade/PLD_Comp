@@ -3,9 +3,13 @@
  */
 
 
-#include "DeclarationTab.h"
+#include "DeclarationTab.h" 
+#include "../../visitor/VisitAST.h"
 
-DeclarationTab::DeclarationTab(){
+VisitOutput* DeclarationTab::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}DeclarationTab::DeclarationTab(){
 
   size = 0;
 

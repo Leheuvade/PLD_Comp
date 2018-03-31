@@ -4,9 +4,13 @@
 
 
 #include "InstructionDeclaration.h"
-#include "../init_decl/Declaration.h"
+#include "../init_decl/Declaration.h" 
+#include "../../visitor/VisitAST.h"
 
-InstructionDeclaration::InstructionDeclaration(Declaration* d)
+VisitOutput* InstructionDeclaration::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}InstructionDeclaration::InstructionDeclaration(Declaration* d)
 {
     declaration = d;
 }

@@ -12,7 +12,7 @@ using namespace std;
 class Definition;
 
 using namespace std;
-class Programme {
+class Programme : public Visitable {
 	friend class MapperSymbol;
 	friend class VisitAST;
 friend class DebugVisit; 
@@ -20,6 +20,8 @@ friend class DebugVisit;
 	Programme();
 	Programme(vector<VarGlobale*> &varGlobales, vector<Definition*> &definitions);
 	virtual ~Programme();
+	virtual VisitOutput* accept(VisitAST* visitor)override;
+
 protected:
 	vector<VarGlobale*> varGlobales;
 	vector<Definition*> definitions;

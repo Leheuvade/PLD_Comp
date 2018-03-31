@@ -3,9 +3,13 @@
  */
 
 
-#include "Initialisation.h"
+#include "Initialisation.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* Initialisation::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * Initialisation implementation
  */
 

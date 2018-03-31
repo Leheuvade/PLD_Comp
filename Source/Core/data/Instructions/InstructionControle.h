@@ -13,6 +13,7 @@ class StructureControle;
 class InstructionControle: public InstructionStruct {
 friend class DebugVisit; 
  public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 
 
 	InstructionControle(StructureControle* structControle);

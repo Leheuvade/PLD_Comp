@@ -12,7 +12,8 @@ class Initialisation : public InitDecl {
 
 	friend class MapperSymbol;
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Initialisation();
 	Initialisation(Type type,Name *name,bool isConst);
 	virtual ~Initialisation();

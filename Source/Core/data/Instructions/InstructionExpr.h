@@ -10,7 +10,8 @@ class Expr;
 
 class InstructionExpr: public InstructionStruct {
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 
 InstructionExpr(Expr* expr);
     virtual ~InstructionExpr();

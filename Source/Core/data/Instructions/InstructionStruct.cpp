@@ -3,9 +3,13 @@
  */
 
 
-#include "InstructionStruct.h"
+#include "InstructionStruct.h" 
+#include "../../visitor/VisitAST.h"
 
-InstructionStruct::InstructionStruct()
+VisitOutput* InstructionStruct::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}InstructionStruct::InstructionStruct()
 {
 }
 

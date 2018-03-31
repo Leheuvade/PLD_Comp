@@ -4,9 +4,13 @@
 
 
 #include "AffectationBinaire.h"
-#include "../LeftValue.h"
+#include "../LeftValue.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* AffectationBinaire::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * AffectationBinaire implementation
  */
 

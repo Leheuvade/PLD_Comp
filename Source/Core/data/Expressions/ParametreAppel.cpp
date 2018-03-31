@@ -3,9 +3,13 @@
  */
 
 
-#include "ParametreAppel.h"
+#include "ParametreAppel.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* ParametreAppel::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * ParametreAppel implementation
  */
 ParametreAppel::ParametreAppel(){}

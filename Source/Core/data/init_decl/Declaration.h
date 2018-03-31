@@ -11,7 +11,8 @@
 class Declaration : public InitDecl {
 	friend class MapperSymbol;
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Declaration();
 	Declaration(Type type, Name *name, bool isConst);
 	virtual ~Declaration();

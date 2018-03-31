@@ -14,6 +14,7 @@ class AffectationUnaire: public Affectation {
 
 friend class DebugVisit; 
  public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	AffectationUnaire();
 	AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire op);
 	virtual ~AffectationUnaire();

@@ -10,7 +10,8 @@
 
 
 class  grammaireParser : public antlr4::Parser {
-public:
+public: 
+ 
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
@@ -63,7 +64,8 @@ public:
   class Type_voidContext; 
 
   class  EntreeContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     EntreeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ProgrammeContext *programme();
@@ -75,7 +77,8 @@ public:
   EntreeContext* entree();
 
   class  ProgrammeContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ProgrammeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *EOF();
@@ -91,7 +94,8 @@ public:
   ProgrammeContext* programme();
 
   class  InitDeclContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     InitDeclContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InitDeclContext() : antlr4::ParserRuleContext() { }
@@ -104,7 +108,8 @@ public:
   };
 
   class  InitContext : public InitDeclContext {
-  public:
+  public: 
+ 
     InitContext(InitDeclContext *ctx);
 
     InitialisationContext *initialisation();
@@ -112,7 +117,8 @@ public:
   };
 
   class  DeclContext : public InitDeclContext {
-  public:
+  public: 
+ 
     DeclContext(InitDeclContext *ctx);
 
     DeclarationContext *declaration();
@@ -122,7 +128,8 @@ public:
   InitDeclContext* initDecl();
 
   class  InstructionStructContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     InstructionStructContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InstructionStructContext() : antlr4::ParserRuleContext() { }
@@ -135,7 +142,8 @@ public:
   };
 
   class  InstReturnContext : public InstructionStructContext {
-  public:
+  public: 
+ 
     InstReturnContext(InstructionStructContext *ctx);
 
     ExprContext *expr();
@@ -143,14 +151,16 @@ public:
   };
 
   class  InstBreakContext : public InstructionStructContext {
-  public:
+  public: 
+ 
     InstBreakContext(InstructionStructContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  InstblocContext : public InstructionStructContext {
-  public:
+  public: 
+ 
     InstblocContext(InstructionStructContext *ctx);
 
     BlocStructContext *blocStruct();
@@ -158,7 +168,8 @@ public:
   };
 
   class  InstStrucControlContext : public InstructionStructContext {
-  public:
+  public: 
+ 
     InstStrucControlContext(InstructionStructContext *ctx);
 
     StructureControleContext *structureControle();
@@ -166,7 +177,8 @@ public:
   };
 
   class  InstExprContext : public InstructionStructContext {
-  public:
+  public: 
+ 
     InstExprContext(InstructionStructContext *ctx);
 
     ExprContext *expr();
@@ -176,7 +188,8 @@ public:
   InstructionStructContext* instructionStruct();
 
   class  VarGlobaleContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     VarGlobaleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     VarGlobaleContext() : antlr4::ParserRuleContext() { }
@@ -189,7 +202,8 @@ public:
   };
 
   class  VarInitContext : public VarGlobaleContext {
-  public:
+  public: 
+ 
     VarInitContext(VarGlobaleContext *ctx);
 
     InitialisationContext *initialisation();
@@ -197,7 +211,8 @@ public:
   };
 
   class  VarDeclContext : public VarGlobaleContext {
-  public:
+  public: 
+ 
     VarDeclContext(VarGlobaleContext *ctx);
 
     DeclarationContext *declaration();
@@ -207,7 +222,8 @@ public:
   VarGlobaleContext* varGlobale();
 
   class  DeclarationContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     DeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     DeclarationContext() : antlr4::ParserRuleContext() { }
@@ -220,7 +236,8 @@ public:
   };
 
   class  DeclConstContext : public DeclarationContext {
-  public:
+  public: 
+ 
     DeclConstContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -229,7 +246,8 @@ public:
   };
 
   class  DeclVarContext : public DeclarationContext {
-  public:
+  public: 
+ 
     DeclVarContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -238,7 +256,8 @@ public:
   };
 
   class  DeclTabContext : public DeclarationContext {
-  public:
+  public: 
+ 
     DeclTabContext(DeclarationContext *ctx);
 
     TypeContext *type();
@@ -250,7 +269,8 @@ public:
   DeclarationContext* declaration();
 
   class  InitialisationContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     InitialisationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     InitialisationContext() : antlr4::ParserRuleContext() { }
@@ -263,7 +283,8 @@ public:
   };
 
   class  InitConstContext : public InitialisationContext {
-  public:
+  public: 
+ 
     InitConstContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -273,7 +294,8 @@ public:
   };
 
   class  InitTabContext : public InitialisationContext {
-  public:
+  public: 
+ 
     InitTabContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -284,7 +306,8 @@ public:
   };
 
   class  InitVarContext : public InitialisationContext {
-  public:
+  public: 
+ 
     InitVarContext(InitialisationContext *ctx);
 
     TypeContext *type();
@@ -296,7 +319,8 @@ public:
   InitialisationContext* initialisation();
 
   class  ExprContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ExprContext() : antlr4::ParserRuleContext() { }
@@ -309,7 +333,8 @@ public:
   };
 
   class  ExprXorBitContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprXorBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -318,7 +343,8 @@ public:
   };
 
   class  ExprMultContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprMultContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -327,7 +353,8 @@ public:
   };
 
   class  ExprNameContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprNameContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -335,7 +362,8 @@ public:
   };
 
   class  ExprNoBitContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprNoBitContext(ExprContext *ctx);
 
     ExprContext *expr();
@@ -343,7 +371,8 @@ public:
   };
 
   class  ExprCharContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprCharContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *CHAR();
@@ -351,7 +380,8 @@ public:
   };
 
   class  ExprSupOrEqualContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprSupOrEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -360,7 +390,8 @@ public:
   };
 
   class  ExprAffectContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprAffectContext(ExprContext *ctx);
 
     AffectationContext *affectation();
@@ -368,7 +399,8 @@ public:
   };
 
   class  ExprSupContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprSupContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -377,7 +409,8 @@ public:
   };
 
   class  ExprInfOrEqualContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprInfOrEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -386,7 +419,8 @@ public:
   };
 
   class  ExprFnctContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprFnctContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -395,7 +429,8 @@ public:
   };
 
   class  ExprDivContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprDivContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -404,7 +439,8 @@ public:
   };
 
   class  ExprAndContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprAndContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -413,7 +449,8 @@ public:
   };
 
   class  ExprTabContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprTabContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -422,7 +459,8 @@ public:
   };
 
   class  ExprOrContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprOrContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -431,7 +469,8 @@ public:
   };
 
   class  ExprNoContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprNoContext(ExprContext *ctx);
 
     ExprContext *expr();
@@ -439,7 +478,8 @@ public:
   };
 
   class  ExprDiffContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprDiffContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -448,7 +488,8 @@ public:
   };
 
   class  ExprSubContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprSubContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -457,7 +498,8 @@ public:
   };
 
   class  ExprAndBitContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprAndBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -466,7 +508,8 @@ public:
   };
 
   class  ExprOrBitContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprOrBitContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -475,7 +518,8 @@ public:
   };
 
   class  ExprEqualContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprEqualContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -484,7 +528,8 @@ public:
   };
 
   class  ExprValContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprValContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *VAL();
@@ -492,7 +537,8 @@ public:
   };
 
   class  ExprAddContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprAddContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -501,7 +547,8 @@ public:
   };
 
   class  ExprInfContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprInfContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -510,7 +557,8 @@ public:
   };
 
   class  ExprModContext : public ExprContext {
-  public:
+  public: 
+ 
     ExprModContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
@@ -521,7 +569,8 @@ public:
   ExprContext* expr();
   ExprContext* expr(int precedence);
   class  ParametreAppelContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ParametreAppelContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<ExprContext *> expr();
@@ -534,7 +583,8 @@ public:
   ParametreAppelContext* parametreAppel();
 
   class  AffectationContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     AffectationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     AffectationContext() : antlr4::ParserRuleContext() { }
@@ -547,7 +597,8 @@ public:
   };
 
   class  AffectMinusEqualContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectMinusEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -556,7 +607,8 @@ public:
   };
 
   class  AffectBitwiseAndContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectBitwiseAndContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -565,7 +617,8 @@ public:
   };
 
   class  AffectBitwiseRightShiftContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectBitwiseRightShiftContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -574,7 +627,8 @@ public:
   };
 
   class  AffectMultEqualContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectMultEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -583,7 +637,8 @@ public:
   };
 
   class  AffectDivisionContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectDivisionContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -592,7 +647,8 @@ public:
   };
 
   class  AffectBitwiseOrContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectBitwiseOrContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -601,7 +657,8 @@ public:
   };
 
   class  AffectBitwiseXorContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectBitwiseXorContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -610,7 +667,8 @@ public:
   };
 
   class  AffectDecrementationBeforeContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectDecrementationBeforeContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -618,7 +676,8 @@ public:
   };
 
   class  AffectEqualContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -627,7 +686,8 @@ public:
   };
 
   class  AffectPlusEqualContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectPlusEqualContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -636,7 +696,8 @@ public:
   };
 
   class  AffectIncrementationAfterContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectIncrementationAfterContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -644,7 +705,8 @@ public:
   };
 
   class  AffectIncrementationBeforeContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectIncrementationBeforeContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -652,7 +714,8 @@ public:
   };
 
   class  AffectDecrementationAfterContext : public AffectationContext {
-  public:
+  public: 
+ 
     AffectDecrementationAfterContext(AffectationContext *ctx);
 
     LeftValueContext *leftValue();
@@ -662,7 +725,8 @@ public:
   AffectationContext* affectation();
 
   class  LeftValueContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     LeftValueContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     LeftValueContext() : antlr4::ParserRuleContext() { }
@@ -675,7 +739,8 @@ public:
   };
 
   class  LeftValueTabContext : public LeftValueContext {
-  public:
+  public: 
+ 
     LeftValueTabContext(LeftValueContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -684,7 +749,8 @@ public:
   };
 
   class  LeftValueVarContext : public LeftValueContext {
-  public:
+  public: 
+ 
     LeftValueVarContext(LeftValueContext *ctx);
 
     antlr4::tree::TerminalNode *NAME();
@@ -694,7 +760,8 @@ public:
   LeftValueContext* leftValue();
 
   class  DefinitionContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     DefinitionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     DefinitionContext() : antlr4::ParserRuleContext() { }
@@ -707,7 +774,8 @@ public:
   };
 
   class  DefFnctContext : public DefinitionContext {
-  public:
+  public: 
+ 
     DefFnctContext(DefinitionContext *ctx);
 
     TypeContext *type();
@@ -718,7 +786,8 @@ public:
   };
 
   class  DefProcContext : public DefinitionContext {
-  public:
+  public: 
+ 
     DefProcContext(DefinitionContext *ctx);
 
     Type_voidContext *type_void();
@@ -731,7 +800,8 @@ public:
   DefinitionContext* definition();
 
   class  BlocContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     BlocContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<InitDeclContext *> initDecl();
@@ -746,7 +816,8 @@ public:
   BlocContext* bloc();
 
   class  BlocStructContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     BlocStructContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<InstructionStructContext *> instructionStruct();
@@ -759,7 +830,8 @@ public:
   BlocStructContext* blocStruct();
 
   class  ParametreDefinitionContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ParametreDefinitionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ParametreDefinitionContext() : antlr4::ParserRuleContext() { }
@@ -772,7 +844,8 @@ public:
   };
 
   class  ParamDefinitionVideContext : public ParametreDefinitionContext {
-  public:
+  public: 
+ 
     ParamDefinitionVideContext(ParametreDefinitionContext *ctx);
 
     Type_voidContext *type_void();
@@ -780,7 +853,8 @@ public:
   };
 
   class  ParamDefinitionNonVideContext : public ParametreDefinitionContext {
-  public:
+  public: 
+ 
     ParamDefinitionNonVideContext(ParametreDefinitionContext *ctx);
 
     std::vector<ParametreContext *> parametre();
@@ -791,7 +865,8 @@ public:
   ParametreDefinitionContext* parametreDefinition();
 
   class  ParametreContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ParametreContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     ParametreContext() : antlr4::ParserRuleContext() { }
@@ -804,7 +879,8 @@ public:
   };
 
   class  ParametreSimpleContext : public ParametreContext {
-  public:
+  public: 
+ 
     ParametreSimpleContext(ParametreContext *ctx);
 
     TypeContext *type();
@@ -813,7 +889,8 @@ public:
   };
 
   class  ParametreTabContext : public ParametreContext {
-  public:
+  public: 
+ 
     ParametreTabContext(ParametreContext *ctx);
 
     TypeContext *type();
@@ -824,7 +901,8 @@ public:
   ParametreContext* parametre();
 
   class  StructureControleContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     StructureControleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     StructureControleContext() : antlr4::ParserRuleContext() { }
@@ -837,7 +915,8 @@ public:
   };
 
   class  WhileContext : public StructureControleContext {
-  public:
+  public: 
+ 
     WhileContext(StructureControleContext *ctx);
 
     ExprContext *expr();
@@ -846,7 +925,8 @@ public:
   };
 
   class  IfContext : public StructureControleContext {
-  public:
+  public: 
+ 
     IfContext(StructureControleContext *ctx);
 
     ExprContext *expr();
@@ -858,7 +938,8 @@ public:
   StructureControleContext* structureControle();
 
   class  ElseBlocContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     ElseBlocContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BlocStructContext *blocStruct();
@@ -870,7 +951,8 @@ public:
   ElseBlocContext* elseBloc();
 
   class  TypeContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     TypeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
     TypeContext() : antlr4::ParserRuleContext() { }
@@ -883,21 +965,24 @@ public:
   };
 
   class  Int64Context : public TypeContext {
-  public:
+  public: 
+ 
     Int64Context(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  Int32Context : public TypeContext {
-  public:
+  public: 
+ 
     Int32Context(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  CharContext : public TypeContext {
-  public:
+  public: 
+ 
     CharContext(TypeContext *ctx);
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -906,7 +991,8 @@ public:
   TypeContext* type();
 
   class  Type_voidContext : public antlr4::ParserRuleContext {
-  public:
+  public: 
+ 
     Type_voidContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
 

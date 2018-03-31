@@ -8,7 +8,8 @@
 
 class Operation: public Expr {
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Operation();
 	virtual ~Operation();
 };

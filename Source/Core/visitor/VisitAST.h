@@ -49,10 +49,13 @@
 #include "VisitOutput.h"
 #include <string>
 
+class Visitable;
 using namespace std;
 class VisitAST {
- public:
+ public: 
+ 
 	
+	 virtual VisitOutput* visit(Visitable *p) = 0;
 
 	virtual VisitOutput* visit(Programme *p) = 0;
 	virtual VisitOutput* visit(Definition *p) = 0;

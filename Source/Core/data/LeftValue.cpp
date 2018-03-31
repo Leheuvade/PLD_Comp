@@ -3,7 +3,13 @@
  */
 
 
-#include "LeftValue.h"
+#include "LeftValue.h" 
+#include "../visitor/VisitAST.h"
+
+VisitOutput* LeftValue::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}
 
 /**
  * LeftValue implementation

@@ -4,12 +4,14 @@
 
 
 #pragma once
+#include "../../visitor/Visitable.h"
 
 
-class InstructionStruct {
+class InstructionStruct : public Visitable {
 
 friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	InstructionStruct();
 virtual ~InstructionStruct();
 

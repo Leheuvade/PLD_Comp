@@ -4,9 +4,13 @@
 
 
 #include "StructureIf.h"
-#include "ElseBloc.h"
+#include "ElseBloc.h" 
+#include "../../visitor/VisitAST.h"
 
-StructureIf::StructureIf()
+VisitOutput* StructureIf::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}StructureIf::StructureIf()
 : StructureControle()
 {
   this->elseBloc = nullptr;

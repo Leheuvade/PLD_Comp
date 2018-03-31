@@ -12,7 +12,8 @@
 
 class InitialisationTab: public Initialisation {
 	friend class DebugVisit; 
- public:
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 		InitialisationTab(Type type, Name* name, bool isConst, Val *size,ParametreAppel *valeurs);
 		InitialisationTab();
 		virtual ~InitialisationTab();
