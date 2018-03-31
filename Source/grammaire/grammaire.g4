@@ -2,7 +2,7 @@ grammar grammaire;
 
 entree : programme;
 
-programme : (varGlobale)* (definition)+;
+programme : (varGlobale)* (definition)+ EOF;
 
 
 initDecl: declaration #Decl
