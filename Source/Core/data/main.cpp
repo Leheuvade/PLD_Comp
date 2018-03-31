@@ -50,8 +50,9 @@ int main(int argc, char *argv[]) {
 	out.open("tmp.dot");
 	out << dotexport.getDotFile();
 	out.close();
-	//system("dot -Tpdf -o out.pdf tmp.dot");
+	system("dot -Tpdf -o out.pdf tmp.dot");
 	DebugVisit visit;
 	cout << ((StringOutput*)p->accept(&visit))->getVal() << endl;
 	return 0;
+
 }
