@@ -7,7 +7,9 @@
 
 
 class Char: public Expr {
-public: 
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	Char();
 	Char(char val);
 	virtual ~Char();

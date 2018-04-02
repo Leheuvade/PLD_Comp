@@ -8,7 +8,9 @@
 #include <string>
 
 class NameTab: public Name {
-public: 
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	NameTab();
 	NameTab(string name,Expr* indice);
 	virtual ~NameTab();

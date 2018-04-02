@@ -8,7 +8,9 @@
 #include "StructureControle.h"
 
 class StructureWhile: public StructureControle {
-  public:
+  friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
     StructureWhile();
     StructureWhile(Expr* condition, BlocStruct* bloc);
     virtual ~StructureWhile();

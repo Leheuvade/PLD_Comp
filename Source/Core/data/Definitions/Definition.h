@@ -10,11 +10,13 @@
 class Name;
 class Bloc;
 
-class Definition {
+class Definition :public Symbole {
 	friend class MapperSymbol;
-public:
-Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);
-virtual ~Definition();
+	friend class DebugVisit;
+public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
+	Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);
+	virtual ~Definition();
 
 protected:
 	Type type;

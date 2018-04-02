@@ -5,9 +5,13 @@
 
 #include "ExprAppel.h"
 #include "ParametreAppel.h"
-#include "Name.h"
+#include "Name.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* ExprAppel::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * ExprAppel implementation
  */
 ExprAppel::ExprAppel(){

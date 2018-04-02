@@ -4,11 +4,14 @@
 
 
 #pragma once
+#include "../../visitor/Visitable.h"
 
 
-class Symbole {
+class Symbole : public Visitable {
 
-public:
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Symbole();
 virtual ~Symbole();
 

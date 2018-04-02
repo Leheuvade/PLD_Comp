@@ -3,9 +3,13 @@
  */
 
 
-#include "VarGlobaleInitialisation.h"
+#include "VarGlobaleInitialisation.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* VarGlobaleInitialisation::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * VarGlobaleInitialisation implementation
  */
 

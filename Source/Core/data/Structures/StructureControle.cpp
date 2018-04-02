@@ -5,9 +5,13 @@
 
 #include "StructureControle.h"
 #include "../Expressions/Expr.h"
-#include "../BlocStruct.h"
+#include "../BlocStruct.h" 
+#include "../../visitor/VisitAST.h"
 
-StructureControle::StructureControle()
+VisitOutput* StructureControle::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}StructureControle::StructureControle()
 {
   this->condition = nullptr;
   this->bloc = nullptr;

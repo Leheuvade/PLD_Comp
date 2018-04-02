@@ -7,7 +7,9 @@
 
 
 class Operation: public Expr {
-public:
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Operation();
 	virtual ~Operation();
 };

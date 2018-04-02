@@ -8,7 +8,9 @@
 
 
 class Val: public Expr {
-public: 
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	Val();
 	Val(int val);
 	virtual ~Val();

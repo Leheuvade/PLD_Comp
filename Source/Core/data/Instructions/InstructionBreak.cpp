@@ -3,9 +3,13 @@
  */
 
 
-#include "InstructionBreak.h"
+#include "InstructionBreak.h" 
+#include "../../visitor/VisitAST.h"
 
-InstructionBreak::InstructionBreak()
+VisitOutput* InstructionBreak::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}InstructionBreak::InstructionBreak()
 {
 }
 

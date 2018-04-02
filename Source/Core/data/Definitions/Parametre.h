@@ -6,8 +6,10 @@
 #include "../enums/Type.h"
 #include "../Expressions/Name.h"
 
-class Parametre {
-public:
+class Parametre : public Symbole{
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Parametre(Type type, Name *name, bool hasBrackets);
 	~Parametre();
 
