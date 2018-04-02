@@ -13,15 +13,14 @@ using namespace std;
 
 class Bloc : public Visitable {
 	friend class MapperSymbol;
-friend class DebugVisit; 
+	friend class DebugVisit;
+	friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 	Bloc();
 	Bloc(vector<InitDecl*> &initDecl, vector<InstructionStruct*> instructions);
-	void setDefinition(Definition * definition);
 	virtual ~Bloc();
 protected:
-	Definition * definition; //A supprimer ainsi que le set
 	vector<InitDecl*> initDecl;
 	vector<InstructionStruct*> instructions;
 };

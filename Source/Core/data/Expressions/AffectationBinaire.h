@@ -11,7 +11,8 @@ class LeftValue;
 
 class AffectationBinaire: public Affectation {
 
-friend class DebugVisit; 
+	friend class DebugVisit;
+	friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override; 
 	AffectationBinaire();

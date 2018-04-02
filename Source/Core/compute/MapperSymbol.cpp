@@ -9,88 +9,64 @@
 #include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Bloc.h"
 #include "../data/Definitions/Definition.h"
-#include "../data/init_decl/InstructionDeclaration.h"
-#include "../data/init_decl/InstructionInit.h"
 
 /**
  * MapperSymbol implementation
  */
-MapperSymbol::MapperSymbol()
-{
+MapperSymbol::MapperSymbol() {
+    this->appelFnct = false;
 }
 
+void MapperSymbol::appelFnctTrue() {
+    this->appelFnct = true;
+}
 
-
-MapperSymbol::~MapperSymbol()
-{
+MapperSymbol::~MapperSymbol() {
 
 
 }
 
-void MapperSymbol::addSymboleTable(grammaireParser::BlocContext * ctx, Bloc * bloc){
-	blocs.insert(std::make_pair(ctx, bloc));
-}
-void MapperSymbol::setProgCtx(grammaireParser::ProgrammeContext * programme){
-	this->programme = programme;
-}
+Symbole *MapperSymbol::findDefinition(string name, Programme *p) {
+    //Ce peut être le cas que si definition ou exprAppel est appelé
+    for (int i = 0; i < p->definitions.size(); i++) {
+        if (p->definitions[i]->name->name == name) {
+        return p->definitions[i];
+        }
+    }
+    this->appelFnct = false;
 
-void MapperSymbol::test(Programme * p, grammaireParser::BlocContext * b)
-{
-	cout<<p->definitions[0]->name->name<<endl;
-	Bloc * bll= blocs[b];
+    cerr << "la fonction " << name << " n'a pas été définie" << endl;
 
-	blocs[b]->initDecl[0];
-	cout<<"la"<<endl;
-	//Declaration * d = (Declaration *)
-	//cout<<d->name->name<<endl;
+    return nullptr;
 }
 
-Symbole * MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
-	grammaireParser::BlocContext* ctxBlocCourant)
-{
-	/*Programme * prog = ctxCourant->programme();
-	for(int i = 0;i<prog->varGlobales.size();i++)
-	{
-		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
-		if(varDecl)
-		{
-			if(varDecl->declaration->name->name==name->name)
-			{
-				return varDecl;
-			}
-		}else
-		{
-			VarGlobaleInitialisation * varInit = static_cast<VarGlobaleInitialisation*>(prog->varGlobales[i]);
-			if (varInit->initialisation->name->name == name->name)
-			{
-				return varInit;
-			}
+Symbole *MapperSymbol::findSymbol(string name, Programme *p, Definition *b) {
 
-		}
-	}
-	if(ctxBlocCourant != nullptr){
-		/*Bloc * bloc = ctxBlocCourant->bloc();
-		for (int i = 0; i<bloc->initDecl.size(); i++)
-		{
-			InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
-			if (varDecl)
-			{
-				if (varDecl->declaration->name->name == name->name)
-				{
-					return varDecl;
-				}
-			}
-			else
-			{
-				InstructionInit * varInit = static_cast<InstructionInit*>(bloc->initDecl[i]);
-				if (varInit->initialisation->name->name == name->name)
-				{
-					return varInit;
-				}
+    if(appelFnct)
+    {
+        return findDefinition(name, p);
+    }
+    else
+    {
+        return findDeclaration(name, p, b);
+    }
+}
 
-			}
-		}
+Symbole * MapperSymbol::findDeclaration(string name, Programme *p, Definition *b) {
+    for (int i = 0; i < b->bloc->initDecl.size(); i++) {
+        if (b->bloc->initDecl[i]->name->name == name) {
+            return b->bloc->initDecl[i];
+        }
+    }
 
-	}*/
-	return nullptr;
+    for (int i = 0; i < b->params->parameters.size(); i++) {
+        if (b->params->parameters[i]->name->name == name) {
+            return b->params->parameters[i];
+        }
+    }
+
+    //Rajouter même chose pour les variables globales
+
+    cerr << "la variable " << name << " est utilisée sans avoir été déclarée" << endl;
+    return nullptr;
 }

@@ -14,6 +14,7 @@ class Bloc;
 class Definition : public Symbole {
 	friend class MapperSymbol;
 	friend class DebugVisit;
+    friend class MappingNameVisit;
 public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 	Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);

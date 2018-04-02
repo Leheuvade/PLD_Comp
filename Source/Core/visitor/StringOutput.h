@@ -9,6 +9,7 @@
 using namespace std;
 class StringOutput :public VisitOutput {
 	friend class DebugVisit;
+	friend class MappingNameVisit;
 public: 
  
 	StringOutput(string val);

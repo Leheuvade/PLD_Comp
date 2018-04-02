@@ -13,13 +13,11 @@ VisitOutput* Declaration::accept(VisitAST* visitor)
  * Declaration implementation
  */
 Declaration::Declaration(){
-   name = nullptr;
  }
 
-Declaration::Declaration(Type type, Name *name, bool isConst){
+Declaration::Declaration(Type type, Name *name, bool isConst) : InitDecl(name){
 
    this->type = type;
-   this->name = name;
    this->isConst = isConst;
 
  }

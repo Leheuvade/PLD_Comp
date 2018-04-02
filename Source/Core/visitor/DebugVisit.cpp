@@ -53,37 +53,6 @@ VisitOutput* DebugVisit::visit(ParametreDefinition* p)
 	return new StringOutput(val);
 }
 
-VisitOutput* DebugVisit::visit(OperateurAffectationBinaire p)
-{
-	string val = "OperateurAffectationBinaire: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(OperateurAffectationUnaire p)
-{
-	string val = "OperateurAffectationUnaire: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(OperateurBinaire p)
-{
-	string val = "OperateurBinaire: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(OperateurUnaire p)
-{
-	string val = "OperateurUnaire: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(Type p)
-{
-	string val = "Type:"+std::to_string((int) p)+" \n";
-
-	return new StringOutput(val);
-}
-
 VisitOutput* DebugVisit::visit(Affectation* p)
 {
 	string val = "Affectation* p: \n";
@@ -122,7 +91,8 @@ VisitOutput* DebugVisit::visit(ExprAppel* p)
 
 VisitOutput* DebugVisit::visit(Name* p)
 {
-	string val = "Name* p:"+p->name+to_string((int)p->symbole)+" \n";
+	string val = "Name* p:"+p->name;
+			//to_string((int)p->symbole)+" \n";
 	return new StringOutput(val);
 }
 
@@ -198,18 +168,6 @@ VisitOutput* DebugVisit::visit(InitialisationTab* p)
 VisitOutput* DebugVisit::visit(InitialisationVal* p)
 {
 	string val = "InitialisationVal* p: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(InstructionDeclaration* p)
-{
-	string val = "InstructionDeclaration* p: \n";
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(InstructionInit* p)
-{
-	string val = "InstructionInit* p: \n";
 	return new StringOutput(val);
 }
 
