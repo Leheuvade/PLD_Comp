@@ -19,7 +19,7 @@ public:
 	void setDefinition(Definition * definition);
 	virtual ~Bloc();
 protected:
-	Definition * definition; 
+	Definition * definition; //A supprimer ainsi que le set
 	vector<InitDecl*> initDecl;
 	vector<InstructionStruct*> instructions;
 };

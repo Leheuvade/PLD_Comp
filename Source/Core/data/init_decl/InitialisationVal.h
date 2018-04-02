@@ -8,7 +8,7 @@
 
 class Val; 
 
-class InitialisationVal {
+class InitialisationVal : public InitDecl {
 
 
 public:
