@@ -1,6 +1,10 @@
-#include "Parametre.h"
+#include "Parametre.h" 
+#include "../../visitor/VisitAST.h"
 
-Parametre::Parametre(Type t, Name *n, bool b)
+VisitOutput* Parametre::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}Parametre::Parametre(Type t, Name *n, bool b)
 {
 	type = t;
 	name = n;

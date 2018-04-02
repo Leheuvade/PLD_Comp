@@ -3,9 +3,13 @@
  */
 
 
-#include "Declaration.h"
+#include "Declaration.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* Declaration::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * Declaration implementation
  */
 Declaration::Declaration(){

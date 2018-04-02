@@ -11,9 +11,11 @@
 
 using namespace std;
 
-class Bloc {
+class Bloc : public Visitable {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Bloc();
 	Bloc(vector<InitDecl*> &initDecl, vector<InstructionStruct*> instructions);
 	void setDefinition(Definition * definition);

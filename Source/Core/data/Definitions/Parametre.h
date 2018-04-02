@@ -7,8 +7,10 @@
 #include "../Expressions/Name.h"
 #include "../init_decl/Symbole.h"
 
-class Parametre : public Symbole {
-public:
+class Parametre : public Symbole{
+friend class DebugVisit; 
+ public: 
+ 	virtual VisitOutput* accept(VisitAST* visitor)override;
 	Parametre(Type type, Name *name, bool hasBrackets);
 	~Parametre();
 

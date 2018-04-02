@@ -11,7 +11,9 @@ class Initialisation;
 
 class InstructionInit: public InitDecl {
 	friend class MapperSymbol;
-public:
+friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 InstructionInit(Initialisation *initialisation);
     virtual ~InstructionInit();
 

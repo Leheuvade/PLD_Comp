@@ -3,9 +3,13 @@
  */
 
 
-#include "OperationBinaire.h"
+#include "OperationBinaire.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* OperationBinaire::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * OperationBinaire implementation
  */
 OperationBinaire::OperationBinaire()

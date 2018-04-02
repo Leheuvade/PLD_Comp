@@ -23,7 +23,7 @@ MapperSymbol::MapperSymbol()
 
 MapperSymbol::~MapperSymbol()
 {
-	
+
 
 }
 
@@ -38,19 +38,18 @@ void MapperSymbol::test(Programme * p, grammaireParser::BlocContext * b)
 {
 	cout<<p->definitions[0]->name->name<<endl;
 	Bloc * bll= blocs[b];
-	
+
 	blocs[b]->initDecl[0];
 	cout<<"la"<<endl;
-	//Declaration * d = (Declaration *) 
+	//Declaration * d = (Declaration *)
 	//cout<<d->name->name<<endl;
 }
 
 Symbole * MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* ctxCourant,
 	grammaireParser::BlocContext* ctxBlocCourant)
 {
-	grammaireParser::DefProcContext * var = (grammaireParser::DefProcContext *) ctxCourant->programme()->definition(0);
-	cout<<var->NAME()->getText()<<endl;
-	/*for(int i = 0;i<prog->varGlobales.size();i++)
+	/*Programme * prog = ctxCourant->programme();
+	for(int i = 0;i<prog->varGlobales.size();i++)
 	{
 		VarGlobaleDeclaration * varDecl = static_cast<VarGlobaleDeclaration*>(prog->varGlobales[i]);
 		if(varDecl)
@@ -70,7 +69,7 @@ Symbole * MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* c
 		}
 	}
 	if(ctxBlocCourant != nullptr){
-		Bloc * bloc = ctxBlocCourant->bloc();
+		/*Bloc * bloc = ctxBlocCourant->bloc();
 		for (int i = 0; i<bloc->initDecl.size(); i++)
 		{
 			InstructionDeclaration * varDecl = static_cast<InstructionDeclaration*>(bloc->initDecl[i]);
@@ -91,7 +90,7 @@ Symbole * MapperSymbol::findSymbol(Name* name, grammaireParser::EntreeContext* c
 
 			}
 		}
-	
+
 	}*/
 	return nullptr;
 }

@@ -5,25 +5,23 @@
 
 #include "InitialisationVal.h"
 #include "../Expressions/Val.h" 
- 
-/**
+#include "../../visitor/VisitAST.h"
+
+VisitOutput* InitialisationVal::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * Initialisation implementation
  */
 
 
-InitialisationVal::InitialisationVal(){
-  name = nullptr;
-  value = nullptr;
+InitialisationVal::InitialisationVal() {
 }
 
-InitialisationVal::InitialisationVal(Type type,Name * name,bool isConst,Val * value){
-   this->type = type;
-   this->name = name;
-   this->isConst = isConst;
+InitialisationVal::InitialisationVal(Type type,Name * name,bool isConst,Val * value):Initialisation(type,name,isConst){
    this->value=value;
 }
 
 InitialisationVal::~InitialisationVal(){
-	delete name;
-	delete value;
+	
  }

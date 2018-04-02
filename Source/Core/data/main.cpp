@@ -6,59 +6,53 @@
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
 #include "../../grammaire/grammaireImplBaseVisitor.h"
-#include "../../grammaire/grammaireMappingBaseVisitor.h"
+#include "../visitor/DebugVisit.h"
+
 #include "../../grammaire/grammaireParser.h"
 #include "Programme.h"
 
 #include "dotexport.h"
+#include "../visitor/StringOutput.h"
 
 using namespace antlr4;
 
-int titi;
+int main(int argc, char *argv[]) {
+	if(argc<=1)
+	{
+		cout << "no program to compile, add file name after the executable in the command line" << endl;
+		return 0;
+	}
+	std::ifstream t(argv[1]);
+	std::string content((std::istreambuf_iterator<char>(t)),
+						std::istreambuf_iterator<char>());
+	cout << content << endl;
+	ANTLRInputStream input(content);
+	grammaireLexer  lexer(&input);
+	CommonTokenStream tokens(&lexer);
 
-void toto(){
-  int clara;
-}
-int main(int , const char **) {
+	tokens.fill();
+	for (auto token : tokens.getTokens()) {
+		std::cout << token->toString() << std::endl;
+	}
 
-  /*std::ifstream t("programme.txt");
-  std::string content((std::istreambuf_iterator<char>(t)),
-                      std::istreambuf_iterator<char>());*/
+	grammaireParser parser(&tokens);
+	tree::ParseTree* tree = parser.programme();
 
-  ANTLRInputStream input("void main(void){int32_t i;i=0;i=i+1;if(0){}else{}}");
-  grammaireLexer  lexer(&input);
-  CommonTokenStream tokens(&lexer);
+	grammaireImplBaseVisitor visitor;
 
-  tokens.fill();
-  for (auto token : tokens.getTokens()) {
-    std::cout << token->toString() << std::endl;
-  }
+	Programme * p = visitor.visit(tree);
 
-  grammaireParser parser(&tokens);
-  tree::ParseTree* tree = parser.programme();
+	std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
-  grammaireImplBaseVisitor visitor;
+	DotExport dotexport(&parser);
+	tree::ParseTreeWalker::DEFAULT.walk(&dotexport, tree);
+	ofstream out;
+	out.open("tmp.dot");
+	out << dotexport.getDotFile();
+	out.close();
+	system("dot -Tpdf -o out.pdf tmp.dot");
+	DebugVisit visit;
+	cout << ((StringOutput*)p->accept(&visit))->getVal() << endl;
+	return 0;
 
-  Programme * p = visitor.visit(tree);
-
-  /*MapperSymbol ms;
-  
-
-  grammaireMappingBaseVisitor v;
-  grammaireParser::BlocContext *ctx = v.visit(tree);
-  //ctx->bloc();
-  ms.test(p, ctx);*/
-
-  
-  std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
-
-  DotExport dotexport(&parser);
-  tree::ParseTreeWalker::DEFAULT.walk(&dotexport,tree);
-  ofstream out;
-  out.open("tmp.dot");
-  out<<dotexport.getDotFile();
-  out.close();
-  system("dot -Tpdf -o out.pdf tmp.dot");
-
-  return 0;
 }

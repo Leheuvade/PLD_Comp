@@ -5,9 +5,13 @@
 
 #include "StructureWhile.h"
 #include "../Bloc.h"
-#include "../Expressions/Expr.h"
+#include "../Expressions/Expr.h" 
+#include "../../visitor/VisitAST.h"
 
-StructureWhile::StructureWhile()
+VisitOutput* StructureWhile::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}StructureWhile::StructureWhile()
 : StructureControle()
 {
 

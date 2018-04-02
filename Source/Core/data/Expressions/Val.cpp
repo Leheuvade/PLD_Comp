@@ -3,9 +3,13 @@
  */
 
 
-#include "Val.h"
+#include "Val.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* Val::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * Val implementation
  */
 Val::Val(){}

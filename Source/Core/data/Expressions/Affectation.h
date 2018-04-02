@@ -8,7 +8,9 @@
 
 class Affectation: public Expr {
 
-	public: 
+	friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 		Affectation();
 		virtual ~Affectation();
 };

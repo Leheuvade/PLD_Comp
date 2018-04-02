@@ -16,7 +16,7 @@ using namespace std;
 * extended to create a visitor which only needs to handle a subset of the available methods.
 */
 class  grammaireMappingBaseVisitor : public grammaireBaseVisitor {
-public:
+ public: 
 
 	virtual antlrcpp::Any visitBloc(grammaireParser::BlocContext *ctx) override {
  		return ctx;

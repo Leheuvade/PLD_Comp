@@ -10,7 +10,9 @@
 
 class VarGlobaleInitialisation: public VarGlobale {
 	friend class MapperSymbol;
-	public:
+	friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 		VarGlobaleInitialisation();
 		VarGlobaleInitialisation(Initialisation *initialisation);
 		virtual ~VarGlobaleInitialisation();

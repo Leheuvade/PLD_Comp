@@ -4,11 +4,14 @@
 
 
 #pragma once
+#include "../../visitor/Visitable.h"
 
 class BlocStruct;
 
-class ElseBloc {
-  public:
+class ElseBloc : public Visitable {
+  friend class DebugVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
     ElseBloc();
     ElseBloc(BlocStruct* bloc);
     virtual ~ElseBloc();

@@ -59,8 +59,11 @@ using namespace std;
 * extended to create a visitor which only needs to handle a subset of the available methods.
 */
 class  grammaireImplBaseVisitor : public grammaireBaseVisitor {
-public:
+ public: 
 
+	 virtual antlrcpp::Any visitEntree(grammaireParser::EntreeContext *ctx) override {
+		 return visitChildren(ctx);
+	 }
 	virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
     	mapperSymbol.setProgCtx(ctx);
 		vector<VarGlobale*> varGlobales;
@@ -87,7 +90,7 @@ public:
 
 	virtual antlrcpp::Any visitInit(grammaireParser::InitContext *ctx) override {
 		cout << "Init" << endl;
-		return (InitDecl *)visit(ctx->initialisation());
+		return (InitDecl *)(Initialisation*)visit(ctx->initialisation());
 	}
 
 	virtual antlrcpp::Any visitInstExpr(grammaireParser::InstExprContext *ctx) override {
@@ -117,12 +120,14 @@ public:
 
 	virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
 		cout << "VarDecl" << endl;
-		return (VarGlobale *) (Declaration *) visit(ctx->declaration());
+		return (VarGlobale*)new VarGlobaleDeclaration( (Declaration*)visit(ctx->declaration()));
 	}
 
 	virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
 		cout << "VarInit" << endl;
-		return (VarGlobale*)visit(ctx->initialisation());
+		VarGlobale* v=(VarGlobale*) new VarGlobaleInitialisation((Initialisation*)visit(ctx->initialisation()));
+		cout << "after var init" << endl;
+	 	return v;
 	}
 
 	virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
@@ -147,7 +152,7 @@ public:
 
 	virtual antlrcpp::Any visitDeclTab(grammaireParser::DeclTabContext *ctx) override {
 		cout << "DeclTab" << endl;
-		return new DeclarationTab(
+		return (Declaration*)new DeclarationTab(
 			(Type)visit(ctx->type()),
 			new Name(ctx->NAME()->getText()),
 			false,
@@ -157,7 +162,7 @@ public:
 
 	virtual antlrcpp::Any visitInitTab(grammaireParser::InitTabContext *ctx) override {
 		cout << "InitTab" << endl;
-		return new InitialisationTab(
+		return(Initialisation*) new InitialisationTab(
 			(Type)visit(ctx->type()),
 			new Name(ctx->NAME()->getText()),
 			false,
@@ -168,17 +173,19 @@ public:
 
 	virtual antlrcpp::Any visitInitVar(grammaireParser::InitVarContext *ctx) override {
 		cout << "InitVar" << endl;
-		return new InitialisationVal(
+		Initialisation* i= (Initialisation*)new InitialisationVal(
 			(Type)visit(ctx->type()),
 			new Name(ctx->NAME()->getText()),
 			false,
 			new Val(stoi(ctx->VAL()->getText()))
 			);
+		cout << "after initVar" << endl;
+		return i;
 	}
 
 	virtual antlrcpp::Any visitInitConst(grammaireParser::InitConstContext *ctx) override {
 		cout << "InitConst" << endl;
-		return (InitialisationVal*)
+		return (Initialisation*)
 			new InitialisationVal(
 			(Type)visit(ctx->type()),
 			new Name(ctx->NAME()->getText()),

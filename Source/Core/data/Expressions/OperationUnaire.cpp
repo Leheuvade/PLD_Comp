@@ -3,9 +3,13 @@
  */
 
 
-#include "OperationUnaire.h"
+#include "OperationUnaire.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* OperationUnaire::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * OperationUnaire implementation
  */
 OperationUnaire::OperationUnaire(){
