@@ -32,9 +32,6 @@
 #include "../Core/data/init_decl/InitialisationTab.h"
 #include "../Core/data/init_decl/InitialisationVal.h"
 #include "../Core/data/init_decl/Symbole.h"
-#include "../Core/data/init_decl/VarGlobale.h"
-#include "../Core/data/init_decl/VarGlobaleDeclaration.h"
-#include "../Core/data/init_decl/VarGlobaleInitialisation.h"
 #include "../Core/data/Instructions/InstructionBreak.h"
 #include "../Core/data/Instructions/InstructionControle.h"
 #include "../Core/data/Instructions/InstructionExpr.h"
@@ -64,11 +61,11 @@ public:
     }
 
     virtual antlrcpp::Any visitProgramme(grammaireParser::ProgrammeContext *ctx) override {
-        vector<VarGlobale *> varGlobales;
+        vector<InitDecl *> varGlobales;
         vector<Definition *> definitions;
 
-        for (int i = 0; i < (ctx->varGlobale()).size(); i++) {
-            varGlobales.push_back((VarGlobale *) visit(ctx->varGlobale(i)));
+        for (int i = 0; i < (ctx->initDecl()).size(); i++) {
+            varGlobales.push_back((InitDecl *) visit(ctx->initDecl(i)));
         }
 
         for (int i = 0; i < (ctx->definition()).size(); i++) {
@@ -112,18 +109,6 @@ public:
     virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
         cout << "InstReturn" << endl;
         return (InstructionStruct *) (Expr *) visit(ctx->expr());
-    }
-
-    virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-        cout << "VarDecl" << endl;
-        return (VarGlobale *) new VarGlobaleDeclaration((Declaration *) visit(ctx->declaration()));
-    }
-
-    virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
-        cout << "VarInit" << endl;
-        VarGlobale *v = (VarGlobale *) new VarGlobaleInitialisation((Initialisation *) visit(ctx->initialisation()));
-        cout << "after var init" << endl;
-        return v;
     }
 
     virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {

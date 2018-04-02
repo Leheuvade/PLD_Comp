@@ -177,27 +177,6 @@ VisitOutput* DebugVisit::visit(Symbole* p)
 	return new StringOutput(val);
 }
 
-VisitOutput* DebugVisit::visit(VarGlobale* p)
-{
-	string val = "VarGlobale: \n";
-
-	return new StringOutput(val);
-}
-
-VisitOutput* DebugVisit::visit(VarGlobaleDeclaration* p)
-{
-	string val = "VarGlobaleDeclaration: \n";
-	return new StringOutput(val);
-
-}
-
-VisitOutput* DebugVisit::visit(VarGlobaleInitialisation* p)
-{
-	string val = "VarGlobaleInitialisation: \n";
-	val += static_cast<StringOutput*>(p->initialisation->accept(this))->val;
-	return new StringOutput(val);
-}
-
 VisitOutput* DebugVisit::visit(InstructionBreak* p)
 {
 	string val = "InstructionBreak* p: \n";

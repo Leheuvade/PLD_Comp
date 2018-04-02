@@ -2,7 +2,7 @@ grammar grammaire;
 
 entree : programme;
 
-programme : (varGlobale)* (definition)+ EOF;
+programme : (initDecl)* (definition)+ EOF;
 
 
 initDecl: declaration #Decl
@@ -14,10 +14,6 @@ instructionStruct :  expr';' #InstExpr
 	| structureControle #InstStrucControl
 	| 'break;' #InstBreak
 	|'return' expr ';' #InstReturn
-	;
-
-varGlobale: declaration #VarDecl
-	| initialisation #VarInit
 	;
 
 declaration : 'const' type NAME #DeclConst

@@ -209,27 +209,6 @@ VisitOutput* MappingNameVisit::visit(Symbole* p)
     return new StringOutput(val);
 }
 
-VisitOutput* MappingNameVisit::visit(VarGlobale* p)
-{
-    string val = "VarGlobale: \n";
-
-    return new StringOutput(val);
-}
-
-VisitOutput* MappingNameVisit::visit(VarGlobaleDeclaration* p)
-{
-    string val = "VarGlobaleDeclaration: \n";
-    return new StringOutput(val);
-
-}
-
-VisitOutput* MappingNameVisit::visit(VarGlobaleInitialisation* p)
-{
-    string val = "VarGlobaleInitialisation: \n";
-    val += static_cast<StringOutput*>(p->initialisation->accept(this))->val;
-    return new StringOutput(val);
-}
-
 VisitOutput* MappingNameVisit::visit(InstructionBreak* p)
 {
     string val = "InstructionBreak* p: \n";

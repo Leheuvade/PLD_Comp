@@ -36,9 +36,6 @@ class DebugVisit : public VisitAST {
 	virtual VisitOutput* visit(InitialisationTab *p) override;
 	virtual VisitOutput* visit(InitialisationVal *p) override;
 	virtual VisitOutput* visit(Symbole *p) override;
-	virtual VisitOutput* visit(VarGlobale *p) override;
-	virtual VisitOutput* visit(VarGlobaleDeclaration *p) override;
-	virtual VisitOutput* visit(VarGlobaleInitialisation *p) override;
 	virtual VisitOutput* visit(InstructionBreak *p) override;
 	virtual VisitOutput* visit(InstructionControle *p) override;
 	virtual VisitOutput* visit(InstructionExpr *p) override;

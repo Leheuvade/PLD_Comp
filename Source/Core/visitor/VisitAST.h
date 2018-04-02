@@ -28,9 +28,6 @@
 #include "../data/init_decl/Initialisation.h"
 #include "../data/init_decl/InitialisationTab.h"
 #include "../data/init_decl/Symbole.h"
-#include "../data/init_decl/VarGlobale.h"
-#include "../data/init_decl/VarGlobaleDeclaration.h"
-#include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Instructions/InstructionBreak.h"
 #include "../data/Instructions/InstructionControle.h"
 #include "../data/Instructions/InstructionExpr.h"
@@ -79,9 +76,6 @@ class VisitAST {
 	virtual VisitOutput* visit(InitialisationTab *p) = 0;
     virtual VisitOutput* visit(InitialisationVal *p) = 0;
 	virtual VisitOutput* visit(Symbole *p) = 0;
-	virtual VisitOutput* visit(VarGlobale *p) = 0;
-	virtual VisitOutput* visit(VarGlobaleDeclaration *p) = 0;
-	virtual VisitOutput* visit(VarGlobaleInitialisation *p) = 0;
 	virtual VisitOutput* visit(InstructionBreak *p) = 0;
 	virtual VisitOutput* visit(InstructionControle *p) = 0;
 	virtual VisitOutput* visit(InstructionExpr *p) = 0;

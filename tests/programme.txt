@@ -1,3 +1,5 @@
+int32_t toto;
+
 void tata(int32_t a){
 }
 
@@ -7,4 +9,5 @@ void main(void)
     i=0;
     i=i+1;
     tata(i);
+    toto=4;
 }

@@ -5,8 +5,6 @@
 
 #include "MapperSymbol.h"
 #include "../data/Programme.h"
-#include "../data/init_decl/VarGlobaleDeclaration.h"
-#include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Bloc.h"
 #include "../data/Definitions/Definition.h"
 
@@ -53,19 +51,26 @@ Symbole *MapperSymbol::findSymbol(string name, Programme *p, Definition *b) {
 }
 
 Symbole * MapperSymbol::findDeclaration(string name, Programme *p, Definition *b) {
-    for (int i = 0; i < b->bloc->initDecl.size(); i++) {
-        if (b->bloc->initDecl[i]->name->name == name) {
-            return b->bloc->initDecl[i];
+    if(b!= nullptr)
+    {
+        for (int i = 0; i < b->bloc->initDecl.size(); i++) {
+            if (b->bloc->initDecl[i]->name->name == name) {
+                return b->bloc->initDecl[i];
+            }
+        }
+
+        for (int i = 0; i < b->params->parameters.size(); i++) {
+            if (b->params->parameters[i]->name->name == name) {
+                return b->params->parameters[i];
+            }
         }
     }
 
-    for (int i = 0; i < b->params->parameters.size(); i++) {
-        if (b->params->parameters[i]->name->name == name) {
-            return b->params->parameters[i];
+    for (int i = 0; i < p->varGlobales.size(); i++) {
+        if (p->varGlobales[i]->name->name == name) {
+            return p->varGlobales[i];
         }
     }
-
-    //Rajouter même chose pour les variables globales
 
     cerr << "la variable " << name << " est utilisée sans avoir été déclarée" << endl;
     return nullptr;
