@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <Source/Core/data/Expressions/Val.h>
 #include "../enums/Type.h"
 #include "../Expressions/Name.h"
 #include "InitDecl.h"

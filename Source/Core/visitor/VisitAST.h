@@ -42,7 +42,7 @@
 #include "../data/init_decl/Symbole.h"
 #include "VisitOutput.h"
 #include <string>
-#include <Source/Core/data/init_decl/InitialisationVal.h>
+#include "../data/init_decl/InitialisationVal.h"
 
 class Visitable;
 using namespace std;

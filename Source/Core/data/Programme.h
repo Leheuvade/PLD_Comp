@@ -6,7 +6,8 @@
 #pragma once
 
 #include <vector>
-#include <Source/Core/data/init_decl/InitDecl.h>
+#include "../visitor/Visitable.h"
+#include "init_decl/InitDecl.h"
 
 using namespace std;
 
