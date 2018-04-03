@@ -5,6 +5,7 @@
 #pragma once
 #include "VisitAST.h"
 
+class InitialisationVal;
 using namespace std;
 class DebugVisit : public VisitAST {
  public: 

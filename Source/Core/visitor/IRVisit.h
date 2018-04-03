@@ -5,6 +5,7 @@
 #pragma once
 #include "VisitAST.h"
 
+class InitialisationVal;
 using namespace std;
 class IRVisit : public VisitAST {
  public: 
@@ -16,11 +17,6 @@ class IRVisit : public VisitAST {
 	virtual VisitOutput* visit(Definition *p) override;
 	virtual VisitOutput* visit(Parametre *p) override;
 	virtual VisitOutput* visit(ParametreDefinition *p) override;
-	virtual VisitOutput* visit(OperateurAffectationBinaire p) override;
-	virtual VisitOutput* visit(OperateurAffectationUnaire p) override;
-	virtual VisitOutput* visit(OperateurBinaire p) override;
-	virtual VisitOutput* visit(OperateurUnaire p) override;
-	virtual VisitOutput* visit(Type p) override;
 	virtual VisitOutput* visit(Affectation *p) override;
 	virtual VisitOutput* visit(AffectationBinaire *p) override;
 	virtual VisitOutput* visit(AffectationUnaire *p) override;

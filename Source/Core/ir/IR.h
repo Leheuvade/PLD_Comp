@@ -1,13 +1,14 @@
-#ifndef IR_H
-#define IR_H
+#pragma once
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <initializer_list>
+#include "../data/enums/Type.h"
+#include <map>
 
 // Declarations from the parser -- replace with your own
-
+using namespace std;
 class BasicBlock;
 class CFG;
 class DefFonction;
@@ -46,8 +47,6 @@ class IRInstr {
 	vector<string> params; /**< For 3-op instrs: d, x, y; for ldconst: d, c;  For call: label, d, params;  for wmem and rmem: choose yourself */
 	// if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design. 
 };
-
-
 
 
 
@@ -123,7 +122,7 @@ class CFG {
 	BasicBlock* current_bb;
 
  protected:
-	map <string, Type> SymbolType; /**< part of the symbol table  */
+	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex; /**< to allocate new symbols in the symbol table */
 	int nextBBnumber; /**< just for naming */
@@ -132,4 +131,4 @@ class CFG {
 };
 
 
-#endif
+

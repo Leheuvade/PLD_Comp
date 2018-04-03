@@ -4,6 +4,7 @@
 
 #include "DebugVisit.h"
 #include "StringOutput.h"
+#include "../data/init_decl/InitialisationVal.h"
 
 DebugVisit::DebugVisit()
 {
