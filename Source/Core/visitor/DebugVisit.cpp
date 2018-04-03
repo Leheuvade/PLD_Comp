@@ -38,12 +38,20 @@ VisitOutput* DebugVisit::visit(Programme *p)
 VisitOutput* DebugVisit::visit(Definition* p)
 {
 	string val = "Definition* p: \n";
+	val += std::to_string((int)p->type)+"\n";
+	val += static_cast<StringOutput*>(p->name->accept(this))->val;
+	val += static_cast<StringOutput*>(p->params->accept(this))->val;
+	val += static_cast<StringOutput*>(p->bloc->accept(this))->val;
+
 	return new StringOutput(val);
 }
 
 VisitOutput* DebugVisit::visit(Parametre* p)
 {
 	string val = "Parametre* p: \n";
+	val += std::to_string((int)p->type) + "\n";
+	val += static_cast<StringOutput*>(p->name->accept(this))->val;
+	val += "hasBracket: " + (p->hasBrackets) ? "true\n" : "false\n";
 	return new StringOutput(val);
 }
 
