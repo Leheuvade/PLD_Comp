@@ -78,7 +78,8 @@ void CFG::gen_asm_prologue(ostream& o)
 	int size = nextFreeSymbolIndex;//on recupere la taille totale (dernier offset + 8)
 	o << "pushq %rbp" << endl;//je sais pas ce que ca fait
 	o << "movq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
-	o << "	subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
+	o << "	subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
+
 }
 
 void CFG::gen_asm_epilogue(ostream& o)
