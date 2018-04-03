@@ -11,7 +11,9 @@
 using namespace std;
 class BasicBlock;
 class CFG;
-class DefFonction;
+class Definition;
+//convention: on place ce tag devant la valeur d'offset dans le nom de variable pour pouvoir le retrouver facilement
+const static string OFFSET_TAG="<offset>";
 
 
 //! The class for one 3-address instruction
@@ -99,9 +101,9 @@ class BasicBlock {
 class CFG {
  public: 
  
-	CFG(DefFonction* ast);
+	CFG(Definition* ast);
 
-	DefFonction* ast; /**< The AST this CFG comes from */
+	Definition* ast; /**< The AST this CFG comes from */
 	
 	void add_bb(BasicBlock* bb); 
 

@@ -22,7 +22,8 @@ class DotExport : public tree::ParseTreeListener {
          }
          return name;
       }
-   friend class DebugVisit; 
+   friend class DebugVisit;
+friend class IRVisit; 
  public: 
  
       DotExport(Parser * parser): parser(parser) { }

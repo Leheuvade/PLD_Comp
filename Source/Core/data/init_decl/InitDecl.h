@@ -5,13 +5,15 @@
 
 #pragma once
 
-#include <Source/Core/data/Expressions/Name.h>
 #include "Symbole.h"
 
+
+class Name;
 
 class InitDecl : public Symbole {
 
     friend class DebugVisit;
+friend class IRVisit;
     friend class MapperSymbol;
     friend class MappingNameVisit;
 

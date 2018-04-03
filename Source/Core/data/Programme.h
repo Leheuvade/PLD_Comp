@@ -17,6 +17,7 @@ class Programme : public Visitable {
 	friend class MapperSymbol;
 	friend class VisitAST;
 	friend class DebugVisit;
+friend class IRVisit;
 	friend class MappingNameVisit;
 public:
 	Programme();

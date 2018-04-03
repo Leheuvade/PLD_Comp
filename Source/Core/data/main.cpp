@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include <Source/Core/visitor/MappingNameVisit.h>
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
@@ -11,6 +10,7 @@
 
 #include "dotexport.h"
 #include "../visitor/StringOutput.h"
+#include "../visitor/IRVisit.h"
 
 using namespace antlr4;
 int main(int argc, char *argv[]) {
@@ -49,8 +49,11 @@ int main(int argc, char *argv[]) {
     system("dot -Tpdf -o out.pdf tmp.dot");
     /*DebugVisit visit;
     cout << ((StringOutput*)p->accept(&visit))->getVal() << endl;*/
-    MappingNameVisit visit;
-    cout << ((StringOutput *) p->accept(&visit))->getVal() << endl;
+    /*MappingNameVisit visit;
+    cout << ((StringOutput *) p->accept(&visit))->getVal() << endl;*/
+	IRVisit visitIR;
+	visitIR.setOutName("out.asm");
+	p->accept(&visitIR);
     return 0;
 
 }

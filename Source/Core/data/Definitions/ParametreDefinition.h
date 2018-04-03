@@ -11,6 +11,7 @@ using namespace std;
 class ParametreDefinition : public Visitable{
 
 	friend class DebugVisit;
+friend class IRVisit;
 	friend class MappingNameVisit;
 	friend class MapperSymbol;
 

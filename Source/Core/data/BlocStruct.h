@@ -11,7 +11,8 @@
 using namespace std;
 
 class BlocStruct: public InstructionStruct {
-friend class DebugVisit; 
+friend class DebugVisit;
+friend class IRVisit; 
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 	BlocStruct();

@@ -4,6 +4,7 @@
 
 #pragma once
 #include "VisitAST.h"
+#include "../ir/IR.h"
 
 class InitialisationVal;
 using namespace std;
@@ -36,12 +37,7 @@ class IRVisit : public VisitAST {
 	virtual VisitOutput* visit(Initialisation *p) override;
 	virtual VisitOutput* visit(InitialisationTab *p) override;
 	virtual VisitOutput* visit(InitialisationVal *p) override;
-	virtual VisitOutput* visit(InstructionDeclaration *p) override;
-	virtual VisitOutput* visit(InstructionInit *p) override;
 	virtual VisitOutput* visit(Symbole *p) override;
-	virtual VisitOutput* visit(VarGlobale *p) override;
-	virtual VisitOutput* visit(VarGlobaleDeclaration *p) override;
-	virtual VisitOutput* visit(VarGlobaleInitialisation *p) override;
 	virtual VisitOutput* visit(InstructionBreak *p) override;
 	virtual VisitOutput* visit(InstructionControle *p) override;
 	virtual VisitOutput* visit(InstructionExpr *p) override;
@@ -54,12 +50,15 @@ class IRVisit : public VisitAST {
 	virtual VisitOutput* visit(Bloc *p) override;
 	virtual VisitOutput* visit(BlocStruct *p) override;
 	virtual VisitOutput* visit(LeftValue *p) override;
+	inline void setOutName(string str)
+	{
+		fileName = str;
+	}
 
-
-
-
-
-
+protected:
+	vector<CFG*> cfgs;
+	CFG* mainCFG;
+	string fileName="out.asm";
 };
 
 

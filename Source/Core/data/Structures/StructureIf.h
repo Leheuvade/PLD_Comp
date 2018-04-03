@@ -11,7 +11,8 @@
 class ElseBloc;
 
 class StructureIf: public StructureControle {
-	friend class DebugVisit; 
+	friend class DebugVisit;
+friend class IRVisit; 
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 		StructureIf();
