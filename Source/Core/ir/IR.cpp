@@ -1,4 +1,4 @@
- #include "IR.h"
+#include "IR.h"
 
 IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 {
@@ -10,8 +10,51 @@ IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 
 void IRInstr::gen_asm(ostream& o)
 {
-	o << "#instr: " << this << endl;
-	//TODO make proper asm
+	//TODO tenir compte du type
+	o << opToStr(op) << " ";
+	for (int i = 0; i < params.size(); i++)
+	{
+		o << params[i];
+	}
+	o << endl;
+}
+
+string IRInstr::opToStr(Operation& o)
+{
+	switch (op)
+	{
+	case ldconst:
+		return "ldconst";
+	case add:
+		return "add";
+
+	case sub:
+		return "sub";
+
+	case mul:
+		return "mul";
+
+	case rmem:
+		return "rmem";
+
+	case wmem:
+		return "wmem";
+
+	case call:
+		return "call";
+
+	case cmp_eq:
+		return "cmp_eq";
+
+	case cmp_lt:
+		return "cmp_lt";
+
+	case cmp_le:
+		return "cmp_le";
+	default:
+		return "";
+	}
+
 }
 
 BasicBlock::BasicBlock(CFG* cfg, string entry_label)
@@ -23,7 +66,7 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 void BasicBlock::gen_asm(ostream& o)
 {
 	o << "#debut bloc: " << this << endl;
-	for(int i = 0;i<instrs.size();i++)
+	for (int i = 0; i < instrs.size(); i++)
 	{
 		instrs[i]->gen_asm(o);
 	}
@@ -41,11 +84,19 @@ CFG::CFG(Definition* ast)
 	this->ast = ast;
 }
 
-void CFG::add_bb(BasicBlock* bb)
+void CFG::add_bb(BasicBlock* bb,int index)
 {
-	bbs.push_back(bb);
-	current_bb = bb;
-	nextBBnumber++;
+	if (index == -1 || index >= bbs.size()) {
+		bbs.push_back(bb);
+		current_bb = bb;
+		nextBBnumber++;
+	}else
+	{
+		vector<BasicBlock*>::iterator here = bbs.begin() + index;
+		bbs.insert(here, bb);
+		current_bb = bb;
+		nextBBnumber++;
+	}
 }
 
 void CFG::gen_asm(ostream& o)
@@ -53,7 +104,8 @@ void CFG::gen_asm(ostream& o)
 	//TODO add transition between blocks
 
 	o << "#debut cfg: " << this << endl;
-	for (int i = 0; i<bbs.size(); i++)
+	
+	for (int i = 0; i < bbs.size(); i++)
 	{
 		bbs[i]->gen_asm(o);
 	}
@@ -64,7 +116,7 @@ void CFG::gen_asm(ostream& o)
 string CFG::IR_reg_to_asm(string reg)
 {
 	int index = reg.rfind(OFFSET_TAG);
-	if(index== string::npos)
+	if (index == string::npos)
 	{
 		cout << "error no offset in name" << endl;
 		return "";
@@ -78,7 +130,7 @@ void CFG::gen_asm_prologue(ostream& o)
 	int size = nextFreeSymbolIndex;//on recupere la taille totale (dernier offset + 8)
 	o << "pushq %rbp" << endl;//je sais pas ce que ca fait
 	o << "movq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
-	o << "	subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
+	o << "subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
 
 }
 
@@ -88,11 +140,14 @@ void CFG::gen_asm_epilogue(ostream& o)
 	o << "ret" << endl;
 }
 
-void CFG::add_to_symbol_table(string name, Type t)
+string CFG::add_to_symbol_table(string name, Type t)
 {
+	name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
+	cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
 	SymbolType.insert_or_assign(name, t);
 	SymbolIndex.insert_or_assign(name, nextFreeSymbolIndex);
 	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer à la prochaine case mem de 64bits)
+	return name;//on renvoie le nom avec l'offset
 }
 
 string CFG::create_new_tempvar(Type t)
@@ -116,3 +171,5 @@ string CFG::new_BB_name()
 {
 	return "Bloc: " + to_string(nextBBnumber);
 }
+
+

@@ -208,8 +208,9 @@ VisitOutput* IRVisit::visit(InitialisationVal* p)
 {
 	string val = "";
 	CFG * lastCFG = cfgs[cfgs.size() - 1];
-	lastCFG->add_to_symbol_table(p->name->name, p->type);
+	string newName=lastCFG->add_to_symbol_table(p->name->name, p->type);
 	vector<string> params;
+	params.push_back(CFG::IR_reg_to_asm(newName));
 	VisitOutput* v = p->value->accept(this);
 	params.push_back(static_cast<StringOutput*>(v)->val);
 	delete v;

@@ -41,7 +41,7 @@ class IRInstr {
 	
 	/** Actual code generation */
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this IR instruction */
-	
+	string opToStr(Operation&o);
  private:
 	BasicBlock* bb; /**< The BB this instruction belongs to, which provides a pointer to the CFG this instruction belong to */
 	Operation op;
@@ -104,17 +104,17 @@ class CFG {
 	CFG(Definition* ast);
 
 	Definition* ast; /**< The AST this CFG comes from */
-	
-	void add_bb(BasicBlock* bb); 
+	//si l'index est a -1, on ajoute à la fin
+	void add_bb(BasicBlock* bb,int index=-1); 
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream& o);
-	string IR_reg_to_asm(string reg); /**< helper method: inputs a IR reg or input variable, returns e.g. "-24(%rbp)" for the proper value of 24 */
+	static string IR_reg_to_asm(string reg); /**< helper method: inputs a IR reg or input variable, returns e.g. "-24(%rbp)" for the proper value of 24 */
 	void gen_asm_prologue(ostream& o);
 	void gen_asm_epilogue(ostream& o);
 
 	// symbol table methods
-	void add_to_symbol_table(string name, Type t);
+	string add_to_symbol_table(string name, Type t);
 	string create_new_tempvar(Type t);
 	int get_var_index(string name);
 	Type get_var_type(string name);
@@ -126,7 +126,8 @@ class CFG {
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
-	int nextFreeSymbolIndex; /**< to allocate new symbols in the symbol table */
+	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
+	//on commence a 8
 	int nextBBnumber; /**< just for naming */
 	
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
