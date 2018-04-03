@@ -15,7 +15,6 @@ VisitOutput* InitialisationTab::accept(VisitAST* visitor)
 
 
 InitialisationTab::InitialisationTab(){
-  name = nullptr;
   isConst = true;
 }
 

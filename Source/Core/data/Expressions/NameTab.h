@@ -16,5 +16,5 @@ friend class DebugVisit;
 	virtual ~NameTab();
 protected: 
 	Expr* indice;
-
+	//Ajouter Symbole *s
 };

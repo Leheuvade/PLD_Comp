@@ -10,7 +10,10 @@
 using namespace std;
 class ParametreDefinition : public Visitable{
 
-friend class DebugVisit; 
+	friend class DebugVisit;
+	friend class MappingNameVisit;
+	friend class MapperSymbol;
+
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 

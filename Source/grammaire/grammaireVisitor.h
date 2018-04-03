@@ -14,8 +14,7 @@
  * produced by grammaireParser.
  */
 class  grammaireVisitor : public antlr4::tree::AbstractParseTreeVisitor {
-public: 
- 
+public:
 
   /**
    * Visit parse trees produced by grammaireParser.
@@ -37,10 +36,6 @@ public:
     virtual antlrcpp::Any visitInstBreak(grammaireParser::InstBreakContext *context) = 0;
 
     virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *context) = 0;
-
-    virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *context) = 0;
-
-    virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *context) = 0;
 
     virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *context) = 0;
 

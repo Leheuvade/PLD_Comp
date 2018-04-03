@@ -27,13 +27,7 @@
 #include "../data/init_decl/InitDecl.h"
 #include "../data/init_decl/Initialisation.h"
 #include "../data/init_decl/InitialisationTab.h"
-#include "../data/init_decl/InitialisationVal.h"
-#include "../data/init_decl/InstructionDeclaration.h"
-#include "../data/init_decl/InstructionInit.h"
 #include "../data/init_decl/Symbole.h"
-#include "../data/init_decl/VarGlobale.h"
-#include "../data/init_decl/VarGlobaleDeclaration.h"
-#include "../data/init_decl/VarGlobaleInitialisation.h"
 #include "../data/Instructions/InstructionBreak.h"
 #include "../data/Instructions/InstructionControle.h"
 #include "../data/Instructions/InstructionExpr.h"
@@ -48,6 +42,7 @@
 #include "../data/init_decl/Symbole.h"
 #include "VisitOutput.h"
 #include <string>
+#include <Source/Core/data/init_decl/InitialisationVal.h>
 
 class Visitable;
 using namespace std;
@@ -61,11 +56,6 @@ class VisitAST {
 	virtual VisitOutput* visit(Definition *p) = 0;
 	virtual VisitOutput* visit(Parametre *p) = 0;
 	virtual VisitOutput* visit(ParametreDefinition *p) = 0;
-	virtual VisitOutput* visit(OperateurAffectationBinaire p) = 0;
-	virtual VisitOutput* visit(OperateurAffectationUnaire p) = 0;
-	virtual VisitOutput* visit(OperateurBinaire p) = 0;
-	virtual VisitOutput* visit(OperateurUnaire p) = 0;
-	virtual VisitOutput* visit(Type p) = 0;
 	virtual VisitOutput* visit(Affectation *p) = 0;
 	virtual VisitOutput* visit(AffectationBinaire *p) = 0;
 	virtual VisitOutput* visit(AffectationUnaire *p) = 0;
@@ -84,13 +74,8 @@ class VisitAST {
 	virtual VisitOutput* visit(InitDecl *p) = 0;
 	virtual VisitOutput* visit(Initialisation *p) = 0;
 	virtual VisitOutput* visit(InitialisationTab *p) = 0;
-	virtual VisitOutput* visit(InitialisationVal *p) = 0;
-	virtual VisitOutput* visit(InstructionDeclaration *p) = 0;
-	virtual VisitOutput* visit(InstructionInit *p) = 0;
+    virtual VisitOutput* visit(InitialisationVal *p) = 0;
 	virtual VisitOutput* visit(Symbole *p) = 0;
-	virtual VisitOutput* visit(VarGlobale *p) = 0;
-	virtual VisitOutput* visit(VarGlobaleDeclaration *p) = 0;
-	virtual VisitOutput* visit(VarGlobaleInitialisation *p) = 0;
 	virtual VisitOutput* visit(InstructionBreak *p) = 0;
 	virtual VisitOutput* visit(InstructionControle *p) = 0;
 	virtual VisitOutput* visit(InstructionExpr *p) = 0;

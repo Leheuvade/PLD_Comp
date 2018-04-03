@@ -20,12 +20,11 @@ friend class DebugVisit;
   
 	MapperSymbol();
 	virtual ~MapperSymbol();
-	Symbole * findSymbol(Name * name, grammaireParser::EntreeContext *ctxCourant, grammaireParser::BlocContext *ctxBlocCourant);
-	void addSymboleTable(grammaireParser::BlocContext * ctx, Bloc * bloc);
-	void setProgCtx(grammaireParser::ProgrammeContext * programme);
-	void test(Programme * p, grammaireParser::BlocContext * b);
+	Symbole * findDefinition(string name, Programme * p);
+	Symbole * findSymbol(string name, Programme * p, Definition * b);
+	Symbole * findDeclaration(string name, Programme *p, Definition *b);
+	void appelFnctTrue();
 protected:
-	map<grammaireParser::BlocContext *, Bloc *> blocs;
-	grammaireParser::ProgrammeContext * programme;
+	bool appelFnct;
 };
 

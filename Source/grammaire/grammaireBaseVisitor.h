@@ -13,7 +13,7 @@
  * extended to create a visitor which only needs to handle a subset of the available methods.
  */
 class  grammaireBaseVisitor : public grammaireVisitor {
-public: 
+public:
 
   virtual antlrcpp::Any visitEntree(grammaireParser::EntreeContext *ctx) override {
     return visitChildren(ctx);
@@ -48,14 +48,6 @@ public:
   }
 
   virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitVarDecl(grammaireParser::VarDeclContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitVarInit(grammaireParser::VarInitContext *ctx) override {
     return visitChildren(ctx);
   }
 

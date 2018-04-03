@@ -9,7 +9,8 @@
 class Expr;
 
 class InstructionExpr: public InstructionStruct {
-friend class DebugVisit; 
+friend class DebugVisit;
+	friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 

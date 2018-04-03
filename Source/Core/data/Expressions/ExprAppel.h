@@ -10,7 +10,8 @@ class ParametreAppel;
 class Name;
 
 class ExprAppel: public Expr {
-friend class DebugVisit; 
+friend class DebugVisit;
+	friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override; 
 	ExprAppel();
