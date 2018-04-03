@@ -18,10 +18,10 @@ VisitOutput* InitialisationVal::accept(VisitAST* visitor)
 InitialisationVal::InitialisationVal() {
 }
 
-InitialisationVal::InitialisationVal(Type type,Name * name,bool isConst,Val * value):Initialisation(type,name,isConst){
+InitialisationVal::InitialisationVal(Type type,Name * name,bool isConst, Expr * value):Initialisation(type,name,isConst){
     this->value=value;
 }
 
 InitialisationVal::~InitialisationVal(){
-
+	delete value;
 }
