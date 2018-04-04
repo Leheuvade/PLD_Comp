@@ -178,4 +178,14 @@ string CFG::new_BB_name()
 	return "Bloc: " + to_string(nextBBnumber);
 }
 
+BasicBlock * CFG::get_bb_by_name(string name)
+{
+	for (int i = 0; i < bbs.size(); i++) {
+		if (bbs[i]->label == name) {
+			return bbs[i];
+		}
+	}
+	return nullptr;
+}
+
 

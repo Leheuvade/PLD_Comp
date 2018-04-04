@@ -324,7 +324,36 @@ VisitOutput* IRVisit::visit(StructureControle* p)
 
 VisitOutput* IRVisit::visit(StructureIf* p)
 {
-	string val = "StructureIf* p: \n";
+	string val = "";
+	CFG* lastCFG = cfgs[cfgs.size() - 1];
+
+	VisitOutput * v = p->bloc->accept(this);
+	string ifBBName = static_cast<StringOutput*>(v)->val;
+
+	BasicBlock* bIf = lastCFG->get_bb_by_name(ifBBName);
+	BasicBlock* bElse;
+	lastCFG->add_bb(bIf);
+
+	lastCFG->current_bb->exit_true = bIf;
+
+	if (p->elseBloc) {
+		v = p->bloc->accept(this);
+		string elseBBName = static_cast<StringOutput*>(v)->val;
+		bElse = lastCFG->get_bb_by_name(elseBBName);
+		lastCFG->add_bb(bElse);
+		lastCFG->current_bb->exit_false = bElse;
+	}
+
+	string ifFin = lastCFG->new_BB_name();
+	BasicBlock* bFin = new BasicBlock(lastCFG, ifFin);
+	lastCFG->add_bb(bFin);
+
+	bIf->exit_true = bFin;
+	if (p->elseBloc) {
+		bElse->exit_true = bFin;
+	}
+
+	delete v;
 	return new StringOutput(val);
 }
 
@@ -336,9 +365,9 @@ VisitOutput* IRVisit::visit(StructureWhile* p)
 
 VisitOutput* IRVisit::visit(Bloc* p)
 {
-	string val = "";
 	CFG* lastCFG = cfgs[cfgs.size() - 1];
-	lastCFG->add_bb(new BasicBlock(lastCFG, "debutFct"));
+	string bbName = lastCFG->new_BB_name();
+	lastCFG->add_bb(new BasicBlock(lastCFG, bbName));
 	for (int i = 0; i < p->initDecl.size(); i++)
 	{
 		VisitOutput *v = p->initDecl[i]->accept(this);
@@ -349,13 +378,20 @@ VisitOutput* IRVisit::visit(Bloc* p)
 		VisitOutput * v = p->instructions[i]->accept(this);
 		delete v;
 	}
-	return new StringOutput(val);
+	return new StringOutput(bbName);
 }
 
 VisitOutput* IRVisit::visit(BlocStruct* p)
 {
-	string val = "BlocStruct* p: \n";
-	return new StringOutput(val);
+	CFG* lastCFG = cfgs[cfgs.size() - 1];
+	string bbName = lastCFG->new_BB_name();
+	lastCFG->add_bb(new BasicBlock(lastCFG, bbName));
+	for (int i = 0; i < p->instructions.size(); i++)
+	{
+		VisitOutput * v = p->instructions[i]->accept(this);
+		delete v;
+	}
+	return new StringOutput(bbName);
 }
 
 VisitOutput* IRVisit::visit(LeftValue* p)

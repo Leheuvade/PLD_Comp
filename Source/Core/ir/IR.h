@@ -123,6 +123,7 @@ class CFG {
 	// basic block management
 	string new_BB_name();
 	BasicBlock* current_bb;
+	BasicBlock* get_bb_by_name(string name);
 
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
