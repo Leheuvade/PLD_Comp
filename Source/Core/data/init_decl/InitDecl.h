@@ -22,7 +22,7 @@ public:
 
     InitDecl();
 
-    InitDecl(Name * name);
+    InitDecl(Type type, Name * name);
 
     virtual ~InitDecl();
 

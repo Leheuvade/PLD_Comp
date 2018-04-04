@@ -16,8 +16,7 @@ VisitOutput *Initialisation::accept(VisitAST *visitor) {
 Initialisation::Initialisation()  {
 }
 
-Initialisation::Initialisation(Type type, Name *name, bool isConst) : InitDecl(name) {
-    this->type = type;
+Initialisation::Initialisation(Type type, Name *name, bool isConst) : InitDecl(type, name) {
     this->isConst = isConst;
 }
 

@@ -104,21 +104,26 @@ VisitOutput* IRVisit::visit(AffectationBinaire* p)
     string val = "";
     CFG * lastCFG = cfgs[cfgs.size() - 1];
     vector<string> params;
-   string toto = p->leftValue->name->name;
-    toto = lastCFG->getNameOffset(toto);
-    params.push_back(CFG::IR_reg_to_asm(toto));
+    params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
     VisitOutput* v = p->expr->accept(this);
     string rightValue = static_cast<StringOutput*>(v)->val;
     params.push_back(rightValue);
     delete v;
-    //p->leftValue->name->symbole->type mapping Ã  faire
+    //cout<<static_cast<Test>(p->leftValue->name->symbole->type)<<endl;
+	//mapping Ã  faire
     lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);
 	return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(AffectationUnaire* p)
 {
-	string val = "AffectationUnaire* p: \n";
+	string val = "";
+	/*CFG * lastCFG = cfgs[cfgs.size() - 1];
+	vector<string> params;
+	string toto = p->leftValue->name->name;
+	toto = lastCFG->getNameOffset(toto);
+	params.push_back(CFG::IR_reg_to_asm(toto));
+	lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);*/
 	return new StringOutput(val);
 }
 
@@ -192,7 +197,7 @@ VisitOutput* IRVisit::visit(OperationBinaire* p)
 	default:
 		break;
 	}
-	// on retourne l'adresse de la variable temporaire qui stock le résultat de l'opération
+	// on retourne l'adresse de la variable temporaire qui stock le rï¿½sultat de l'opï¿½ration
 	return new StringOutput(addr); 
 }
 
@@ -202,7 +207,7 @@ VisitOutput* IRVisit::visit(OperationUnaire* p)
 	CFG * lastCFG = cfgs[cfgs.size() - 1];
 	VisitOutput * v = p->expr->accept(this);
 
-	// On n'a pas ces opérations unaires dans la liste des instructions IR disponibles mdr
+	// On n'a pas ces opï¿½rations unaires dans la liste des instructions IR disponibles mdr
 	switch (p->op) {
 	case NO:
 		break;

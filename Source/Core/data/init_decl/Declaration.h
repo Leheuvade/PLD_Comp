@@ -25,6 +25,5 @@ public:
     virtual ~Declaration();
 
 protected:
-    Type type;
     bool isConst;
 };

@@ -22,6 +22,5 @@ friend class IRVisit;
 	virtual ~Initialisation();
 
 protected:
-	Type type;
 	bool isConst;
 };

@@ -17,7 +17,7 @@ InitDecl::InitDecl()
 }
 
 
-InitDecl::InitDecl(Name * name)
+InitDecl::InitDecl(Type type, Name * name) : Symbole(type)
 {
 	this->name =name;
 }
