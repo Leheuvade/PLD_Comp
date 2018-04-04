@@ -14,6 +14,7 @@ class CFG;
 class Definition;
 //convention: on place ce tag devant la valeur d'offset dans le nom de variable pour pouvoir le retrouver facilement
 const static string OFFSET_TAG="<offset>";
+static string filename;
 
 
 //! The class for one 3-address instruction

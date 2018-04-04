@@ -12,7 +12,7 @@ IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 void IRInstr::gen_asm(ostream& o)
 {
 	//TODO tenir compte du type
-	o << opToStr(op) << " ";
+	o << "\t\t"<<opToStr(op) << " ";
 	for (int i = 0; i < params.size(); i++)
 	{
 		o << params[i];
@@ -66,19 +66,18 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 
 void BasicBlock::gen_asm(ostream& o)
 {
-	o << this->label << ":" << endl;
+	o <<"\t"<< this->label << ":" << endl;
 	for (int i = 0; i < instrs.size(); i++)
 	{
 		instrs[i]->gen_asm(o);
 	}
-	//TODO add transition between blocks
 
 	if (exit_true) {
-		o << "jump " << exit_true->label << endl;
+		o << "\t\tjump " << exit_true->label << endl;
 		exit_true->gen_asm(o);
 	}
 	if (exit_false) {
-		o << "jump " << exit_false->label << endl;
+		o << "\t\tjump " << exit_false->label << endl;
 		exit_false->gen_asm(o);
 	}
 }
@@ -95,6 +94,7 @@ CFG::CFG(Definition* ast)
 
 void CFG::add_bb(BasicBlock* bb, int index)
 {
+	bb->label += "_" + to_string(nextBBnumber);
 	if (index == -1 || index >= bbs.size()) {
 		bbs.push_back(bb);
 		current_bb = bb;
@@ -109,11 +109,19 @@ void CFG::add_bb(BasicBlock* bb, int index)
 	}
 }
 
+
 void CFG::gen_asm(ostream& o)
 {
 	connectBlocks();
+	o << ".file \""<<filename<<"\"" << endl;
+	o << ".text" << endl;
+	o << ".globl " << ast->name->name << endl;
+	o << ".type " << ast->name->name << ", @function" << endl;
 	o << ast->name->name << ":" << endl;
+	gen_asm_prologue(o);
 	bbs[0]->gen_asm(o);
+	gen_asm_epilogue(o);
+
 }
 
 
