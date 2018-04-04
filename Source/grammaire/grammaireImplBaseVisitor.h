@@ -49,6 +49,8 @@
 using namespace std;
 
 
+class TerminalNode;
+
 /**
 * This class provides an empty implementation of grammaireVisitor, which can be
 * extended to create a visitor which only needs to handle a subset of the available methods.
@@ -207,7 +209,8 @@ public:
 
     virtual antlrcpp::Any visitExprChar(grammaireParser::ExprCharContext *ctx) override {
         cout << "visitExprChar" << endl;
-        return (Expr *) new Char((ctx->CHAR()->getText()).at(0));
+        cout<<ctx->CHAR()->getText().at(1)<<endl;
+        return (Expr *) new Char(ctx->CHAR()->getText().at(1));
     }
 
     virtual antlrcpp::Any visitExprSupOrEqual(grammaireParser::ExprSupOrEqualContext *ctx) override {
@@ -566,7 +569,7 @@ public:
         cout << "visitDefFnct" << endl;
         return new Definition(
                 (Type) visit(ctx->type()),
-                new Name(ctx->NAME()->getText()), 
+                new Name(ctx->NAME()->getText()),
 				(ParametreDefinition *) visit(ctx->parametreDefinition()),
                 (Bloc *) visit(ctx->bloc())
         );
@@ -575,6 +578,7 @@ public:
 
     virtual antlrcpp::Any visitDefProc(grammaireParser::DefProcContext *ctx) override {
         cout << "visitDefProc" << endl;
+        cout<<"hhghghghg "<<endl;
         return new Definition(
                 void_type,
                 new Name(ctx->NAME()->getText()),

@@ -26,6 +26,11 @@ MapperSymbol::~MapperSymbol() {
 
 Symbole *MapperSymbol::findDefinition(string name, Programme *p) {
     //Ce peut être le cas que si definition ou exprAppel est appelé
+    if(name == "putchar")
+    {
+        return nullptr;
+    }
+
     for (int i = 0; i < p->definitions.size(); i++) {
         if (p->definitions[i]->name->name == name) {
         return p->definitions[i];
@@ -71,6 +76,13 @@ Symbole * MapperSymbol::findDeclaration(string name, Programme *p, Definition *b
             return p->varGlobales[i];
         }
     }
+
+    for (int i = 0; i < p->definitions.size(); i++) {
+        if (p->definitions[i]->name->name == name) {
+            return p->definitions[i];
+        }
+    }
+
 
     cerr << "la variable " << name << " est utilisée sans avoir été déclarée" << endl;
     return nullptr;

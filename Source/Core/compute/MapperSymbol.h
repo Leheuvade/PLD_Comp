@@ -28,4 +28,3 @@ friend class IRVisit;
 protected:
 	bool appelFnct;
 };
-

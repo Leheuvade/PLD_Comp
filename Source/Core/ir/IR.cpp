@@ -84,6 +84,10 @@ CFG::CFG(Definition* ast)
 	this->ast = ast;
 }
 
+CFG::CFG()
+{
+}
+
 void CFG::add_bb(BasicBlock* bb,int index)
 {
 	if (index == -1 || index >= bbs.size()) {
