@@ -22,7 +22,6 @@ public:
 	virtual ~Definition();
 
 protected:
-	Type type;
 	Name* name;
 	ParametreDefinition* params;
 	Bloc* bloc;
