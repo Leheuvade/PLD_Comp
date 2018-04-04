@@ -15,9 +15,8 @@ VisitOutput* Declaration::accept(VisitAST* visitor)
 Declaration::Declaration(){
  }
 
-Declaration::Declaration(Type type, Name *name, bool isConst) : InitDecl(name){
+Declaration::Declaration(Type type, Name *name, bool isConst) : InitDecl(type, name){
 
-   this->type = type;
    this->isConst = isConst;
 
  }

@@ -104,14 +104,13 @@ VisitOutput* IRVisit::visit(AffectationBinaire* p)
     string val = "";
     CFG * lastCFG = cfgs[cfgs.size() - 1];
     vector<string> params;
-   string toto = p->leftValue->name->name;
-    toto = lastCFG->getNameOffset(toto);
-    params.push_back(CFG::IR_reg_to_asm(toto));
+    params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
     VisitOutput* v = p->expr->accept(this);
     string rightValue = static_cast<StringOutput*>(v)->val;
     params.push_back(rightValue);
     delete v;
-    //p->leftValue->name->symbole->type mapping à faire
+    //cout<<static_cast<Test>(p->leftValue->name->symbole->type)<<endl;
+	//mapping à faire
     lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);
 	return new StringOutput(val);
 }
