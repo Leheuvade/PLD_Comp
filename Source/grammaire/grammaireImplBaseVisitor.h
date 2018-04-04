@@ -566,7 +566,8 @@ public:
         cout << "visitDefFnct" << endl;
         return new Definition(
                 (Type) visit(ctx->type()),
-                new Name(ctx->NAME()->getText()), (ParametreDefinition *) visit(ctx->parametreDefinition()),
+                new Name(ctx->NAME()->getText()), 
+				(ParametreDefinition *) visit(ctx->parametreDefinition()),
                 (Bloc *) visit(ctx->bloc())
         );
 
