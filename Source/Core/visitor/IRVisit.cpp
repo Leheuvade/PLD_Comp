@@ -60,7 +60,7 @@ VisitOutput* IRVisit::visit(Definition* p)
 	cfgs.push_back(cfg);
 	if (p->name->name == "main")
 	{
-		mainCFG = cfg;//bloc principal qui sera lu à l'execution
+		mainCFG = cfg;//bloc principal qui sera lu ï¿½ l'execution
 	}
 	VisitOutput * v = p->name->accept(this);
 	delete v;
@@ -76,7 +76,7 @@ VisitOutput* IRVisit::visit(Parametre* p)
 	string val = "";
 	CFG* lastCFG = cfgs[cfgs.size() - 1];
 	//TODO get type from mapper
-	lastCFG->add_to_symbol_table(p->name->name, int64_type);
+	lastCFG->add_to_symbol_table(p->name->name, p->type);
 	return new StringOutput(val);
 }
 
@@ -93,13 +93,26 @@ VisitOutput* IRVisit::visit(ParametreDefinition* p)
 
 VisitOutput* IRVisit::visit(Affectation* p)
 {
+
+
 	string val = "Affectation* p: \n";
 	return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(AffectationBinaire* p)
 {
-	string val = "AffectationBinaire* p: \n";
+    string val = "";
+    CFG * lastCFG = cfgs[cfgs.size() - 1];
+    vector<string> params;
+   string toto = p->leftValue->name->name;
+    toto = lastCFG->getNameOffset(toto);
+    params.push_back(CFG::IR_reg_to_asm(toto));
+    VisitOutput* v = p->expr->accept(this);
+    string rightValue = static_cast<StringOutput*>(v)->val;
+    params.push_back(rightValue);
+    delete v;
+    //p->leftValue->name->symbole->type mapping Ã  faire
+    lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);
 	return new StringOutput(val);
 }
 
