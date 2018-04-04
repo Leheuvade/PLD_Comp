@@ -187,6 +187,9 @@ VisitOutput* IRVisit::visit(OperationUnaire* p)
 {
 	string val = "";
 	CFG * lastCFG = cfgs[cfgs.size() - 1];
+	VisitOutput * v = p->expr->accept(this);
+
+	// On n'a pas ces opérations unaires dans la liste des instructions IR disponibles mdr
 	switch (p->op) {
 	case NO:
 		break;
