@@ -1,4 +1,5 @@
 #include "IR.h"
+#include "../data/Definitions/Definition.h"
 
 IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 {
@@ -65,13 +66,21 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 
 void BasicBlock::gen_asm(ostream& o)
 {
-	o << "#debut bloc: " << this << endl;
+	o << this->label << ":" << endl;
 	for (int i = 0; i < instrs.size(); i++)
 	{
 		instrs[i]->gen_asm(o);
 	}
-	o << "#fin bloc: " << this << endl;
+	//TODO add transition between blocks
 
+	if (exit_true) {
+		o << "jump " << exit_true->label << endl;
+		exit_true->gen_asm(o);
+	}
+	if (exit_false) {
+		o << "jump " << exit_false->label << endl;
+		exit_false->gen_asm(o);
+	}
 }
 
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params)
@@ -84,13 +93,14 @@ CFG::CFG(Definition* ast)
 	this->ast = ast;
 }
 
-void CFG::add_bb(BasicBlock* bb,int index)
+void CFG::add_bb(BasicBlock* bb, int index)
 {
 	if (index == -1 || index >= bbs.size()) {
 		bbs.push_back(bb);
 		current_bb = bb;
 		nextBBnumber++;
-	}else
+	}
+	else
 	{
 		vector<BasicBlock*>::iterator here = bbs.begin() + index;
 		bbs.insert(here, bb);
@@ -101,15 +111,9 @@ void CFG::add_bb(BasicBlock* bb,int index)
 
 void CFG::gen_asm(ostream& o)
 {
-	//TODO add transition between blocks
-
-	o << "#debut cfg: " << this << endl;
-	
-	for (int i = 0; i < bbs.size(); i++)
-	{
-		bbs[i]->gen_asm(o);
-	}
-	o << "#fin cfg: " << this << endl;
+	connectBlocks();
+	o << ast->name->name << ":" << endl;
+	bbs[0]->gen_asm(o);
 }
 
 
@@ -170,6 +174,17 @@ Type CFG::get_var_type(string name)
 string CFG::new_BB_name()
 {
 	return "Bloc: " + to_string(nextBBnumber);
+}
+
+void CFG::connectBlocks()
+{
+	for (int i = 0; i < bbs.size() - 1; i++)
+	{
+		if (!bbs[i]->exit_true)//si on a pas de bloc defini, on prend le suivant
+		{
+			bbs[i]->exit_true = bbs[i + 1];
+		}
+	}
 }
 
 

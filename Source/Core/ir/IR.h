@@ -77,6 +77,7 @@ class BasicBlock {
 
 	// No encapsulation whatsoever here. Feel free to do better.
 	BasicBlock* exit_true;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */ 
+	//exit par default
 	BasicBlock* exit_false; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
 	string label; /**< label of the BB, also will be the label in the generated code */
 	CFG* cfg; /** < the CFG where this block belongs */
@@ -122,7 +123,7 @@ class CFG {
 	// basic block management
 	string new_BB_name();
 	BasicBlock* current_bb;
-
+	void connectBlocks();
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
@@ -132,6 +133,8 @@ class CFG {
 	
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 };
+
+
 
 
 
