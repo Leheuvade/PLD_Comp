@@ -148,13 +148,56 @@ VisitOutput* IRVisit::visit(Operation* p)
 
 VisitOutput* IRVisit::visit(OperationBinaire* p)
 {
-	string val = "OperationBinaire* p: \n";
-	return new StringOutput(val);
+	CFG * lastCFG = cfgs[cfgs.size() - 1];
+	VisitOutput * v1 = p->expr1->accept(this);
+	VisitOutput * v2 = p->expr2->accept(this);
+	
+	vector<string> params;
+	string addr = lastCFG->create_new_tempvar(int64_type); //TODO: detect Type
+	params.push_back(addr);
+	params.push_back(static_cast<StringOutput*>(v1)->val);
+	params.push_back(static_cast<StringOutput*>(v2)->val);
+
+	delete v1, v2;
+
+	switch (p->op) {
+	case DIFF:
+		break;
+	case PLUS:
+		lastCFG->current_bb->add_IRInstr(IRInstr::add, int64_type, params);
+		break;
+	case MINUS:
+		lastCFG->current_bb->add_IRInstr(IRInstr::sub, int64_type, params);
+		break;
+	case EEGAL:
+		break;
+	case MULT:
+		lastCFG->current_bb->add_IRInstr(IRInstr::mul, int64_type, params);
+		break;
+	case DIV:
+		break;
+	default:
+		break;
+	}
+	// on retourne l'adresse de la variable temporaire qui stock le résultat de l'opération
+	return new StringOutput(addr); 
 }
 
 VisitOutput* IRVisit::visit(OperationUnaire* p)
 {
-	string val = "OperationUnaire* p: \n";
+	string val = "";
+	CFG * lastCFG = cfgs[cfgs.size() - 1];
+	VisitOutput * v = p->expr->accept(this);
+
+	// On n'a pas ces opérations unaires dans la liste des instructions IR disponibles mdr
+	switch (p->op) {
+	case NO:
+		break;
+	case NO_BIT:
+		break;
+	default: 
+		break;
+	}
 	return new StringOutput(val);
 }
 
