@@ -13,6 +13,7 @@ class InitialisationVal : public Initialisation {
 
 
     friend class DebugVisit;
+friend class IRVisit;
 
     friend class MappingNameVisit;
 
@@ -21,11 +22,11 @@ public:
 
     InitialisationVal();
 
-    InitialisationVal(Type type, Name *name, bool isConst, Val *value);
+    InitialisationVal(Type type, Name *name, bool isConst, Expr *value);
 
     virtual ~InitialisationVal();
 
 protected:
 
-    Val *value;
+    Expr *value;
 };

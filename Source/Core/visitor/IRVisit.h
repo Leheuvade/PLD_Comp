@@ -4,14 +4,15 @@
 
 #pragma once
 #include "VisitAST.h"
+#include "../ir/IR.h"
 
 class InitialisationVal;
 using namespace std;
-class DebugVisit : public VisitAST {
+class IRVisit : public VisitAST {
  public: 
  
-	DebugVisit();
-	virtual ~DebugVisit();
+	 IRVisit();
+	virtual ~IRVisit();
 	virtual VisitOutput* visit(Visitable *p) override;
 	virtual VisitOutput* visit(Programme *p) override;
 	virtual VisitOutput* visit(Definition *p) override;
@@ -49,12 +50,15 @@ class DebugVisit : public VisitAST {
 	virtual VisitOutput* visit(Bloc *p) override;
 	virtual VisitOutput* visit(BlocStruct *p) override;
 	virtual VisitOutput* visit(LeftValue *p) override;
+	inline void setOutName(string str)
+	{
+		fileName = str;
+	}
 
-
-
-
-
-
+protected:
+	vector<CFG*> cfgs;
+	CFG* mainCFG;
+	string fileName="out.asm";
 };
 
 

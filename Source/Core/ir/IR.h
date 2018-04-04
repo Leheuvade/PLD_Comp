@@ -1,16 +1,19 @@
-#ifndef IR_H
-#define IR_H
+#pragma once
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <initializer_list>
+#include "../data/enums/Type.h"
+#include <map>
 
 // Declarations from the parser -- replace with your own
-
+using namespace std;
 class BasicBlock;
 class CFG;
-class DefFonction;
+class Definition;
+//convention: on place ce tag devant la valeur d'offset dans le nom de variable pour pouvoir le retrouver facilement
+const static string OFFSET_TAG="<offset>";
 
 
 //! The class for one 3-address instruction
@@ -38,7 +41,7 @@ class IRInstr {
 	
 	/** Actual code generation */
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this IR instruction */
-	
+	string opToStr(Operation&o);
  private:
 	BasicBlock* bb; /**< The BB this instruction belongs to, which provides a pointer to the CFG this instruction belong to */
 	Operation op;
@@ -46,8 +49,6 @@ class IRInstr {
 	vector<string> params; /**< For 3-op instrs: d, x, y; for ldconst: d, c;  For call: label, d, params;  for wmem and rmem: choose yourself */
 	// if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design. 
 };
-
-
 
 
 
@@ -100,20 +101,20 @@ class BasicBlock {
 class CFG {
  public: 
  
-	CFG(DefFonction* ast);
+	CFG(Definition* ast);
 
-	DefFonction* ast; /**< The AST this CFG comes from */
-	
-	void add_bb(BasicBlock* bb); 
+	Definition* ast; /**< The AST this CFG comes from */
+	//si l'index est a -1, on ajoute à la fin
+	void add_bb(BasicBlock* bb,int index=-1); 
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream& o);
-	string IR_reg_to_asm(string reg); /**< helper method: inputs a IR reg or input variable, returns e.g. "-24(%rbp)" for the proper value of 24 */
+	static string IR_reg_to_asm(string reg); /**< helper method: inputs a IR reg or input variable, returns e.g. "-24(%rbp)" for the proper value of 24 */
 	void gen_asm_prologue(ostream& o);
 	void gen_asm_epilogue(ostream& o);
 
 	// symbol table methods
-	void add_to_symbol_table(string name, Type t);
+	string add_to_symbol_table(string name, Type t);
 	string create_new_tempvar(Type t);
 	int get_var_index(string name);
 	Type get_var_type(string name);
@@ -123,13 +124,14 @@ class CFG {
 	BasicBlock* current_bb;
 
  protected:
-	map <string, Type> SymbolType; /**< part of the symbol table  */
+	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
-	int nextFreeSymbolIndex; /**< to allocate new symbols in the symbol table */
+	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
+	//on commence a 8
 	int nextBBnumber; /**< just for naming */
 	
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 };
 
 
-#endif
+

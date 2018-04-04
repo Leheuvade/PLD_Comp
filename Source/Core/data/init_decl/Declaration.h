@@ -13,6 +13,7 @@ class Declaration : public InitDecl {
     friend class MapperSymbol;
     friend class MappingNameVisit;
     friend class DebugVisit;
+friend class IRVisit;
 
 public:
     virtual VisitOutput *accept(VisitAST *visitor) override;

@@ -4,6 +4,7 @@
 
 #include "DebugVisit.h"
 #include "StringOutput.h"
+#include "../data/init_decl/InitialisationVal.h"
 
 DebugVisit::DebugVisit()
 {
@@ -26,11 +27,17 @@ VisitOutput* DebugVisit::visit(Programme *p)
 	string val = "Programme: \n\n";
 	for (int i = 0; i < p->varGlobales.size(); i++)
 	{
-		val += static_cast<StringOutput*>(p->varGlobales[i]->accept(this))->val;
+		VisitOutput *v = p->varGlobales[i]->accept(this);
+		val += static_cast<StringOutput*>(v)->val;
+		delete v;
+
 	}
 	for (int i = 0; i < p->definitions.size(); i++)
 	{
-		val += static_cast<StringOutput*>(p->definitions[i]->accept(this))->val;
+		VisitOutput *v = p->definitions[i]->accept(this);
+		val += static_cast<StringOutput*>(v)->val;
+		delete v;
+
 	}
 	return new StringOutput(val);
 }
@@ -38,12 +45,32 @@ VisitOutput* DebugVisit::visit(Programme *p)
 VisitOutput* DebugVisit::visit(Definition* p)
 {
 	string val = "Definition* p: \n";
+	val += std::to_string((int)p->type) + "\n";
+	VisitOutput *v = p->name->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
+
+	v = p->params->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
+
+	v = p->bloc->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
+
+
 	return new StringOutput(val);
 }
 
 VisitOutput* DebugVisit::visit(Parametre* p)
 {
 	string val = "Parametre* p: \n";
+	val += std::to_string((int)p->type) + "\n";
+	VisitOutput *v = p->name->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
+
+	val += "hasBracket: " + (p->hasBrackets) ? "true\n" : "false\n";
 	return new StringOutput(val);
 }
 
@@ -91,8 +118,8 @@ VisitOutput* DebugVisit::visit(ExprAppel* p)
 
 VisitOutput* DebugVisit::visit(Name* p)
 {
-	string val = "Name* p:"+p->name;
-			//to_string((int)p->symbole)+" \n";
+	string val = "Name* p:" + p->name;
+	//to_string((int)p->symbole)+" \n";
 	return new StringOutput(val);
 }
 
@@ -153,8 +180,11 @@ VisitOutput* DebugVisit::visit(InitDecl* p)
 VisitOutput* DebugVisit::visit(Initialisation* p)
 {
 	string val = "Initialisation* p: \n";
-	val +=std::to_string((int)p->type);
-	val += static_cast<StringOutput*>(p->name->accept(this))->val;
+	val += std::to_string((int)p->type);
+	VisitOutput *v = p->name->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
+
 
 	return new StringOutput(val);
 }

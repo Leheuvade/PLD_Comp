@@ -6,7 +6,8 @@
 #pragma once
 
 #include <vector>
-#include <Source/Core/data/init_decl/InitDecl.h>
+#include "../visitor/Visitable.h"
+#include "init_decl/InitDecl.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Programme : public Visitable {
 	friend class MapperSymbol;
 	friend class VisitAST;
 	friend class DebugVisit;
+friend class IRVisit;
 	friend class MappingNameVisit;
 public:
 	Programme();
