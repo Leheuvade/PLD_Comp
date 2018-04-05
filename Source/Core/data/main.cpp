@@ -3,7 +3,7 @@
 #include <fstream>
 #include <streambuf>
 
-#include "Source/Core/visitor/MappingNameVisit.h"
+#include "../visitor/MappingNameVisit.h"
 
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"

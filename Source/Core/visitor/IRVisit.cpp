@@ -341,20 +341,18 @@ VisitOutput* IRVisit::visit(StructureIf* p)
 
 	lastCFG->current_bb->exit_true = bIf;
 
+	string ifFin = lastCFG->new_BB_name();
+	BasicBlock* bFin = new BasicBlock(lastCFG, ifFin);
+	lastCFG->add_bb(bFin);
+
+	bIf->exit_true = bFin;
+
 	if (p->elseBloc) {
 		v = p->bloc->accept(this);
 		string elseBBName = static_cast<StringOutput*>(v)->val;
 		bElse = lastCFG->get_bb_by_name(elseBBName);
 		lastCFG->add_bb(bElse);
 		lastCFG->current_bb->exit_false = bElse;
-	}
-
-	string ifFin = lastCFG->new_BB_name();
-	BasicBlock* bFin = new BasicBlock(lastCFG, ifFin);
-	lastCFG->add_bb(bFin);
-
-	bIf->exit_true = bFin;
-	if (p->elseBloc) {
 		bElse->exit_true = bFin;
 	}
 

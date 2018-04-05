@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Source/Core/data/enums/Type.h"
+#include "../enums/Type.h"
 #include "../../visitor/Visitable.h"
 
 
