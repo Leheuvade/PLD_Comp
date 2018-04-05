@@ -251,9 +251,9 @@ VisitOutput* MappingNameVisit::visit(InstructionStruct* p)
 VisitOutput* MappingNameVisit::visit(ElseBloc* p)
 {
 	string val = "ElseBloc* p: \n";
-	VisitOutput* v = p->bloc->accept(this);
-	delete v;
-	
+    VisitOutput *v = p->bloc->accept(this);
+    val += static_cast<StringOutput*>(v)->val;
+    delete v;
 	return new StringOutput(val);
 }
 
@@ -266,15 +266,15 @@ VisitOutput* MappingNameVisit::visit(StructureControle* p)
 VisitOutput* MappingNameVisit::visit(StructureIf* p)
 {
 	string val = "StructureIf* p: \n";
-	VisitOutput* v = p->condition->accept(this);
-	delete v;
-	 v = p->bloc->accept(this);
-	 delete v;
-	if (p->elseBloc) {
-		 v = p->condition->accept(this);
-		 delete v;
-	}
-
+    VisitOutput *v =  p->bloc->accept(this);
+    val += static_cast<StringOutput*>(v)->val;
+    delete v;
+    if(p->elseBloc!= nullptr)
+    {
+        VisitOutput *v =  p->elseBloc->accept(this);
+        val += static_cast<StringOutput*>(v)->val;
+        delete v;
+    }
 	return new StringOutput(val);
 }
 
@@ -304,11 +304,13 @@ VisitOutput* MappingNameVisit::visit(Bloc* p)
 VisitOutput* MappingNameVisit::visit(BlocStruct* p)
 {
 	string val = "BlocStruct* p: \n";
-	VisitOutput* v;
-	for (int i = 0; i <p->instructions.size() ; i++) {
-		v = p->instructions[i]->accept(this);
-		delete v;
-	}
+    for (int i = 0; i < p->instructions.size(); i++)
+    {
+        VisitOutput *v = p->instructions[i]->accept(this);
+        val += static_cast<StringOutput*>(v)->val;
+        delete v;
+
+    }
 	return new StringOutput(val);
 }
 
