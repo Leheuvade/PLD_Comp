@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "Source/Core/data/enums/Type.h"
 #include "../../visitor/Visitable.h"
+#include "../enums/Type.h"
 
 
 class Symbole : public Visitable {

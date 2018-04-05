@@ -140,9 +140,9 @@ string CFG::IR_reg_to_asm(string reg)
 void CFG::gen_asm_prologue(ostream& o)
 {
 	int size = nextFreeSymbolIndex;//on recupere la taille totale (dernier offset + 8)
-	o << "pushq %rbp" << endl;//je sais pas ce que ca fait
-	o << "movq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
-	o << "subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
+	o << "\tpushq %rbp" << endl;//je sais pas ce que ca fait
+	o << "\tmovq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
+	o << "\tsubq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
 
 }
 
@@ -161,6 +161,8 @@ string CFG::add_to_symbol_table(string name, Type t)
 	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer � la prochaine case mem de 64bits)
 	return name;//on renvoie le nom avec l'offset
 }
+
+
 
 string CFG::getNameOffset(string name)
 {

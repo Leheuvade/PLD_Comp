@@ -36,18 +36,26 @@ VisitOutput* IRVisit::visit(Programme *p)
 		VisitOutput *v = (p->definitions[i]->accept(this));
 		delete v;
 	}
-	//on cherche le CFG de main et on return son assembleur
+	ofstream outputFile(fileName);
+
 	if (mainCFG)
 	{
-		ofstream outputFile(fileName);
 		mainCFG->gen_asm(outputFile);
-		outputFile.close();
 		val += "compile successfull";
 	}
 	else
 	{
 		val += "no main fct";
 	}
+	for (int i = 0; i < cfgs.size(); i++)
+	{
+		if (cfgs[i] != mainCFG) {
+			cfgs[i]->gen_asm(outputFile);
+		}
+
+	}
+	outputFile.close();
+
 	return new StringOutput(val);
 }
 
