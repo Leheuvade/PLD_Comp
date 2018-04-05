@@ -254,10 +254,43 @@ VisitOutput* IRVisit::visit(ParametreAppel* p)
 		listeParams.push_back(static_cast<StringOutput*>(v)->val);
 		delete v;
 	}
-	for (int i = 0; i<nbParams; i++)
+	for (int i = nbParams-1; i>=0; i--)
 	{
 		CFG * lastCFG = cfgs[cfgs.size() - 1];
-		//lastCFG->
+		vector<string> params;
+		string reg = "";
+		if(i>=6)
+		{
+			//TODO use stack for other params
+		}else
+		{
+			switch (i)
+			{
+				case 0:
+					reg += "rdi";
+					break;
+				case 1:
+					reg += "rsi";
+					break;
+				case 2:
+					reg += "rdx";
+					break;
+				case 3:
+					reg += "rcx";
+					break;
+				case 4:
+					reg += "r8";
+					break;
+				case 5:
+					reg += "r9";
+					break;
+			}
+		}
+		params.push_back(reg);
+		params.push_back(listeParams[i]);
+		
+		//TODO get type
+		lastCFG->current_bb->add_IRInstr(IRInstr::mov, int64_type, params);
 	}
 	return new StringOutput(val);
 }
@@ -347,7 +380,16 @@ VisitOutput* IRVisit::visit(InstructionExpr* p)
 
 VisitOutput* IRVisit::visit(InstructionReturn* p)
 {
-	string val = "InstructionReturn* p: \n";
+	string val = "";
+	CFG* lastCFG = cfgs[cfgs.size() - 1];
+	VisitOutput *v=p->expr->accept(this);
+	vector<string> params;
+	params.push_back("eax");
+	params.push_back(CFG::IR_reg_to_asm(static_cast<StringOutput*>(v)->val));
+	delete v;
+	//TODO get type
+	lastCFG->current_bb->add_IRInstr(IRInstr::mov, int64_type, params);
+	lastCFG->returnFct();
 	return new StringOutput(val);
 }
 

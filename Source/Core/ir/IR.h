@@ -33,7 +33,10 @@ class IRInstr {
 		call,
 		cmp_eq,
 		cmp_lt,
-		cmp_le
+		cmp_le,
+		mov,
+		leave,
+		ret
 	} Operation;
 
 
@@ -115,6 +118,7 @@ class CFG {
 	static string IR_reg_to_asm(string reg); /**< helper method: inputs a IR reg or input variable, returns e.g. "-24(%rbp)" for the proper value of 24 */
 	void gen_asm_prologue(ostream& o);
 	void gen_asm_epilogue(ostream& o);
+	void returnFct();
 
 	// symbol table methods
 	string add_to_symbol_table(string name, Type t);

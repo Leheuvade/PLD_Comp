@@ -12,7 +12,7 @@ IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 void IRInstr::gen_asm(ostream& o)
 {
 	//TODO tenir compte du type
-	o << "\t\t"<<opToStr(op) << " ";
+	o << "\t\t" << opToStr(op) << " ";
 	for (int i = 0; i < params.size(); i++)
 	{
 		o << params[i];
@@ -52,6 +52,12 @@ string IRInstr::opToStr(Operation& o)
 
 	case cmp_le:
 		return "cmp_le";
+	case mov:
+		return "mov";
+	case leave:
+		return "leave";
+	case ret:
+		return "ret";
 	default:
 		return "";
 	}
@@ -66,20 +72,23 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 
 void BasicBlock::gen_asm(ostream& o)
 {
-	o <<"\t"<< this->label << ":" << endl;
+	o << "\t" << this->label << ":" << endl;
 	for (int i = 0; i < instrs.size(); i++)
 	{
 		instrs[i]->gen_asm(o);
 	}
 
-	if (exit_true) {
+	if (exit_true && !exit_false) {
 		o << "\t\tjump " << exit_true->label << endl;
 		exit_true->gen_asm(o);
-	}
-	if (exit_false) {
-		o << "\t\tjump " << exit_false->label << endl;
+	}else if(exit_true && exit_false)
+	{
+		//le jump conditionnel est fait dans le visiteur
+		exit_true->gen_asm(o);
 		exit_false->gen_asm(o);
+
 	}
+	
 }
 
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params)
@@ -96,7 +105,7 @@ CFG::CFG()
 {
 }
 
-void CFG::add_bb(BasicBlock* bb,int index)
+void CFG::add_bb(BasicBlock* bb, int index)
 {
 	bb->label += "_" + to_string(nextBBnumber);
 	if (index == -1 || index >= bbs.size()) {
@@ -117,7 +126,7 @@ void CFG::add_bb(BasicBlock* bb,int index)
 void CFG::gen_asm(ostream& o)
 {
 	connectBlocks();
-	o << ".file \""<<filename<<"\"" << endl;
+	o << ".file \"" << filename << "\"" << endl;
 	o << ".text" << endl;
 	o << ".globl " << ast->name->name << endl;
 	o << ".type " << ast->name->name << ", @function" << endl;
@@ -156,12 +165,20 @@ void CFG::gen_asm_epilogue(ostream& o)
 	o << "ret" << endl;
 }
 
+void CFG::returnFct()
+{
+	vector<string> params;
+	current_bb->add_IRInstr(IRInstr::leave, int64_type, params);
+	current_bb->add_IRInstr(IRInstr::ret, int64_type, params);
+
+}
+
 string CFG::add_to_symbol_table(string name, Type t)
 {
 	SymbolType.insert_or_assign(name, t);
 	SymbolIndex.insert_or_assign(name, nextFreeSymbolIndex);
-    name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
-    cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
+	name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
+	cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
 	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer � la prochaine case mem de 64bits)
 	return name;//on renvoie le nom avec l'offset
 }
@@ -176,7 +193,7 @@ string CFG::getNameOffset(string name)
 
 string CFG::create_new_tempvar(Type t)
 {
-	string name = "!tmp" +OFFSET_TAG+ to_string(nextFreeSymbolIndex);//on cree une variable temporaire avec comme nom son offset
+	string name = "!tmp" + OFFSET_TAG + to_string(nextFreeSymbolIndex);//on cree une variable temporaire avec comme nom son offset
 	add_to_symbol_table(name, t);//on l'ajoute
 	return name;//on retourne ce nom
 }
