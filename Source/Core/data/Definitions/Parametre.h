@@ -19,7 +19,6 @@ friend class IRVisit;
 	~Parametre();
 
 protected:
-	Type type;
 	Name *name;
 	bool hasBrackets;
 };

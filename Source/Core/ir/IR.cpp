@@ -154,13 +154,19 @@ void CFG::gen_asm_epilogue(ostream& o)
 
 string CFG::add_to_symbol_table(string name, Type t)
 {
-	name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
-	cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
 	SymbolType.insert_or_assign(name, t);
 	SymbolIndex.insert_or_assign(name, nextFreeSymbolIndex);
-	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer à la prochaine case mem de 64bits)
+    name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
+    cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
+	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer ï¿½ la prochaine case mem de 64bits)
 	return name;//on renvoie le nom avec l'offset
 }
+
+string CFG::getNameOffset(string name)
+{
+	return name += OFFSET_TAG + to_string(get_var_index(name));
+}
+
 
 string CFG::create_new_tempvar(Type t)
 {

@@ -106,7 +106,7 @@ class CFG {
 	CFG(Definition* ast);
 
 	Definition* ast; /**< The AST this CFG comes from */
-	//si l'index est a -1, on ajoute à la fin
+	//si l'index est a -1, on ajoute ï¿½ la fin
 	void add_bb(BasicBlock* bb,int index=-1); 
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
@@ -120,6 +120,7 @@ class CFG {
 	string create_new_tempvar(Type t);
 	int get_var_index(string name);
 	Type get_var_type(string name);
+	string getNameOffset(string name);
 
 	// basic block management
 	string new_BB_name();
@@ -133,6 +134,7 @@ class CFG {
 	int nextBBnumber; /**< just for naming */
 	
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
+
 };
 
 

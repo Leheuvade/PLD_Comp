@@ -551,24 +551,23 @@ public:
 
     virtual antlrcpp::Any visitLeftValueVar(grammaireParser::LeftValueVarContext *ctx) override {
         cout << "visitLeftValueVar" << endl;
-        return (LeftValue *)
-                new Name(ctx->NAME()->getText());
+        return new LeftValue(new Name(ctx->NAME()->getText()));
     }
 
     virtual antlrcpp::Any visitLeftValueTab(grammaireParser::LeftValueTabContext *ctx) override {
         cout << "visitLeftValueTab" << endl;
-        return (LeftValue *)
-                new NameTab(
+        return new LeftValue(new NameTab(
                         ctx->NAME()->getText(),
                         (Expr *) visit(ctx->expr())
-                );
+                ));
     }
 
     virtual antlrcpp::Any visitDefFnct(grammaireParser::DefFnctContext *ctx) override {
         cout << "visitDefFnct" << endl;
         return new Definition(
                 (Type) visit(ctx->type()),
-                new Name(ctx->NAME()->getText()), (ParametreDefinition *) visit(ctx->parametreDefinition()),
+                new Name(ctx->NAME()->getText()), 
+				(ParametreDefinition *) visit(ctx->parametreDefinition()),
                 (Bloc *) visit(ctx->bloc())
         );
 
