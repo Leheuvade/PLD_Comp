@@ -112,8 +112,8 @@ VisitOutput* IRVisit::visit(AffectationBinaire* p)
     params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
     VisitOutput* v = p->expr->accept(this);
     string rightValue = static_cast<StringOutput*>(v)->val;
-    cout<<rightValue<<endl;
-    params.push_back(rightValue);
+    cout<< CFG::IR_reg_to_asm(rightValue) <<endl;
+    params.push_back(CFG::IR_reg_to_asm(rightValue));
     delete v;
     lastCFG->current_bb->add_IRInstr(IRInstr::wmem, p->leftValue->name->symbole->type, params);
 	return new StringOutput(val);
@@ -257,7 +257,7 @@ VisitOutput* IRVisit::visit(ParametreAppel* p)
 	for (int i = 0; i<nbParams; i++)
 	{
 		CFG * lastCFG = cfgs[cfgs.size() - 1];
-		lastCFG->
+		//lastCFG->
 	}
 	return new StringOutput(val);
 }
