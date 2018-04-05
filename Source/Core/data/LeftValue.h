@@ -10,6 +10,7 @@
 class LeftValue : public Visitable {
 	friend class DebugVisit;
 friend class IRVisit;
+friend class MappingNameVisit;
 	friend class MappingNameVisit;
 
  public: 

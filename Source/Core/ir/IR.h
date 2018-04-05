@@ -33,7 +33,12 @@ class IRInstr {
 		call,
 		cmp_eq,
 		cmp_lt,
-		cmp_le
+		cmp_le,
+		movq,
+		leave,
+		ret,
+		cmpq,
+		je
 	} Operation;
 
 
@@ -77,9 +82,9 @@ class BasicBlock {
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
 
 	// No encapsulation whatsoever here. Feel free to do better.
-	BasicBlock* exit_true;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */
+	BasicBlock* exit_true = nullptr;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */
 	//exit par default
-	BasicBlock* exit_false; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
+	BasicBlock* exit_false = nullptr; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
 	string label; /**< label of the BB, also will be the label in the generated code */
 	CFG* cfg; /** < the CFG where this block belongs */
 	vector<IRInstr*> instrs; /** < the instructions themselves. */
@@ -134,7 +139,7 @@ class CFG {
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
 	//on commence a 8
-	int nextBBnumber; /**< just for naming */
+	static int nextBBnumber; /**< just for naming */
 
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 

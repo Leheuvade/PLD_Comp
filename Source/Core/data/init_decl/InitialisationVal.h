@@ -15,6 +15,7 @@ class InitialisationVal : public Initialisation {
     friend class DebugVisit;
 
     friend class IRVisit;
+friend class MappingNameVisit;
 
     friend class MappingNameVisit;
 
