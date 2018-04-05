@@ -196,7 +196,7 @@ VisitOutput* IRVisit::visit(OperationBinaire* p)
 	
 	vector<string> params;
 	string addr = lastCFG->create_new_tempvar(int64_type); //TODO: detect Type
-	params.push_back(addr);
+	params.push_back(CFG::IR_reg_to_asm(addr));
 	params.push_back(static_cast<StringOutput*>(v1)->val);
 	params.push_back(static_cast<StringOutput*>(v2)->val);
 
