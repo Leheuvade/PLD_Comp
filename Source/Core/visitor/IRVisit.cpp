@@ -81,7 +81,6 @@ VisitOutput* IRVisit::visit(Parametre* p)
 {
 	string val = "";
 	CFG* lastCFG = cfgs[cfgs.size() - 1];
-	//TODO get type from mapper
 	lastCFG->add_to_symbol_table(p->name->name, p->type);
 	return new StringOutput(val);
 }
@@ -235,7 +234,21 @@ VisitOutput* IRVisit::visit(OperationUnaire* p)
 
 VisitOutput* IRVisit::visit(ParametreAppel* p)
 {
-	string val = "ParametreAppel* p: \n";
+	string val = "";
+	vector<string> listeParams;
+	int nbParams = p->parameters.size();
+	VisitOutput* v;
+	for(int i = 0;i<nbParams;i++)
+	{
+		v = p->parameters[i]->accept(this);
+		listeParams.push_back(static_cast<StringOutput*>(v)->val);
+		delete v;
+	}
+	for (int i = 0; i<nbParams; i++)
+	{
+		CFG * lastCFG = cfgs[cfgs.size() - 1];
+		lastCFG->
+	}
 	return new StringOutput(val);
 }
 
