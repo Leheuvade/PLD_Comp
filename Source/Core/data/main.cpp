@@ -8,7 +8,7 @@
 #include "antlr4-runtime.h"
 #include "../../grammaire/grammaireLexer.h"
 #include "../../grammaire/grammaireImplBaseVisitor.h"
-#include "../visitor/DebugVisit.h"
+#include "../visitor/MappingNameVisit.h"
 
 #include "dotexport.h"
 #include "../visitor/StringOutput.h"

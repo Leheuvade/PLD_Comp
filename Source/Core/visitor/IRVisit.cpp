@@ -81,7 +81,6 @@ VisitOutput* IRVisit::visit(Parametre* p)
 {
 	string val = "";
 	CFG* lastCFG = cfgs[cfgs.size() - 1];
-	//TODO get type from mapper
 	lastCFG->add_to_symbol_table(p->name->name, p->type);
 	return new StringOutput(val);
 }
@@ -113,8 +112,8 @@ VisitOutput* IRVisit::visit(AffectationBinaire* p)
     params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
     VisitOutput* v = p->expr->accept(this);
     string rightValue = static_cast<StringOutput*>(v)->val;
-    cout<<rightValue<<endl;
-    params.push_back(rightValue);
+    cout<< CFG::IR_reg_to_asm(rightValue) <<endl;
+    params.push_back(CFG::IR_reg_to_asm(rightValue));
     delete v;
     lastCFG->current_bb->add_IRInstr(IRInstr::wmem, p->leftValue->name->symbole->type, params);
 	return new StringOutput(val);
@@ -196,7 +195,7 @@ VisitOutput* IRVisit::visit(OperationBinaire* p)
 	
 	vector<string> params;
 	string addr = lastCFG->create_new_tempvar(int64_type); //TODO: detect Type
-	params.push_back(addr);
+	params.push_back(CFG::IR_reg_to_asm(addr));
 	params.push_back(static_cast<StringOutput*>(v1)->val);
 	params.push_back(static_cast<StringOutput*>(v2)->val);
 
@@ -245,7 +244,21 @@ VisitOutput* IRVisit::visit(OperationUnaire* p)
 
 VisitOutput* IRVisit::visit(ParametreAppel* p)
 {
-	string val = "ParametreAppel* p: \n";
+	string val = "";
+	vector<string> listeParams;
+	int nbParams = p->parameters.size();
+	VisitOutput* v;
+	for(int i = 0;i<nbParams;i++)
+	{
+		v = p->parameters[i]->accept(this);
+		listeParams.push_back(static_cast<StringOutput*>(v)->val);
+		delete v;
+	}
+	for (int i = 0; i<nbParams; i++)
+	{
+		CFG * lastCFG = cfgs[cfgs.size() - 1];
+		//lastCFG->
+	}
 	return new StringOutput(val);
 }
 
@@ -429,5 +442,6 @@ VisitOutput* IRVisit::visit(BlocStruct* p)
 VisitOutput* IRVisit::visit(LeftValue* p)
 {
 	string val = "LeftValue* p: \n";
+
 	return new StringOutput(val);
 }
