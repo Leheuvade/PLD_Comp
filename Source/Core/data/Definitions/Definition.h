@@ -15,6 +15,7 @@ class Bloc;
 class Definition : public Symbole {
 	friend class MapperSymbol;
 	friend class DebugVisit;
+	friend class CFG;
 friend class IRVisit;
     friend class MappingNameVisit;
 public: 

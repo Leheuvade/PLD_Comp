@@ -1,4 +1,5 @@
 #include "IR.h"
+#include "../data/Definitions/Definition.h"
 
 IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 {
@@ -11,7 +12,7 @@ IRInstr::IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params)
 void IRInstr::gen_asm(ostream& o)
 {
 	//TODO tenir compte du type
-	o << opToStr(op) << " ";
+	o << "\t\t"<<opToStr(op) << " ";
 	for (int i = 0; i < params.size(); i++)
 	{
 		o << params[i];
@@ -65,13 +66,20 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 
 void BasicBlock::gen_asm(ostream& o)
 {
-	o << "#debut bloc: " << this << endl;
+	o <<"\t"<< this->label << ":" << endl;
 	for (int i = 0; i < instrs.size(); i++)
 	{
 		instrs[i]->gen_asm(o);
 	}
-	o << "#fin bloc: " << this << endl;
 
+	if (exit_true) {
+		o << "\t\tjump " << exit_true->label << endl;
+		exit_true->gen_asm(o);
+	}
+	if (exit_false) {
+		o << "\t\tjump " << exit_false->label << endl;
+		exit_false->gen_asm(o);
+	}
 }
 
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params)
@@ -90,11 +98,13 @@ CFG::CFG()
 
 void CFG::add_bb(BasicBlock* bb,int index)
 {
+	bb->label += "_" + to_string(nextBBnumber);
 	if (index == -1 || index >= bbs.size()) {
 		bbs.push_back(bb);
 		current_bb = bb;
 		nextBBnumber++;
-	}else
+	}
+	else
 	{
 		vector<BasicBlock*>::iterator here = bbs.begin() + index;
 		bbs.insert(here, bb);
@@ -103,17 +113,19 @@ void CFG::add_bb(BasicBlock* bb,int index)
 	}
 }
 
+
 void CFG::gen_asm(ostream& o)
 {
-	//TODO add transition between blocks
+	connectBlocks();
+	o << ".file \""<<filename<<"\"" << endl;
+	o << ".text" << endl;
+	o << ".globl " << ast->name->name << endl;
+	o << ".type " << ast->name->name << ", @function" << endl;
+	o << ast->name->name << ":" << endl;
+	gen_asm_prologue(o);
+	bbs[0]->gen_asm(o);
+	gen_asm_epilogue(o);
 
-	o << "#debut cfg: " << this << endl;
-	
-	for (int i = 0; i < bbs.size(); i++)
-	{
-		bbs[i]->gen_asm(o);
-	}
-	o << "#fin cfg: " << this << endl;
 }
 
 
@@ -132,9 +144,9 @@ string CFG::IR_reg_to_asm(string reg)
 void CFG::gen_asm_prologue(ostream& o)
 {
 	int size = nextFreeSymbolIndex;//on recupere la taille totale (dernier offset + 8)
-	o << "pushq %rbp" << endl;//je sais pas ce que ca fait
-	o << "movq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
-	o << "subq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
+	o << "\tpushq %rbp" << endl;//je sais pas ce que ca fait
+	o << "\tmovq %rsp, %rbp" << endl;//deplace le rbp au niveau du rsp
+	o << "\tsubq $" << size << ", %rsp" << endl;//decale le rsp de size. (allocation pour les var temp)
 
 }
 
@@ -153,6 +165,8 @@ string CFG::add_to_symbol_table(string name, Type t)
 	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer � la prochaine case mem de 64bits)
 	return name;//on renvoie le nom avec l'offset
 }
+
+
 
 string CFG::getNameOffset(string name)
 {
@@ -183,3 +197,23 @@ string CFG::new_BB_name()
 }
 
 
+BasicBlock * CFG::get_bb_by_name(string name)
+{
+	for (int i = 0; i < bbs.size(); i++) {
+		if (bbs[i]->label == name) {
+			return bbs[i];
+		}
+	}
+	return nullptr;
+}
+
+void CFG::connectBlocks()
+{
+	for (int i = 0; i < bbs.size() - 1; i++)
+	{
+		if (!bbs[i]->exit_true)//si on a pas de bloc defini, on prend le suivant
+		{
+			bbs[i]->exit_true = bbs[i + 1];
+		}
+	}
+}

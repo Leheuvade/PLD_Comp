@@ -15,6 +15,8 @@ class Name : public Expr {
 
     friend class DebugVisit;
 
+		friend class CFG;
+
     friend class IRVisit;
 
     friend class MappingNameVisit;
