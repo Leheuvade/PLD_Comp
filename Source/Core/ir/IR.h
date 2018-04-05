@@ -33,7 +33,12 @@ class IRInstr {
 		call,
 		cmp_eq,
 		cmp_lt,
-		cmp_le
+		cmp_le,
+		movq,
+		leave,
+		ret,
+		cmpq,
+		je
 	} Operation;
 
 
@@ -134,7 +139,7 @@ class CFG {
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
 	//on commence a 8
-	int nextBBnumber; /**< just for naming */
+	static int nextBBnumber; /**< just for naming */
 
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 

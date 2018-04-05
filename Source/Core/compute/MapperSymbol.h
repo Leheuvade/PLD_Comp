@@ -16,7 +16,8 @@ class Name;
 using namespace std;
 class MapperSymbol {
 friend class DebugVisit;
-friend class IRVisit; 
+friend class IRVisit;
+friend class MappingNameVisit; 
  public: 
   
 	MapperSymbol();
