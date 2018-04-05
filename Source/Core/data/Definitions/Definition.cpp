@@ -4,10 +4,7 @@
 
 
 #include "Definition.h"
-#include "ParametreDefinition.h"
-#include "../enums/Type.h"
 #include "../Bloc.h"
-#include "../Expressions/Name.h" 
 #include "../../visitor/VisitAST.h"
 
 VisitOutput* Definition::accept(VisitAST* visitor)

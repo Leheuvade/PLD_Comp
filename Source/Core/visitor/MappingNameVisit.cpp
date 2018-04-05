@@ -21,13 +21,6 @@ VisitOutput* MappingNameVisit::visit(Programme *p)
 {
 	this->programme = p;
 	string val = "Programme: \n\n";
-	for (int i = 0; i < p->varGlobales.size(); i++)
-	{
-		VisitOutput * v = p->varGlobales[i]->accept(this);
-		val += static_cast<StringOutput*>(v)->val;
-		delete v;
-
-	}
 	for (int i = 0; i < p->definitions.size(); i++)
 	{
 		VisitOutput *v = p->definitions[i]->accept(this);
@@ -42,32 +35,15 @@ VisitOutput* MappingNameVisit::visit(Definition* p)
 {
 	this->blocCourant = p;
 	string val = "Definition* p: \n";
-	val += "Type:" + std::to_string(static_cast<Type>((int)p->type)) + " \n";
-	VisitOutput *v = p->params->accept(this);
+	VisitOutput * v = p->bloc->accept(this);
 	val += static_cast<StringOutput*>(v)->val;
 	delete v;
-
-	v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	v = p->bloc->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	p->name->setSymbol(p);
 	return new StringOutput(val);
 }
 
 VisitOutput* MappingNameVisit::visit(Parametre* p)
 {
 	string val = "Parametre* p: \n";
-	val += "Type:" + std::to_string(static_cast<Type>((int)p->type)) + " \n";
-	VisitOutput *v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	p->name->setSymbol(p);
 	return new StringOutput(val);
 }
 
@@ -93,7 +69,6 @@ VisitOutput* MappingNameVisit::visit(Affectation* p)
 VisitOutput* MappingNameVisit::visit(AffectationBinaire* p)
 {
 	string val = "AffectationBinaire* p: \n";
-	//p->leftValue->name->setSymbol(mapperSymbol.findSymbol(p->leftValue->name->name, programme, blocCourant));
 	VisitOutput *v = p->leftValue->accept(this);
 	val += static_cast<StringOutput*>(v)->val;
 	delete v;
@@ -127,12 +102,8 @@ VisitOutput* MappingNameVisit::visit(Expr* p)
 VisitOutput* MappingNameVisit::visit(ExprAppel* p)
 {
 	string val = "ExprAppel* p: \n";
-	mapperSymbol.appelFnctTrue();
-	VisitOutput *v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	v = p->parameters->accept(this);
+    p->name->setSymbol(mapperSymbol.findDefinition(p->name->name, programme));
+    VisitOutput * v = p->parameters->accept(this);
 	val += static_cast<StringOutput*>(v)->val;
 	delete v;
 
@@ -143,7 +114,7 @@ VisitOutput* MappingNameVisit::visit(ExprAppel* p)
 VisitOutput* MappingNameVisit::visit(Name* p)
 {
 	string val = "Name* p:" + p->name + "\n";
-	p->setSymbol(mapperSymbol.findSymbol(p->name, programme, blocCourant));
+	p->setSymbol(mapperSymbol.findDeclaration(p->name, programme, blocCourant));
 	return new StringOutput(val);
 }
 
@@ -203,12 +174,6 @@ VisitOutput* MappingNameVisit::visit(Val* p)
 VisitOutput* MappingNameVisit::visit(Declaration* p)
 {
 	string val = "Declaration* p: \n";
-	val += "Type:" + std::to_string(static_cast<Type>((int)p->type)) + " \n";
-	VisitOutput *v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	p->name->setSymbol(p);
 	return new StringOutput(val);
 }
 
@@ -227,12 +192,6 @@ VisitOutput* MappingNameVisit::visit(InitDecl* p)
 VisitOutput* MappingNameVisit::visit(Initialisation* p)
 {
 	string val = "Initialisation* p: \n";
-	val += std::to_string((int)p->type);
-	VisitOutput *v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-
 	return new StringOutput(val);
 }
 
@@ -245,11 +204,7 @@ VisitOutput* MappingNameVisit::visit(InitialisationTab* p)
 VisitOutput* MappingNameVisit::visit(InitialisationVal* p)
 {
 	string val = "InitialisationVal* p: \n";
-	VisitOutput *v = p->value->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
 
-	p->name->setSymbol(p);
 	return new StringOutput(val);
 }
 
@@ -320,13 +275,6 @@ VisitOutput* MappingNameVisit::visit(StructureWhile* p)
 VisitOutput* MappingNameVisit::visit(Bloc* p)
 {
 	string val = "Bloc* p: \n";
-	for (int i = 0; i < p->initDecl.size(); i++)
-	{
-		VisitOutput *v = p->initDecl[i]->accept(this);
-		val += static_cast<StringOutput*>(v)->val;
-		delete v;
-
-	}
 	for (int i = 0; i < p->instructions.size(); i++)
 	{
 		VisitOutput *v = p->instructions[i]->accept(this);

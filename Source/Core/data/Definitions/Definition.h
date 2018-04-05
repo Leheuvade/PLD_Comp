@@ -4,6 +4,7 @@
 
 
 #pragma once
+
 #include "ParametreDefinition.h"
 #include "../enums/Type.h"
 #include "../init_decl/Symbole.h"

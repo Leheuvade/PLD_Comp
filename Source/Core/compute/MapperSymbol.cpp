@@ -12,11 +12,6 @@
  * MapperSymbol implementation
  */
 MapperSymbol::MapperSymbol() {
-    this->appelFnct = false;
-}
-
-void MapperSymbol::appelFnctTrue() {
-    this->appelFnct = true;
 }
 
 MapperSymbol::~MapperSymbol() {
@@ -26,28 +21,20 @@ MapperSymbol::~MapperSymbol() {
 
 Symbole *MapperSymbol::findDefinition(string name, Programme *p) {
     //Ce peut être le cas que si definition ou exprAppel est appelé
+    if(name == "putchar")
+    {
+        return nullptr;
+    }
+
     for (int i = 0; i < p->definitions.size(); i++) {
         if (p->definitions[i]->name->name == name) {
         return p->definitions[i];
         }
     }
-    this->appelFnct = false;
 
     cerr << "la fonction " << name << " n'a pas été définie" << endl;
 
     return nullptr;
-}
-
-Symbole *MapperSymbol::findSymbol(string name, Programme *p, Definition *b) {
-
-    if(appelFnct)
-    {
-        return findDefinition(name, p);
-    }
-    else
-    {
-        return findDeclaration(name, p, b);
-    }
 }
 
 Symbole * MapperSymbol::findDeclaration(string name, Programme *p, Definition *b) {
