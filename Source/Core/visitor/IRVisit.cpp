@@ -380,7 +380,7 @@ VisitOutput* IRVisit::visit(StructureIf* p)
 		v = p->bloc->accept(this);
 		string elseBBName = static_cast<StringOutput*>(v)->val;
 		bElse = lastCFG->get_bb_by_name(elseBBName);
-		lastCFG->add_bb(bElse);
+		lastCFG->add_bb(bElse);	
 		lastCFG->current_bb->exit_false = bElse;
 		bElse->exit_true = bFin;
 	}
