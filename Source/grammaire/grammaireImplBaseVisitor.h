@@ -110,7 +110,7 @@ public:
 
     virtual antlrcpp::Any visitInstReturn(grammaireParser::InstReturnContext *ctx) override {
         cout << "InstReturn" << endl;
-        return (InstructionStruct *) (Expr *) visit(ctx->expr());
+        return (InstructionStruct *) new InstructionReturn((Expr *) visit(ctx->expr()));
     }
 
     virtual antlrcpp::Any visitDeclConst(grammaireParser::DeclConstContext *ctx) override {
