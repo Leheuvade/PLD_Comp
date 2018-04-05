@@ -72,11 +72,11 @@ void BasicBlock::gen_asm(ostream& o)
 		instrs[i]->gen_asm(o);
 	}
 
-	if (exit_true) {
+	if (exit_true!= nullptr) {
 		o << "\t\tjump " << exit_true->label << endl;
 		exit_true->gen_asm(o);
 	}
-	if (exit_false) {
+	if (exit_false!= nullptr) {
 		o << "\t\tjump " << exit_false->label << endl;
 		exit_false->gen_asm(o);
 	}
