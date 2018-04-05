@@ -162,7 +162,7 @@ string CFG::getNameOffset(string name)
 
 string CFG::create_new_tempvar(Type t)
 {
-	string name = "!tmp" + to_string(nextFreeSymbolIndex);//on cree une variable temporaire avec comme nom son offset
+	string name = "!tmp" + OFFSET_TAG + to_string(nextFreeSymbolIndex);//on cree une variable temporaire avec comme nom son offset
 	add_to_symbol_table(name, t);//on l'ajoute
 	return name;//on retourne ce nom
 }
