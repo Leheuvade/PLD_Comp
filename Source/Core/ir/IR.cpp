@@ -201,7 +201,7 @@ BasicBlock * CFG::get_bb_by_name(string name)
 		}
 	}
 	return nullptr;
-
+}
 
 void CFG::connectBlocks()
 {
