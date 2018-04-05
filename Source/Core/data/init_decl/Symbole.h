@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "../enums/Type.h"
 #include "../../visitor/Visitable.h"
+#include "../enums/Type.h"
 
 
 class Symbole : public Visitable {
@@ -26,4 +26,3 @@ public:
 protected:
     Type type;
 };
-

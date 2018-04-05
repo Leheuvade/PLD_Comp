@@ -14,13 +14,14 @@ class CFG;
 class Definition;
 //convention: on place ce tag devant la valeur d'offset dans le nom de variable pour pouvoir le retrouver facilement
 const static string OFFSET_TAG="<offset>";
+static string filename;
 
 
 //! The class for one 3-address instruction
 class IRInstr {
- 
- public: 
- 
+
+ public:
+
 	/** The instructions themselves -- feel free to subclass instead */
 	typedef enum {
 		ldconst,
@@ -29,7 +30,7 @@ class IRInstr {
 		mul,
 		rmem,
 		wmem,
-		call, 
+		call,
 		cmp_eq,
 		cmp_lt,
 		cmp_le
@@ -38,7 +39,7 @@ class IRInstr {
 
 	/**  constructor */
 	IRInstr(BasicBlock* bb_, Operation op, Type t, vector<string> params);
-	
+
 	/** Actual code generation */
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this IR instruction */
 	string opToStr(Operation&o);
@@ -47,7 +48,7 @@ class IRInstr {
 	Operation op;
 	Type t;
 	vector<string> params; /**< For 3-op instrs: d, x, y; for ldconst: d, c;  For call: label, d, params;  for wmem and rmem: choose yourself */
-	// if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design. 
+	// if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design.
 };
 
 
@@ -58,32 +59,33 @@ class IRInstr {
 /* A few important comments.
 	 IRInstr has no jump instructions:
 	 assembly jumps are generated as follows in BasicBlock::gen_asm():
-     1/ a cmp_* comparison instructions, if it is the last instruction of its block, 
+     1/ a cmp_* comparison instructions, if it is the last instruction of its block,
        generates an actual assembly comparison followed by a conditional jump to the exit_false branch
 			 If it is not the last instruction of its block, it behaves as an arithmetic two-operand instruction (add or mult)
-		 2/ BasicBlock::gen_asm() first calls IRInstr::gen_asm() on all its instructions, and then 
+		 2/ BasicBlock::gen_asm() first calls IRInstr::gen_asm() on all its instructions, and then
 		    if  exit_true  is a  nullptr, it generates the epilogue
-				if  exit_false is not a nullptr, and the last instruction is not a cmp, it generates two conditional branches based on the value of the last variable assigned 
-        otherwise it generates an unconditional jmp to the exit_true branch 
+				if  exit_false is not a nullptr, and the last instruction is not a cmp, it generates two conditional branches based on the value of the last variable assigned
+        otherwise it generates an unconditional jmp to the exit_true branch
 */
 
 class BasicBlock {
- public: 
- 
+ public:
+
 	BasicBlock(CFG* cfg, string entry_label);
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
 
 	// No encapsulation whatsoever here. Feel free to do better.
-	BasicBlock* exit_true;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */ 
+	BasicBlock* exit_true;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */
+	//exit par default
 	BasicBlock* exit_false; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
 	string label; /**< label of the BB, also will be the label in the generated code */
 	CFG* cfg; /** < the CFG where this block belongs */
 	vector<IRInstr*> instrs; /** < the instructions themselves. */
  protected:
 
- 
+
 };
 
 
@@ -99,13 +101,13 @@ class BasicBlock {
 
  */
 class CFG {
- public: 
- 
+ public:
+
 	CFG(Definition* ast);
 
 	Definition* ast; /**< The AST this CFG comes from */
 	//si l'index est a -1, on ajoute � la fin
-	void add_bb(BasicBlock* bb,int index=-1); 
+	void add_bb(BasicBlock* bb,int index=-1);
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream& o);
@@ -124,17 +126,14 @@ class CFG {
 	string new_BB_name();
 	BasicBlock* current_bb;
 	BasicBlock* get_bb_by_name(string name);
-
+  void connectBlocks();
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
 	//on commence a 8
 	int nextBBnumber; /**< just for naming */
-	
+
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 
 };
-
-
-

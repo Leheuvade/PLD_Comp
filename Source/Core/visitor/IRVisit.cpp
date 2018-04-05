@@ -36,20 +36,26 @@ VisitOutput* IRVisit::visit(Programme *p)
 		VisitOutput *v = (p->definitions[i]->accept(this));
 		delete v;
 	}
-	//on cherche le CFG de main et on return son assembleur
+	ofstream outputFile(fileName);
+
 	if (mainCFG)
 	{
-		ofstream outputFile(fileName);
-		mainCFG->gen_asm_prologue(outputFile);
 		mainCFG->gen_asm(outputFile);
-		mainCFG->gen_asm_epilogue(outputFile);
-		outputFile.close();
 		val += "compile successfull";
 	}
 	else
 	{
 		val += "no main fct";
 	}
+	for (int i = 0; i < cfgs.size(); i++)
+	{
+		if (cfgs[i] != mainCFG) {
+			cfgs[i]->gen_asm(outputFile);
+		}
+
+	}
+	outputFile.close();
+
 	return new StringOutput(val);
 }
 
@@ -141,7 +147,15 @@ VisitOutput* IRVisit::visit(Expr* p)
 
 VisitOutput* IRVisit::visit(ExprAppel* p)
 {
-	string val = "ExprAppel* p: \n";
+	string val = "";
+	VisitOutput* v=p->parameters->accept(this);
+	CFG* lastCFG = cfgs[cfgs.size() - 1];
+	BasicBlock* bb = lastCFG->current_bb;
+	vector<string> params;
+	params.push_back(p->name->name);
+	//TODO  get type
+	bb->add_IRInstr(IRInstr::call,int64_type, params);
+	delete v;
 	return new StringOutput(val);
 }
 
