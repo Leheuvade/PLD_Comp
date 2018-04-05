@@ -10,6 +10,7 @@
 class OperationBinaire : public Operation {
     friend class DebugVisit;
 friend class IRVisit;
+friend class MappingNameVisit;
 
     friend class MappingNameVisit;
 

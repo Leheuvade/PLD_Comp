@@ -15,6 +15,7 @@ class Bloc : public Visitable {
 	friend class MapperSymbol;
 	friend class DebugVisit;
 friend class IRVisit;
+friend class MappingNameVisit;
 	friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;

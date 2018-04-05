@@ -17,6 +17,7 @@ class Definition : public Symbole {
 	friend class DebugVisit;
 	friend class CFG;
 friend class IRVisit;
+friend class MappingNameVisit;
     friend class MappingNameVisit;
 public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;

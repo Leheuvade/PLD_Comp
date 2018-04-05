@@ -16,6 +16,10 @@ void IRInstr::gen_asm(ostream& o)
 	for (int i = 0; i < params.size(); i++)
 	{
 		o << params[i];
+		if(i<params.size()-1)
+		{
+			o << ',';
+		}
 	}
 	o << endl;
 }
@@ -52,12 +56,16 @@ string IRInstr::opToStr(Operation& o)
 
 	case cmp_le:
 		return "cmp_le";
-	case mov:
-		return "mov";
+	case movq:
+		return "movq";
 	case leave:
 		return "leave";
 	case ret:
 		return "ret";
+	case cmpq:
+		return "cmpq";
+	case je:
+		return "je";
 	default:
 		return "";
 	}
@@ -80,14 +88,7 @@ void BasicBlock::gen_asm(ostream& o)
 
 	if (exit_true && !exit_false) {
 		o << "\t\tjump " << exit_true->label << endl;
-		exit_true->gen_asm(o);
-	}else if(exit_true && exit_false)
-	{
-		//le jump conditionnel est fait dans le visiteur
-		exit_true->gen_asm(o);
-		exit_false->gen_asm(o);
-
-	}
+	}//sinon les jumps sont gérés dans les visiteurs
 	
 }
 
@@ -95,7 +96,7 @@ void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> param
 {
 	instrs.push_back(new IRInstr(this, op, t, params));
 }
-
+int CFG::nextBBnumber = 0;
 CFG::CFG(Definition* ast)
 {
 	this->ast = ast;
@@ -107,7 +108,9 @@ CFG::CFG()
 
 void CFG::add_bb(BasicBlock* bb, int index)
 {
-	bb->label += "_" + to_string(nextBBnumber);
+	if (bb->label != "BLOC_" + to_string(nextBBnumber)) {
+		bb->label += "_" + to_string(nextBBnumber);
+	}
 	if (index == -1 || index >= bbs.size()) {
 		bbs.push_back(bb);
 		current_bb = bb;
@@ -132,7 +135,10 @@ void CFG::gen_asm(ostream& o)
 	o << ".type " << ast->name->name << ", @function" << endl;
 	o << ast->name->name << ":" << endl;
 	gen_asm_prologue(o);
-	bbs[0]->gen_asm(o);
+	for(int i = 0;i<bbs.size();i++)
+	{
+		bbs[i]->gen_asm(o);
+	}
 	gen_asm_epilogue(o);
 
 }
@@ -143,7 +149,7 @@ string CFG::IR_reg_to_asm(string reg)
 	int index = reg.rfind(OFFSET_TAG);
 	if (index == string::npos)
 	{
-		cout << "error no offset in name" << endl;
+		cout << "error no offset in name: "<<reg << endl;
 		return "";
 	}
 
@@ -161,17 +167,11 @@ void CFG::gen_asm_prologue(ostream& o)
 
 void CFG::gen_asm_epilogue(ostream& o)
 {
-	o << "leave" << endl;
-	o << "ret" << endl;
+	o << "\tleave" << endl;
+	o << "\tret" << endl;
 }
 
-void CFG::returnFct()
-{
-	vector<string> params;
-	current_bb->add_IRInstr(IRInstr::leave, int64_type, params);
-	current_bb->add_IRInstr(IRInstr::ret, int64_type, params);
 
-}
 
 string CFG::add_to_symbol_table(string name, Type t)
 {
@@ -210,7 +210,7 @@ Type CFG::get_var_type(string name)
 
 string CFG::new_BB_name()
 {
-	return "Bloc: " + to_string(nextBBnumber);
+	return "BLOC_" + to_string(nextBBnumber);
 }
 
 
