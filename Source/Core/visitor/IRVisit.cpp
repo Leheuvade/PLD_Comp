@@ -442,5 +442,6 @@ VisitOutput* IRVisit::visit(BlocStruct* p)
 VisitOutput* IRVisit::visit(LeftValue* p)
 {
 	string val = "LeftValue* p: \n";
+
 	return new StringOutput(val);
 }

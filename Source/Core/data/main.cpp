@@ -51,10 +51,8 @@ int main(int argc, char *argv[]) {
     system("dot -Tpdf -o out.pdf tmp.dot");
     /*DebugVisit visit;
     cout << ((StringOutput*)p->accept(&visit))->getVal() << endl;*/
-    /*MappingNameVisit visit;
-    cout << ((StringOutput *) p->accept(&visit))->getVal() << endl;*/
-	//passe le nom de fichier a IR
-	filename = argv[1];
+    MappingNameVisit visit;
+    cout << ((StringOutput *) p->accept(&visit))->getVal() << endl;
 	IRVisit visitIR;
 	visitIR.setOutName("out.asm");
 	p->accept(&visitIR);
