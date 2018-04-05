@@ -104,6 +104,7 @@ class CFG {
  public:
 
 	CFG(Definition* ast);
+	CFG();
 
 	Definition* ast; /**< The AST this CFG comes from */
 	//si l'index est a -1, on ajoute � la fin

@@ -92,7 +92,11 @@ CFG::CFG(Definition* ast)
 	this->ast = ast;
 }
 
-void CFG::add_bb(BasicBlock* bb, int index)
+CFG::CFG()
+{
+}
+
+void CFG::add_bb(BasicBlock* bb,int index)
 {
 	bb->label += "_" + to_string(nextBBnumber);
 	if (index == -1 || index >= bbs.size()) {

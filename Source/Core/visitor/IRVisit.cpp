@@ -68,9 +68,9 @@ VisitOutput* IRVisit::visit(Definition* p)
 	{
 		mainCFG = cfg;//bloc principal qui sera lu � l'execution
 	}
-	VisitOutput * v = p->name->accept(this);
-	delete v;
-	v = p->params->accept(this);
+	/*VisitOutput * v = p->name->accept(this);
+	delete v;*/
+    VisitOutput * v = p->params->accept(this);
 	delete v;
 	v = p->bloc->accept(this);
 	delete v;
@@ -113,29 +113,38 @@ VisitOutput* IRVisit::visit(AffectationBinaire* p)
     params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
     VisitOutput* v = p->expr->accept(this);
     string rightValue = static_cast<StringOutput*>(v)->val;
+    cout<<rightValue<<endl;
     params.push_back(rightValue);
     delete v;
-    //cout<<static_cast<Test>(p->leftValue->name->symbole->type)<<endl;
-	//mapping à faire
-    lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);
+    lastCFG->current_bb->add_IRInstr(IRInstr::wmem, p->leftValue->name->symbole->type, params);
 	return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(AffectationUnaire* p)
 {
-	string val = "";
-	/*CFG * lastCFG = cfgs[cfgs.size() - 1];
-	vector<string> params;
-	string toto = p->leftValue->name->name;
-	toto = lastCFG->getNameOffset(toto);
-	params.push_back(CFG::IR_reg_to_asm(toto));
-	lastCFG->current_bb->add_IRInstr(IRInstr::wmem, int64_type, params);*/
-	return new StringOutput(val);
+    string val = "";
+    CFG * lastCFG = cfgs[cfgs.size() - 1];
+    vector<string> params;
+    params.push_back(CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->leftValue->name->name)));
+    params.push_back("$1");
+    switch(p->op){
+        case PPLUS: lastCFG->current_bb->add_IRInstr(IRInstr::add, int64_type, params);
+            break;
+        case MMOINS:
+            break;
+        case PPLUS_AFTER: lastCFG->current_bb->add_IRInstr(IRInstr::add, int64_type, params);
+            break;
+        case MMOINS_AFTER:
+            break;
+        default:
+            break;
+    }
+    return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(Char* p)
 {
-	string val = "Char* p: \n";
+	string val = "$"+to_string(p->val);
 	return new StringOutput(val);
 }
 
@@ -162,7 +171,8 @@ VisitOutput* IRVisit::visit(ExprAppel* p)
 VisitOutput* IRVisit::visit(Name* p)
 {
 	string val = "";
-
+    CFG * lastCFG = cfgs[cfgs.size() - 1];
+    val += CFG::IR_reg_to_asm(lastCFG->getNameOffset(p->name));
 	return new StringOutput(val);
 }
 
@@ -248,8 +258,13 @@ VisitOutput* IRVisit::visit(Val* p)
 VisitOutput* IRVisit::visit(Declaration* p)
 {
 	string val = "";
-	CFG * lastCFG = cfgs[cfgs.size() - 1];
-	lastCFG->add_to_symbol_table(p->name->name, p->type);
+    if(cfgs.size()==0){
+        mainCFG->add_to_symbol_table(p->name->name, p->type);
+    } else{
+        CFG* lastCFG  = cfgs[cfgs.size() - 1];
+        lastCFG->add_to_symbol_table(p->name->name, p->type);
+    }
+
 	return new StringOutput(val);
 }
 

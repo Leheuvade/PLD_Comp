@@ -9,7 +9,9 @@
 VisitOutput* Name::accept(VisitAST* visitor)
 {
 	return visitor->visit(this);
-}/**
+}
+
+/**
  * Name implementation
  */
 
