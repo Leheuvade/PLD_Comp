@@ -102,12 +102,8 @@ VisitOutput* MappingNameVisit::visit(Expr* p)
 VisitOutput* MappingNameVisit::visit(ExprAppel* p)
 {
 	string val = "ExprAppel* p: \n";
-	mapperSymbol.appelFnctTrue();
-	VisitOutput *v = p->name->accept(this);
-	val += static_cast<StringOutput*>(v)->val;
-	delete v;
-
-	v = p->parameters->accept(this);
+    p->name->setSymbol(mapperSymbol.findDefinition(p->name->name, programme));
+    VisitOutput * v = p->parameters->accept(this);
 	val += static_cast<StringOutput*>(v)->val;
 	delete v;
 
@@ -118,8 +114,7 @@ VisitOutput* MappingNameVisit::visit(ExprAppel* p)
 VisitOutput* MappingNameVisit::visit(Name* p)
 {
 	string val = "Name* p:" + p->name + "\n";
-	cerr<<"mapp "<<p->name<<endl;
-	p->setSymbol(mapperSymbol.findSymbol(p->name, programme, blocCourant));
+	p->setSymbol(mapperSymbol.findDeclaration(p->name, programme, blocCourant));
 	return new StringOutput(val);
 }
 

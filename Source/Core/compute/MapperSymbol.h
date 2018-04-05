@@ -24,7 +24,4 @@ friend class IRVisit;
 	Symbole * findDefinition(string name, Programme * p);
 	Symbole * findSymbol(string name, Programme * p, Definition * b);
 	Symbole * findDeclaration(string name, Programme *p, Definition *b);
-	void appelFnctTrue();
-protected:
-	bool appelFnct;
 };
