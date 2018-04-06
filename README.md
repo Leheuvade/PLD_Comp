@@ -25,7 +25,7 @@ Utilisation d'un IDE (CLion , visual studio)
 
 # Analyse statique
 
-- variable utilisé non déclaré
+- variable utilisée non déclaré
 
 # Back-end
 
