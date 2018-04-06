@@ -1,4 +1,4 @@
-# Declaration of variables
+# Declaration of variables 
 CC = g++ -std=c++0x
 CC_FLAGS = -w -I /usr/local/Cellar/antlr4-cpp-runtime/4.7.1/include/antlr4-runtime
 LIB = /usr/local/Cellar/antlr4-cpp-runtime/4.7.1/lib/libantlr4-runtime.a
