@@ -37,8 +37,16 @@ int main(int argc, char *argv[]) {
     tree::ParseTree *tree = parser.programme();
 
     grammaireImplBaseVisitor visitor;
+    Programme *p;
+    p = visitor.visit(tree);
+/* try {
+   p = visitor.visit(tree);
+ }catch (const std::exception& e) {
+  cout<<e.what()<<endl;
+  return -1;
+ }*/
 
-    Programme *p = visitor.visit(tree);
+
 
     std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
@@ -58,6 +66,7 @@ int main(int argc, char *argv[]) {
 	visitIR.setInName(argv[1]);
 	string outName = ((string)argv[1]).substr(0, ((string)argv[1]).find("."));
 	visitIR.setOutName(outName+".s");
+
 	p->accept(&visitIR);
     return 0;
 

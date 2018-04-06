@@ -13,7 +13,7 @@ using namespace std;
 class BlocStruct: public InstructionStruct {
 friend class DebugVisit;
 friend class IRVisit;
-friend class MappingNameVisit; 
+friend class MappingNameVisit;
  public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 	BlocStruct();

@@ -62,8 +62,10 @@ class IRVisit : public VisitAST {
 protected:
 	vector<CFG*> cfgs;
 	CFG* mainCFG;
+
 	string outName="out.s";
 	string inName = "out.c";
+
 
 };
 
