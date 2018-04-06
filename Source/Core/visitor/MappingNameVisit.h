@@ -52,6 +52,6 @@ public:
 protected:
     MapperSymbol mapperSymbol;
     Programme * programme;
-    Definition * blocCourant;
+    Definition * blocCourant = nullptr;
 };
 

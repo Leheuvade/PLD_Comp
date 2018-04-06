@@ -44,6 +44,9 @@ VisitOutput* MappingNameVisit::visit(Definition* p)
 VisitOutput* MappingNameVisit::visit(Parametre* p)
 {
 	string val = "Parametre* p: \n";
+	VisitOutput * v = p->name->accept(this);
+	val += static_cast<StringOutput*>(v)->val;
+	delete v;
 	return new StringOutput(val);
 }
 
