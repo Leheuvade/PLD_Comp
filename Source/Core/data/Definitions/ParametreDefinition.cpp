@@ -4,9 +4,13 @@
 
 
 #include "ParametreDefinition.h"
-#include "Parametre.h"
+#include "Parametre.h" 
+#include "../../visitor/VisitAST.h"
 
-ParametreDefinition::ParametreDefinition()
+VisitOutput* ParametreDefinition::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}ParametreDefinition::ParametreDefinition()
 {
 }
 

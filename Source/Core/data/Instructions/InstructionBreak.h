@@ -9,7 +9,11 @@
 
 class InstructionBreak: public InstructionStruct {
 
-public:
+friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit; 
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 InstructionBreak();
 virtual ~InstructionBreak();
 

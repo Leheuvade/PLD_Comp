@@ -3,9 +3,13 @@
  */
 
 
-#include "NameTab.h"
+#include "NameTab.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* NameTab::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * NameTab implementation
  */
 NameTab::NameTab()

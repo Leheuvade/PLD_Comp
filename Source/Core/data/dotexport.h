@@ -22,7 +22,11 @@ class DotExport : public tree::ParseTreeListener {
          }
          return name;
       }
-   public:
+   friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit; 
+ public: 
+ 
       DotExport(Parser * parser): parser(parser) { }
 
       void enterEveryRule(ParserRuleContext *ctx) override {

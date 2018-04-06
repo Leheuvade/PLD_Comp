@@ -5,12 +5,25 @@
 
 #pragma once
 
+#include "../../visitor/Visitable.h"
+#include "../enums/Type.h"
 
-class Symbole {
+
+class Symbole : public Visitable {
+
+    friend class DebugVisit;
+
+    friend class IRVisit;
+friend class MappingNameVisit;
 
 public:
-	Symbole();
-virtual ~Symbole();
+    virtual VisitOutput *accept(VisitAST *visitor) override;
 
+    Symbole();
+
+    Symbole(Type type);
+
+    virtual ~Symbole();
+protected:
+    Type type;
 };
-

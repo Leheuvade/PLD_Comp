@@ -6,10 +6,17 @@
 #pragma once
 #include "Parametre.h"
 #include <vector>
+#include "../../visitor/Visitable.h"
 using namespace std;
-class ParametreDefinition {
+class ParametreDefinition : public Visitable{
 
-public:
+	friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit;
+	friend class MapperSymbol;
+
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 
 ParametreDefinition();
 ParametreDefinition(vector<Parametre*> parameters);

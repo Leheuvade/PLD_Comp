@@ -1,5 +1,8 @@
 grammar grammaire;
-programme : (varGlobale)* (definition)+;
+
+entree : programme;
+
+programme : (initDecl)* (definition)+ EOF;
 
 
 initDecl: declaration #Decl
@@ -11,10 +14,6 @@ instructionStruct :  expr';' #InstExpr
 	| structureControle #InstStrucControl
 	| 'break;' #InstBreak
 	|'return' expr ';' #InstReturn
-	;
-
-varGlobale: declaration #VarDecl
-	| initialisation #VarInit
 	;
 
 declaration : 'const' type NAME #DeclConst

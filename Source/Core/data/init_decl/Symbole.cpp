@@ -4,12 +4,22 @@
 
 
 #include "Symbole.h"
+#include "../../visitor/VisitAST.h"
 
-Symbole::Symbole()
-{
+VisitOutput *Symbole::accept(VisitAST *visitor) {
+    return visitor->visit(this);
 }
 
-Symbole::~Symbole()
-{
+Symbole::Symbole() {
+
 }
+
+Symbole::Symbole(Type type) {
+    this->type = type;
+}
+
+Symbole::~Symbole() {
+}
+
+
 

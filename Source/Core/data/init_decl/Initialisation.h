@@ -4,19 +4,24 @@
 
 
 #pragma once
+
 #include "../enums/Type.h"
 #include "../Expressions/Name.h"
+#include "InitDecl.h"
 
-class Initialisation {
+class Initialisation : public InitDecl {
 
 	friend class MapperSymbol;
-public:
+	friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit;
+	friend class MappingNameVisit;
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	Initialisation();
-	Initialisation(Type type,Name *name,bool isConst);
+	Initialisation(Type type, Name *name, bool isConst);
 	virtual ~Initialisation();
 
 protected:
-	Type type;
-	Name *name;
 	bool isConst;
 };

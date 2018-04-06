@@ -12,7 +12,11 @@ class LeftValue;
 
 class AffectationUnaire: public Affectation {
 
-public: 
+	friend class DebugVisit;
+	friend class IRVisit;
+	friend class MappingNameVisit;
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	AffectationUnaire();
 	AffectationUnaire(LeftValue* leftValue, OperateurAffectationUnaire op);
 	virtual ~AffectationUnaire();

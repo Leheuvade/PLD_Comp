@@ -3,15 +3,18 @@
  */
 
 
-#include "InitialisationTab.h"
+#include "InitialisationTab.h" 
+#include "../../visitor/VisitAST.h"
 
-/**
+VisitOutput* InitialisationTab::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}/**
  * InitialisationTab implementation
  */
 
 
 InitialisationTab::InitialisationTab(){
-  name = nullptr;
   isConst = true;
 }
 

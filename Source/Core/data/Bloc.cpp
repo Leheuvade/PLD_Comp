@@ -3,9 +3,15 @@
  */
 
 #include "Bloc.h"
+#include "../visitor/VisitAST.h"
+
 /**
  * Bloc implementation
  */
+ VisitOutput* Bloc::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}
 Bloc::Bloc()
 {
 }

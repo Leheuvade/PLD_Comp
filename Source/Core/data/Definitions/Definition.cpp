@@ -4,17 +4,16 @@
 
 
 #include "Definition.h"
-#include "ParametreDefinition.h"
-#include "../enums/Type.h"
 #include "../Bloc.h"
-#include "../Expressions/Name.h"
+#include "../../visitor/VisitAST.h"
 
-
-
-Definition::Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc)
-
+VisitOutput* Definition::accept(VisitAST* visitor)
 {
-    this->type=type;
+	return visitor->visit(this);
+}
+
+Definition::Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc) : Symbole(type)
+{
     this->name=name;
     this->params=params;
     this->bloc=bloc;

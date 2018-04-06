@@ -24,7 +24,7 @@ public:
   };
 
   enum {
-    RuleProgramme = 0, RuleInitDecl = 1, RuleInstructionStruct = 2, RuleVarGlobale = 3, 
+    RuleEntree = 0, RuleProgramme = 1, RuleInitDecl = 2, RuleInstructionStruct = 3, 
     RuleDeclaration = 4, RuleInitialisation = 5, RuleExpr = 6, RuleParametreAppel = 7, 
     RuleAffectation = 8, RuleLeftValue = 9, RuleDefinition = 10, RuleBloc = 11, 
     RuleBlocStruct = 12, RuleParametreDefinition = 13, RuleParametre = 14, 
@@ -41,10 +41,10 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class EntreeContext;
   class ProgrammeContext;
   class InitDeclContext;
   class InstructionStructContext;
-  class VarGlobaleContext;
   class DeclarationContext;
   class InitialisationContext;
   class ExprContext;
@@ -61,12 +61,25 @@ public:
   class TypeContext;
   class Type_voidContext; 
 
+  class  EntreeContext : public antlr4::ParserRuleContext {
+  public:
+    EntreeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ProgrammeContext *programme();
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  EntreeContext* entree();
+
   class  ProgrammeContext : public antlr4::ParserRuleContext {
   public:
     ProgrammeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<VarGlobaleContext *> varGlobale();
-    VarGlobaleContext* varGlobale(size_t i);
+    antlr4::tree::TerminalNode *EOF();
+    std::vector<InitDeclContext *> initDecl();
+    InitDeclContext* initDecl(size_t i);
     std::vector<DefinitionContext *> definition();
     DefinitionContext* definition(size_t i);
 
@@ -160,37 +173,6 @@ public:
   };
 
   InstructionStructContext* instructionStruct();
-
-  class  VarGlobaleContext : public antlr4::ParserRuleContext {
-  public:
-    VarGlobaleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-   
-    VarGlobaleContext() : antlr4::ParserRuleContext() { }
-    void copyFrom(VarGlobaleContext *context);
-    using antlr4::ParserRuleContext::copyFrom;
-
-    virtual size_t getRuleIndex() const override;
-
-   
-  };
-
-  class  VarInitContext : public VarGlobaleContext {
-  public:
-    VarInitContext(VarGlobaleContext *ctx);
-
-    InitialisationContext *initialisation();
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  VarDeclContext : public VarGlobaleContext {
-  public:
-    VarDeclContext(VarGlobaleContext *ctx);
-
-    DeclarationContext *declaration();
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  VarGlobaleContext* varGlobale();
 
   class  DeclarationContext : public antlr4::ParserRuleContext {
   public:

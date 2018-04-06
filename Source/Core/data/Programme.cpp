@@ -5,6 +5,7 @@
 
 #include "Programme.h"
 #include "Definitions/Definition.h"
+#include "../visitor/VisitAST.h"
 
 /**
  * Programme implementation
@@ -13,7 +14,7 @@ Programme::Programme()
 {
 }
 
-Programme::Programme(vector<VarGlobale*>& varGlobales, vector<Definition*>& definitions)
+Programme::Programme(vector<InitDecl*>& varGlobales, vector<Definition*>& definitions)
 {
 	this->varGlobales = varGlobales;
 	this->definitions = definitions;
@@ -36,4 +37,9 @@ Programme::~Programme()
 		}
 	}
 
+}
+
+VisitOutput* Programme::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
 }

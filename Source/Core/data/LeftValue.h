@@ -7,8 +7,14 @@
 
 #include "Expressions/Name.h"
 
-class LeftValue {
-public: 
+class LeftValue : public Visitable {
+	friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit;
+	friend class MappingNameVisit;
+
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override; 
 	LeftValue();
 	LeftValue(Name * name);
 	virtual ~LeftValue();

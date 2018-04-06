@@ -4,21 +4,31 @@
 
 
 #pragma once
+
 #include "Initialisation.h"
 
-class Val; 
+class Val;
 
-class InitialisationVal {
+class InitialisationVal : public Initialisation {
 
+
+    friend class DebugVisit;
+
+    friend class IRVisit;
+friend class MappingNameVisit;
+
+    friend class MappingNameVisit;
 
 public:
-	InitialisationVal();
-	InitialisationVal(Type type, Name *name,  bool isConst,Val * value);
-	virtual ~InitialisationVal();
+    virtual VisitOutput *accept(VisitAST *visitor) override;
+
+    InitialisationVal();
+
+    InitialisationVal(Type type, Name *name, bool isConst, Expr *value);
+
+    virtual ~InitialisationVal();
 
 protected:
-	Val * value;
-	Name * name;
-	bool isConst;
-	Type type;
+
+    Expr *value;
 };

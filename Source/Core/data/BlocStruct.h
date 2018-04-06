@@ -11,7 +11,11 @@
 using namespace std;
 
 class BlocStruct: public InstructionStruct {
-public:
+friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit;
+ public: 
+ virtual VisitOutput* accept(VisitAST* visitor)override;
 	BlocStruct();
 	BlocStruct(vector<InstructionStruct*> &instructions);
 	virtual ~BlocStruct();

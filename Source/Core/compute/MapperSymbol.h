@@ -8,14 +8,21 @@
 #include <vector> 
 #include "../data/init_decl/Symbole.h"
 #include "../../grammaire/grammaireParser.h"
-
+#include "../data/Bloc.h"
+#include "../data/Programme.h"
+#include <map>
 
 class Name;
 using namespace std;
 class MapperSymbol {
-public: 
+friend class DebugVisit;
+friend class IRVisit;
+friend class MappingNameVisit; 
+ public: 
+  
 	MapperSymbol();
 	virtual ~MapperSymbol();
-	Symbole * findSymbol(Name * name, grammaireParser::ProgrammeContext *ctxCourant, grammaireParser::BlocContext *ctxBlocCourant);
+	Symbole * findDefinition(string name, Programme * p);
+	Symbole * findSymbol(string name, Programme * p, Definition * b);
+	Symbole * findDeclaration(string name, Programme *p, Definition *b);
 };
-

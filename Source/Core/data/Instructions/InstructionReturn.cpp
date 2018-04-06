@@ -4,9 +4,13 @@
 
 
 #include "InstructionReturn.h"
-#include "../Expressions/Expr.h"
+#include "../Expressions/Expr.h" 
+#include "../../visitor/VisitAST.h"
 
-InstructionReturn::InstructionReturn(Expr* e)
+VisitOutput* InstructionReturn::accept(VisitAST* visitor)
+{
+	return visitor->visit(this);
+}InstructionReturn::InstructionReturn(Expr* e)
 {
     expr = e;
 }
