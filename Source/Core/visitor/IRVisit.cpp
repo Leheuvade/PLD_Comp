@@ -36,7 +36,7 @@ VisitOutput* IRVisit::visit(Programme *p)
 		VisitOutput *v = (p->definitions[i]->accept(this));
 		delete v;
 	}
-	ofstream outputFile(fileName);
+	ofstream outputFile(outName);
 
 	if (mainCFG)
 	{
@@ -62,7 +62,7 @@ VisitOutput* IRVisit::visit(Programme *p)
 VisitOutput* IRVisit::visit(Definition* p)
 {
 	string val = "";
-	CFG* cfg = new CFG(p);
+	CFG* cfg = new CFG(p,inName);
 	cfgs.push_back(cfg);
 	if (p->name->name == "main")
 	{

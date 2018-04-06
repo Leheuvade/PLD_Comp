@@ -54,9 +54,10 @@ int main(int argc, char *argv[]) {
     MappingNameVisit visit;
     cout << ((StringOutput *) p->accept(&visit))->getVal() << endl;
 	//passe le nom de fichier a IR
-	filename = argv[1];
 	IRVisit visitIR;
-	visitIR.setOutName("out.asm");
+	visitIR.setInName(argv[1]);
+	string outName = ((string)argv[1]).substr(0, ((string)argv[1]).find("."));
+	visitIR.setOutName(outName+".s");
 	p->accept(&visitIR);
     return 0;
 

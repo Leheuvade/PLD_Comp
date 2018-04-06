@@ -14,7 +14,6 @@ class CFG;
 class Definition;
 //convention: on place ce tag devant la valeur d'offset dans le nom de variable pour pouvoir le retrouver facilement
 const static string OFFSET_TAG="<offset>";
-static string filename;
 
 
 //! The class for one 3-address instruction
@@ -109,8 +108,7 @@ class BasicBlock {
 class CFG {
  public:
 	 friend class BasicBlock;
-	CFG(Definition* ast);
-	CFG();
+	CFG(Definition* ast,string filename);
 	virtual ~CFG();
 	Definition* ast; /**< The AST this CFG comes from */
 
@@ -142,5 +140,5 @@ class CFG {
 
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
 	void add_bb(BasicBlock* bb);
-
+	string filename;
 };
