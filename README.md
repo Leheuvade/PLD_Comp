@@ -9,12 +9,13 @@ Ce document présente les différents avancements et fonctionnalités implément
 - Manuel Hernandez
 - Sacha Barkat
 - Sonia Poncelin
-- Xavier Dussart-Vidalet
+- Xavier Dussert-Vidalet
 - Wassim Robbana
 
 # Compilation
 
 Utilisation d'un IDE (CLion , visual studio)
+pour compiler avec gcc utiliser le makefile dans Source
 
 # Etat actuel
 
