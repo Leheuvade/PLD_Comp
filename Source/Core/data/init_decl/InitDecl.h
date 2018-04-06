@@ -14,6 +14,7 @@ class InitDecl : public Symbole {
 
     friend class DebugVisit;
 friend class IRVisit;
+friend class MappingNameVisit;
     friend class MapperSymbol;
     friend class MappingNameVisit;
 

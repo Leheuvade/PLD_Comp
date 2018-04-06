@@ -33,7 +33,12 @@ class IRInstr {
 		call,
 		cmp_eq,
 		cmp_lt,
-		cmp_le
+		cmp_le,
+		movq,
+		leave,
+		ret,
+		cmpq,
+		je
 	} Operation;
 
 
@@ -72,14 +77,15 @@ class BasicBlock {
  public:
 
 	BasicBlock(CFG* cfg, string entry_label);
+	virtual ~BasicBlock();
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
 
 	// No encapsulation whatsoever here. Feel free to do better.
-	BasicBlock* exit_true=nullptr;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */
+	BasicBlock* exit_true = nullptr;  /**< pointer to the next basic block, true branch. If nullptr, return from procedure */
 	//exit par default
-	BasicBlock* exit_false= nullptr; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
+	BasicBlock* exit_false = nullptr; /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
 	string label; /**< label of the BB, also will be the label in the generated code */
 	CFG* cfg; /** < the CFG where this block belongs */
 	vector<IRInstr*> instrs; /** < the instructions themselves. */
@@ -102,13 +108,11 @@ class BasicBlock {
  */
 class CFG {
  public:
-
+	 friend class BasicBlock;
 	CFG(Definition* ast);
 	CFG();
-
+	virtual ~CFG();
 	Definition* ast; /**< The AST this CFG comes from */
-	//si l'index est a -1, on ajoute � la fin
-	void add_bb(BasicBlock* bb,int index=-1);
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream& o);
@@ -125,17 +129,18 @@ class CFG {
 
 	// basic block management
 	string new_BB_name();
-	BasicBlock* current_bb;
+	BasicBlock* current_bb=nullptr;
+
 	BasicBlock* get_bb_by_name(string name);
-	void connectBlocks();
 
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
 	map <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex=8; /**< to allocate new symbols in the symbol table */
 	//on commence a 8
-	int nextBBnumber; /**< just for naming */
+	static int nextBBnumber; /**< just for naming */
 
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
+	void add_bb(BasicBlock* bb);
 
 };
