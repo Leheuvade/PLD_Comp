@@ -58,7 +58,7 @@ class IRVisit : public VisitAST {
 protected:
 	vector<CFG*> cfgs;
 	CFG* mainCFG;
-	string fileName="out.asm";
+	string fileName="out.s";
 };
 
 

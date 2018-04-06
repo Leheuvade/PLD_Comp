@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 	//passe le nom de fichier a IR
 	filename = argv[1];
 	IRVisit visitIR;
-	visitIR.setOutName("out.asm");
+	visitIR.setOutName("out.s");
 	p->accept(&visitIR);
     return 0;
 

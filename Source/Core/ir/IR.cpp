@@ -97,13 +97,13 @@ void BasicBlock::gen_asm(ostream& o)
 	if(exit_true==this)
 	{
 		//cas de la boucle
-		o << "\t\tjump " << exit_true->label << endl;
+		o << "\t\tjmp " << exit_true->label << endl;
 		exit_false->gen_asm(o);
 
 	}
 	else {
 		if (exit_true && !exit_false) {
-			o << "\t\tjump " << exit_true->label << endl;
+			o << "\t\tjmp " << exit_true->label << endl;
 		}//sinon les jumps sont gérés dans les visiteurs
 		if (exit_true )
 		{
