@@ -52,13 +52,21 @@ class IRVisit : public VisitAST {
 	virtual VisitOutput* visit(LeftValue *p) override;
 	inline void setOutName(string str)
 	{
-		fileName = str;
+		outName = str;
+	}
+	inline void setInName(string str)
+	{
+		inName = str;
 	}
 
 protected:
 	vector<CFG*> cfgs;
 	CFG* mainCFG;
-	string fileName="out.s";
+
+	string outName="out.s";
+	string inName = "out.c";
+
+
 };
 
 

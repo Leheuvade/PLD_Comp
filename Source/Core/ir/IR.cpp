@@ -122,14 +122,13 @@ void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> param
 	instrs.push_back(new IRInstr(this, op, t, params));
 }
 int CFG::nextBBnumber = 0;
-CFG::CFG(Definition* ast)
+CFG::CFG(Definition* ast,string filename)
 {
 	this->ast = ast;
+	cout << "filename " << filename << endl;
+	this->filename = filename;
 }
 
-CFG::CFG()
-{
-}
 
 CFG::~CFG()
 {
@@ -153,7 +152,9 @@ void CFG::add_bb(BasicBlock* bb)
 
 void CFG::gen_asm(ostream& o)
 {
-	o << ".file \"" << filename << "\"" << endl;
+	if (ast->name->name=="main"){
+		o << ".file \"" << filename << "\"" << endl;
+	}
 	o << ".text" << endl;
 	o << ".globl " << ast->name->name << endl;
 	o << ".type " << ast->name->name << ", @function" << endl;
@@ -202,7 +203,6 @@ string CFG::add_to_symbol_table(string name, Type t)
 	SymbolType.insert_or_assign(name, t);
 	SymbolIndex.insert_or_assign(name, nextFreeSymbolIndex);
 	name += OFFSET_TAG + to_string(nextFreeSymbolIndex);
-	cout << "nouveau symbole: " << name << " " << nextFreeSymbolIndex << endl;
 	nextFreeSymbolIndex += 8;//on ajoute 8 au prochain offset (pour passer � la prochaine case mem de 64bits)
 	return name;//on renvoie le nom avec l'offset
 }
