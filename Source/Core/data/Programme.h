@@ -20,7 +20,6 @@ class Programme : public Visitable {
 	friend class DebugVisit;
 friend class IRVisit;
 friend class MappingNameVisit;
-	friend class MappingNameVisit;
 public:
 	Programme();
 	Programme(vector<InitDecl*> &varGlobales, vector<Definition*> &definitions);

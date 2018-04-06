@@ -16,7 +16,6 @@ class InitDecl : public Symbole {
 friend class IRVisit;
 friend class MappingNameVisit;
     friend class MapperSymbol;
-    friend class MappingNameVisit;
 
 public:
     virtual VisitOutput *accept(VisitAST *visitor) override;

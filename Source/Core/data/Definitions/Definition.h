@@ -18,7 +18,6 @@ class Definition : public Symbole {
 	friend class CFG;
 friend class IRVisit;
 friend class MappingNameVisit;
-    friend class MappingNameVisit;
 public: 
  virtual VisitOutput* accept(VisitAST* visitor)override;
 	Definition(Type type, Name* name, ParametreDefinition* params, Bloc* bloc);
