@@ -14,8 +14,8 @@ Ce document présente les différents avancements et fonctionnalités implément
 
 # Compilation
 
-Utilisation d'un IDE (CLion , visual studio)
-pour compiler avec gcc utiliser le makefile dans Source
+- Utilisation d'un IDE (CLion , visual studio)
+- pour compiler avec gcc utiliser le makefile dans Source
 
 # Etat actuel
 
