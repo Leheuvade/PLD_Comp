@@ -77,6 +77,7 @@ class BasicBlock {
  public:
 
 	BasicBlock(CFG* cfg, string entry_label);
+	virtual ~BasicBlock();
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
@@ -107,13 +108,11 @@ class BasicBlock {
  */
 class CFG {
  public:
-
+	 friend class BasicBlock;
 	CFG(Definition* ast);
 	CFG();
-
+	virtual ~CFG();
 	Definition* ast; /**< The AST this CFG comes from */
-	//si l'index est a -1, on ajoute � la fin
-	void add_bb(BasicBlock* bb,int index=-1);
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream& o);
@@ -130,9 +129,9 @@ class CFG {
 
 	// basic block management
 	string new_BB_name();
-	BasicBlock* current_bb;
+	BasicBlock* current_bb=nullptr;
+
 	BasicBlock* get_bb_by_name(string name);
-	void connectBlocks();
 
  protected:
 	map<string, Type> SymbolType; /**< part of the symbol table  */
@@ -142,5 +141,6 @@ class CFG {
 	static int nextBBnumber; /**< just for naming */
 
 	vector <BasicBlock*> bbs; /**< all the basic blocks of this CFG*/
+	void add_bb(BasicBlock* bb);
 
 };

@@ -76,6 +76,15 @@ BasicBlock::BasicBlock(CFG* cfg, string entry_label)
 {
 	this->cfg = cfg;
 	this->label = entry_label;
+	cfg->add_bb(this);
+}
+
+BasicBlock::~BasicBlock()
+{
+	for(int i = 0;i<instrs.size();i++)
+	{
+		delete instrs[i];
+	}
 }
 
 void BasicBlock::gen_asm(ostream& o)
@@ -85,11 +94,27 @@ void BasicBlock::gen_asm(ostream& o)
 	{
 		instrs[i]->gen_asm(o);
 	}
-
-	if (exit_true && !exit_false) {
+	if(exit_true==this)
+	{
+		//cas de la boucle
 		o << "\t\tjump " << exit_true->label << endl;
-	}//sinon les jumps sont gérés dans les visiteurs
-	
+		exit_false->gen_asm(o);
+
+	}
+	else {
+		if (exit_true && !exit_false) {
+			o << "\t\tjump " << exit_true->label << endl;
+		}//sinon les jumps sont gérés dans les visiteurs
+		if (exit_true )
+		{
+			exit_true->gen_asm(o);
+		}
+
+		if (exit_false)
+		{
+			exit_false->gen_asm(o);
+		}
+	}
 }
 
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params)
@@ -106,39 +131,38 @@ CFG::CFG()
 {
 }
 
-void CFG::add_bb(BasicBlock* bb, int index)
+CFG::~CFG()
+{
+	for(int i = 0;i<bbs.size();i++)
+	{
+		delete bbs[i];
+	}
+}
+
+void CFG::add_bb(BasicBlock* bb)
 {
 	if (bb->label != "BLOC_" + to_string(nextBBnumber)) {
 		bb->label += "_" + to_string(nextBBnumber);
 	}
-	if (index == -1 || index >= bbs.size()) {
 		bbs.push_back(bb);
 		current_bb = bb;
 		nextBBnumber++;
-	}
-	else
-	{
-		vector<BasicBlock*>::iterator here = bbs.begin() + index;
-		bbs.insert(here, bb);
-		current_bb = bb;
-		nextBBnumber++;
-	}
+	
 }
 
 
 void CFG::gen_asm(ostream& o)
 {
-	connectBlocks();
 	o << ".file \"" << filename << "\"" << endl;
 	o << ".text" << endl;
 	o << ".globl " << ast->name->name << endl;
 	o << ".type " << ast->name->name << ", @function" << endl;
 	o << ast->name->name << ":" << endl;
 	gen_asm_prologue(o);
-	for(int i = 0;i<bbs.size();i++)
-	{
-		bbs[i]->gen_asm(o);
-	}
+	/*for(int i = 0;i<bbs.size();i++)
+	{*/
+		bbs[0]->gen_asm(o);
+	//}
 	gen_asm_epilogue(o);
 
 }
@@ -224,13 +248,4 @@ BasicBlock * CFG::get_bb_by_name(string name)
 	return nullptr;
 }
 
-void CFG::connectBlocks()
-{
-	for (int i = 0; i < bbs.size() - 1; i++)
-	{
-		if (!bbs[i]->exit_true)//si on a pas de bloc defini, on prend le suivant
-		{
-			bbs[i]->exit_true = bbs[i + 1];
-		}
-	}
-}
+

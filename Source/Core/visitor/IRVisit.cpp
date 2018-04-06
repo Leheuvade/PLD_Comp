@@ -68,8 +68,7 @@ VisitOutput* IRVisit::visit(Definition* p)
 	{
 		mainCFG = cfg;//bloc principal qui sera lu � l'execution
 	}
-	/*VisitOutput * v = p->name->accept(this);
-	delete v;*/
+	
 	VisitOutput * v = p->params->accept(this);
 	delete v;
 	v = p->bloc->accept(this);
@@ -452,48 +451,83 @@ VisitOutput* IRVisit::visit(StructureIf* p)
 	params.push_back("$0");
 	params.push_back((static_cast<StringOutput*>(v)->val));
 	bCurrent->add_IRInstr(IRInstr::cmpq, int64_type, params);
-	vector<string>params2;
 
-	BasicBlock* bIf = new BasicBlock(lastCFG, lastCFG->new_BB_name());
-	lastCFG->add_bb(bIf);
-	BasicBlock* bElse = new BasicBlock(lastCFG, lastCFG->new_BB_name());
+	BasicBlock* bIf = new BasicBlock(lastCFG, "BIF");
+	BasicBlock* bElse = new BasicBlock(lastCFG, "BELSE");
+	BasicBlock* bFin = new BasicBlock(lastCFG, "BFIN");
+	lastCFG->current_bb = bIf;
+	if(bCurrent->exit_true)
+	{
+		bFin->exit_true = bCurrent->exit_true;
+	}
+	bCurrent->exit_true = bIf;
+	bCurrent->exit_false = bElse;
+	bIf->exit_true = bFin;
+	bElse->exit_true = bFin;
+
+
+	
+	
+	vector<string>params2;
 	params2.push_back(bElse->label);
 	bCurrent->add_IRInstr(IRInstr::je, int64_type, params2);
 	delete v;
 
 	v = p->bloc->accept(this);
-	lastCFG->add_bb(bElse);
-
-
-	bCurrent->exit_true = bIf;
-	bCurrent->exit_false = bElse;
-
-	string ifFin = lastCFG->new_BB_name();
-	BasicBlock* bFin = new BasicBlock(lastCFG, ifFin);
-
-	bIf->exit_true = bFin;
-	bElse->exit_true = bFin;
-
+	lastCFG->current_bb = bElse;
 	if (p->elseBloc) {
 		v = p->elseBloc->accept(this);
 	}
-	lastCFG->add_bb(bFin);
-
+	lastCFG->current_bb = bFin;
+	
 	delete v;
 	return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(StructureWhile* p)
 {
-	string val = "StructureWhile* p: \n";
+	string val = "";
+	CFG* lastCFG = cfgs[cfgs.size() - 1];
+	BasicBlock* bCurrent = lastCFG->current_bb;
+	BasicBlock* bBoucle = new BasicBlock(lastCFG, "BWHILE");
+	BasicBlock* bFin = new BasicBlock(lastCFG, "BFINWHILE");
+	lastCFG->current_bb = bBoucle;
+	bFin->exit_true = bCurrent->exit_true;
+	bCurrent->exit_true = bBoucle;
+
+	VisitOutput * v = p->condition->accept(this);
+	vector<string>params;
+	params.push_back("$0");
+	params.push_back((static_cast<StringOutput*>(v)->val));
+	lastCFG->current_bb->add_IRInstr(IRInstr::cmpq, int64_type, params);
+	vector<string>params2;
+
+	
+
+	params2.push_back(bFin->label);
+
+	bBoucle->exit_true = bBoucle;//permet de reboucler sur lui meme
+	bBoucle->exit_false = bFin;//permet d'afficher dans l'asm la fin
+
+	lastCFG->current_bb->add_IRInstr(IRInstr::je, int64_type, params2);
+	delete v;
+	v = p->bloc->accept(this);
+
+	lastCFG->current_bb = bFin;
+
+	
+
+	delete v;
 	return new StringOutput(val);
 }
 
 VisitOutput* IRVisit::visit(Bloc* p)
 {
 	CFG* lastCFG = cfgs[cfgs.size() - 1];
-	string bbName = lastCFG->new_BB_name();
-	lastCFG->add_bb(new BasicBlock(lastCFG, bbName));
+	BasicBlock* bDebut=new BasicBlock(lastCFG, "BDEBUT");
+	BasicBlock* bFin = new BasicBlock(lastCFG, "BFINCFG");
+	lastCFG->current_bb = bDebut;
+	bDebut->exit_true = bFin;
 	for (int i = 0; i < p->initDecl.size(); i++)
 	{
 		VisitOutput *v = p->initDecl[i]->accept(this);
@@ -504,12 +538,11 @@ VisitOutput* IRVisit::visit(Bloc* p)
 		VisitOutput * v = p->instructions[i]->accept(this);
 		delete v;
 	}
-	return new StringOutput(bbName);
+	return new StringOutput(bDebut->label);
 }
 
 VisitOutput* IRVisit::visit(BlocStruct* p)
 {
-	CFG* lastCFG = cfgs[cfgs.size() - 1];
 
 	for (int i = 0; i < p->instructions.size(); i++)
 	{
