@@ -1,13 +1,7 @@
-int32_t toto;
-
-void tata(int32_t a){
-}
-
 void main(void)
 {
-    int32_t i;
+    int64_t i;
     i=0;
     i=i+1;
-    tata(i);
-    toto=4;
+
 }
